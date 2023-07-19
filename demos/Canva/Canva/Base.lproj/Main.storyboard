@@ -16,24 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kB-gk-hhK">
+                            <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kB-gk-hhK">
                                 <rect key="frame" x="0.0" y="75" width="393" height="500"/>
                                 <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="500" id="v1E-xV-2l0"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgf-q7-QrC">
-                                <rect key="frame" x="123" y="690" width="148" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgf-q7-QrC">
+                                <rect key="frame" x="16" y="607" width="361" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Adicionar objeto"/>
+                                <connections>
+                                    <action selector="addObject:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FcX-ph-qHW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qgf-q7-QrC" secondAttribute="trailing" constant="16" id="862-5K-tG3"/>
                             <constraint firstItem="0kB-gk-hhK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CFX-jc-F1y"/>
+                            <constraint firstItem="qgf-q7-QrC" firstAttribute="top" secondItem="0kB-gk-hhK" secondAttribute="bottom" constant="32" id="Moj-tV-bpJ"/>
+                            <constraint firstItem="qgf-q7-QrC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RPA-Xz-FjA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0kB-gk-hhK" secondAttribute="trailing" id="WDd-sY-Fgh"/>
                             <constraint firstItem="0kB-gk-hhK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="ggL-Yc-Es1"/>
                         </constraints>
