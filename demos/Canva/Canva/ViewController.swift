@@ -6,22 +6,25 @@
 //
 
 import UIKit
+import CoreData
+
+var canvases: [Canva] = []
+let objSize = 100
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
-    let objSize = 100
     
     var objects: [UIView] = []
     var activeObject: UIView?
     var firstTouch: UITouch?
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
+    @IBOutlet weak var canvaName: UITextField!
     @IBOutlet weak var canvas: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        canvases = DataManager.shared.canvases()
         
         let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         pinch.cancelsTouchesInView = false
@@ -33,8 +36,29 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         rotate.delegate = self
         canvas.addGestureRecognizer(rotate)
     }
-
-
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    // MARK: - Ir para carregar canva
+    @IBAction func loadCanva(_ sender: Any) {
+        performSegue(withIdentifier: "toLoadCanva", sender: nil)
+    }
+    
+    
+    
+    // MARK: - Salvar canva no banco
+    @IBAction func saveCanva(_ sender: Any) {
+        let canva = DataManager.shared.canva(name: canvaName.text ?? "default \(canvases.count + 1)")
+        for object in objects {
+            let _ = DataManager.shared.image(frame: object.frame, canva: canva)
+        }
+        DataManager.shared.save()
+    }
+    
+    // MARK: - Add object to canva
+    
     @IBAction func addObject(_ sender: Any) {
         let render = UIGraphicsImageRenderer(size: CGSize(width: objSize, height: objSize))
         let img = render.image { ctx in

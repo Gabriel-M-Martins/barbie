@@ -11,9 +11,16 @@
 		A7A36CD72A66E75E00BF0CBA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36CD62A66E75E00BF0CBA /* SceneDelegate.swift */; };
 		A7A36CD92A66E75E00BF0CBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A36CD82A66E75E00BF0CBA /* ViewController.swift */; };
 		A7A36CDC2A66E75E00BF0CBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A36CDA2A66E75E00BF0CBA /* Main.storyboard */; };
-		A7A36CDF2A66E75E00BF0CBA /* Canva.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7A36CDD2A66E75E00BF0CBA /* Canva.xcdatamodeld */; };
 		A7A36CE12A66E75F00BF0CBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7A36CE02A66E75F00BF0CBA /* Assets.xcassets */; };
 		A7A36CE42A66E75F00BF0CBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A36CE22A66E75F00BF0CBA /* LaunchScreen.storyboard */; };
+		A7A821442A69B6CC00D051C7 /* Canva+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A821402A69B6CC00D051C7 /* Canva+CoreDataClass.swift */; };
+		A7A821452A69B6CC00D051C7 /* Canva+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A821412A69B6CC00D051C7 /* Canva+CoreDataProperties.swift */; };
+		A7A821462A69B6CC00D051C7 /* Image+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A821422A69B6CC00D051C7 /* Image+CoreDataClass.swift */; };
+		A7A821472A69B6CC00D051C7 /* Image+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A821432A69B6CC00D051C7 /* Image+CoreDataProperties.swift */; };
+		A7A821492A69B70C00D051C7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A821482A69B70C00D051C7 /* DataManager.swift */; };
+		A7A8214B2A69C3D600D051C7 /* OpenedSavedCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A8214A2A69C3D600D051C7 /* OpenedSavedCanvasViewController.swift */; };
+		A7ACB1632A6886CA00B61EFE /* Canva.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7ACB1612A6886CA00B61EFE /* Canva.xcdatamodeld */; };
+		A7ACB1652A688B7000B61EFE /* SavedCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ACB1642A688B7000B61EFE /* SavedCanvasViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +29,17 @@
 		A7A36CD62A66E75E00BF0CBA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A7A36CD82A66E75E00BF0CBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A7A36CDB2A66E75E00BF0CBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A7A36CDE2A66E75E00BF0CBA /* Canva.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Canva.xcdatamodel; sourceTree = "<group>"; };
 		A7A36CE02A66E75F00BF0CBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7A36CE32A66E75F00BF0CBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7A36CE52A66E75F00BF0CBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7A821402A69B6CC00D051C7 /* Canva+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Canva+CoreDataClass.swift"; path = "Canva/CoreData/Canva+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A7A821412A69B6CC00D051C7 /* Canva+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Canva+CoreDataProperties.swift"; path = "Canva/CoreData/Canva+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A7A821422A69B6CC00D051C7 /* Image+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataClass.swift"; path = "Canva/CoreData/Image+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A7A821432A69B6CC00D051C7 /* Image+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Image+CoreDataProperties.swift"; path = "Canva/CoreData/Image+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A7A821482A69B70C00D051C7 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A7A8214A2A69C3D600D051C7 /* OpenedSavedCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedSavedCanvasViewController.swift; sourceTree = "<group>"; };
+		A7ACB1622A6886CA00B61EFE /* Canva.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Canva.xcdatamodel; sourceTree = "<group>"; };
+		A7ACB1642A688B7000B61EFE /* SavedCanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCanvasViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +56,10 @@
 		A7A36CC82A66E75E00BF0CBA = {
 			isa = PBXGroup;
 			children = (
+				A7A821402A69B6CC00D051C7 /* Canva+CoreDataClass.swift */,
+				A7A821412A69B6CC00D051C7 /* Canva+CoreDataProperties.swift */,
+				A7A821422A69B6CC00D051C7 /* Image+CoreDataClass.swift */,
+				A7A821432A69B6CC00D051C7 /* Image+CoreDataProperties.swift */,
 				A7A36CD32A66E75E00BF0CBA /* Canva */,
 				A7A36CD22A66E75E00BF0CBA /* Products */,
 			);
@@ -61,11 +79,14 @@
 				A7A36CD42A66E75E00BF0CBA /* AppDelegate.swift */,
 				A7A36CD62A66E75E00BF0CBA /* SceneDelegate.swift */,
 				A7A36CD82A66E75E00BF0CBA /* ViewController.swift */,
+				A7ACB1642A688B7000B61EFE /* SavedCanvasViewController.swift */,
 				A7A36CDA2A66E75E00BF0CBA /* Main.storyboard */,
 				A7A36CE02A66E75F00BF0CBA /* Assets.xcassets */,
 				A7A36CE22A66E75F00BF0CBA /* LaunchScreen.storyboard */,
 				A7A36CE52A66E75F00BF0CBA /* Info.plist */,
-				A7A36CDD2A66E75E00BF0CBA /* Canva.xcdatamodeld */,
+				A7ACB1612A6886CA00B61EFE /* Canva.xcdatamodeld */,
+				A7A821482A69B70C00D051C7 /* DataManager.swift */,
+				A7A8214A2A69C3D600D051C7 /* OpenedSavedCanvasViewController.swift */,
 			);
 			path = Canva;
 			sourceTree = "<group>";
@@ -141,10 +162,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7A821472A69B6CC00D051C7 /* Image+CoreDataProperties.swift in Sources */,
+				A7A821492A69B70C00D051C7 /* DataManager.swift in Sources */,
 				A7A36CD92A66E75E00BF0CBA /* ViewController.swift in Sources */,
 				A7A36CD52A66E75E00BF0CBA /* AppDelegate.swift in Sources */,
 				A7A36CD72A66E75E00BF0CBA /* SceneDelegate.swift in Sources */,
-				A7A36CDF2A66E75E00BF0CBA /* Canva.xcdatamodeld in Sources */,
+				A7A8214B2A69C3D600D051C7 /* OpenedSavedCanvasViewController.swift in Sources */,
+				A7A821462A69B6CC00D051C7 /* Image+CoreDataClass.swift in Sources */,
+				A7ACB1652A688B7000B61EFE /* SavedCanvasViewController.swift in Sources */,
+				A7A821452A69B6CC00D051C7 /* Canva+CoreDataProperties.swift in Sources */,
+				A7ACB1632A6886CA00B61EFE /* Canva.xcdatamodeld in Sources */,
+				A7A821442A69B6CC00D051C7 /* Canva+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,12 +392,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A7A36CDD2A66E75E00BF0CBA /* Canva.xcdatamodeld */ = {
+		A7ACB1612A6886CA00B61EFE /* Canva.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A7A36CDE2A66E75E00BF0CBA /* Canva.xcdatamodel */,
+				A7ACB1622A6886CA00B61EFE /* Canva.xcdatamodel */,
 			);
-			currentVersion = A7A36CDE2A66E75E00BF0CBA /* Canva.xcdatamodel */;
+			currentVersion = A7ACB1622A6886CA00B61EFE /* Canva.xcdatamodel */;
 			path = Canva.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
