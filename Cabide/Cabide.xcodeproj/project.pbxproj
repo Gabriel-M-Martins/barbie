@@ -58,16 +58,56 @@
 		A76EB91A2A6EFA8B00F8E854 /* Cabide */ = {
 			isa = PBXGroup;
 			children = (
-				A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */,
-				A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */,
-				A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */,
-				A76EB9212A6EFA8B00F8E854 /* Main.storyboard */,
+				A76EB9362A6F058C00F8E854 /* App */,
+				A76EB9352A6F053E00F8E854 /* ModelViews */,
+				A76EB9342A6F053800F8E854 /* Cells */,
+				A76EB9332A6F053100F8E854 /* Storyboards */,
+				A76EB9322A6F052600F8E854 /* ViewControllers */,
 				A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */,
-				A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */,
 				A76EB92C2A6EFA8C00F8E854 /* Info.plist */,
 				A76EB9242A6EFA8B00F8E854 /* Cabide.xcdatamodeld */,
 			);
 			path = Cabide;
+			sourceTree = "<group>";
+		};
+		A76EB9322A6F052600F8E854 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A76EB9332A6F053100F8E854 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */,
+				A76EB9212A6EFA8B00F8E854 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A76EB9342A6F053800F8E854 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A76EB9352A6F053E00F8E854 /* ModelViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelViews;
+			sourceTree = "<group>";
+		};
+		A76EB9362A6F058C00F8E854 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */,
+				A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
