@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCA00662A7041A100C86DAD /* Clothe.storyboard */; };
+		0BCA00692A70439800C86DAD /* ClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00682A70439800C86DAD /* ClotheViewController.swift */; };
 		A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */; };
 		A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */; };
 		A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BCA00662A7041A100C86DAD /* Clothe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Clothe.storyboard; sourceTree = "<group>"; };
+		0BCA00682A70439800C86DAD /* ClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheViewController.swift; sourceTree = "<group>"; };
 		A76EB9182A6EFA8B00F8E854 /* Cabide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cabide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */,
+				0BCA00682A70439800C86DAD /* ClotheViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -83,6 +88,7 @@
 			children = (
 				A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */,
 				A76EB9212A6EFA8B00F8E854 /* Main.storyboard */,
+				0BCA00662A7041A100C86DAD /* Clothe.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -171,6 +177,7 @@
 				A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */,
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
+				0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
+				0BCA00692A70439800C86DAD /* ClotheViewController.swift in Sources */,
 				A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */,
 				A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */,
 				A76EB9262A6EFA8B00F8E854 /* Cabide.xcdatamodeld in Sources */,
@@ -331,7 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 73DNAYF2TM;
+				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -339,6 +347,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,7 +368,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 73DNAYF2TM;
+				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -367,6 +376,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
