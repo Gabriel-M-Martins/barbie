@@ -65,4 +65,16 @@ class ClotheViewModel: ObservableObject {
             fetchClothes()
         }
     }
+    
+    func updateClothe(id: UUID, name: String?, description: String?, image: UIImage?){
+        if let clothe = clothes.first(where: { $0.id == id}) {
+            clothe.name = name
+            clothe.description_ = description
+            if let imageData = image?.pngData() {
+                clothe.image = imageData
+            }
+            saveContext()
+            fetchClothes()
+        }
+    }
 }
