@@ -10,7 +10,7 @@ import CoreData
 
 class ClotheViewModel: ObservableObject {
     @Published var viewContext = DataController.shared.viewContext
-    @Published var clothesArray: [Clothe] = []
+    @Published var clothes: [Clothe] = []
     
     init() {
         fetchClothes()
@@ -20,7 +20,7 @@ class ClotheViewModel: ObservableObject {
         let request = NSFetchRequest<Clothe>(entityName: "Clothe")
         
         do {
-            clothesArray = try viewContext.fetch(request)
+            clothes = try viewContext.fetch(request)
         } catch {
             print("DEBUG: Some error occured while fetching")
         }
