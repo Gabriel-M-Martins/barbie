@@ -10,7 +10,7 @@ import CoreData
 
 class TagViewModel: ObservableObject {
     @Published var viewContext = DataController.shared.viewContext
-    @Published var tags: [Tag] = []
+    var tags: [Tag] = []
     
     init() {
         fetchTags()

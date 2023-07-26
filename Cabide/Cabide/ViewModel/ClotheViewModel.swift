@@ -7,10 +7,11 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class ClotheViewModel: ObservableObject {
     @Published var viewContext = DataController.shared.viewContext
-    @Published var clothes: [Clothe] = []
+    var clothes: [Clothe] = []
     
     init() {
         fetchClothes()
@@ -25,12 +26,25 @@ class ClotheViewModel: ObservableObject {
             print("DEBUG: Some error occured while fetching")
         }
     }
-    
     func saveContext() {
         do {
             try viewContext.save()
         } catch {
             print("Error saving")
         }
+    }
+    
+    func createClothe(name: String, description: String, image: UIImage) {
+        let clothe = Clothe(context: viewContext)
+        
+        clothe.id = UUID()
+        clothe.name = name
+        clothe.description_ = description
+        if let imageData = image.pngData() {
+            clothe.image = imageData
+        }
+        
+        saveContext()
+        fetchClothes()
     }
 }
