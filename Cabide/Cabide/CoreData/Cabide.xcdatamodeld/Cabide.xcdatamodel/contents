@@ -3,7 +3,7 @@
     <entity name="Clothe" representedClassName="Clothe" syncable="YES" codeGenerationType="class">
         <attribute name="description_" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="clothe" inverseEntity="Tag"/>
     </entity>
