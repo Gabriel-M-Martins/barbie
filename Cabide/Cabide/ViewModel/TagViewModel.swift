@@ -10,7 +10,7 @@ import CoreData
 
 class TagViewModel: ObservableObject {
     @Published var viewContext = DataController.shared.viewContext
-    @Published var tagsArray: [Tag] = []
+    var tags: [Tag] = []
     
     init() {
         fetchTags()
@@ -20,7 +20,7 @@ class TagViewModel: ObservableObject {
         let request = NSFetchRequest<Tag>(entityName: "Tag")
         
         do {
-            tagsArray = try viewContext.fetch(request)
+            tags = try viewContext.fetch(request)
         } catch {
             print("DEBUG: Some error occured while fetching")
         }
