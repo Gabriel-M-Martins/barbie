@@ -26,6 +26,7 @@ class ClotheViewModel: ObservableObject {
             print("DEBUG: Some error occured while fetching")
         }
     }
+    
     func saveContext() {
         do {
             try viewContext.save()
@@ -46,5 +47,14 @@ class ClotheViewModel: ObservableObject {
         
         saveContext()
         fetchClothes()
+    }
+    
+    func returnImage(id: UUID) -> UIImage? {
+        if let clothe = clothes.first(where: { $0.id == id }) {
+            if let imageData = clothe.image, let image = UIImage(data: imageData) {
+                return image
+            }
+        }
+        return nil
     }
 }
