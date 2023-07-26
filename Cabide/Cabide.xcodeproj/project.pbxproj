@@ -16,6 +16,9 @@
 		A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */; };
 		A76EB9392A6F05FD00F8E854 /* Canva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9382A6F05FD00F8E854 /* Canva.storyboard */; };
 		A76EB93C2A6F061E00F8E854 /* CanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB93B2A6F061E00F8E854 /* CanvaViewController.swift */; };
+		DC2FBBCF2A704254009A447E /* ClotheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */; };
+		DC2FBBD12A7042BC009A447E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD02A7042BC009A447E /* DataController.swift */; };
+		DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD62A704F7C009A447E /* TagViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		A76EB92C2A6EFA8C00F8E854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A76EB9382A6F05FD00F8E854 /* Canva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Canva.storyboard; sourceTree = "<group>"; };
 		A76EB93B2A6F061E00F8E854 /* CanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaViewController.swift; sourceTree = "<group>"; };
+		DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheViewModel.swift; sourceTree = "<group>"; };
+		DC2FBBD02A7042BC009A447E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		DC2FBBD62A704F7C009A447E /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,13 +69,13 @@
 			isa = PBXGroup;
 			children = (
 				A76EB9362A6F058C00F8E854 /* App */,
-				A76EB9352A6F053E00F8E854 /* ModelViews */,
 				A76EB9342A6F053800F8E854 /* Cells */,
 				A76EB9332A6F053100F8E854 /* Storyboards */,
 				A76EB9322A6F052600F8E854 /* ViewControllers */,
+				DC2FBBD52A7045E6009A447E /* CoreData */,
+				DC2FBBCD2A704244009A447E /* ViewModel */,
 				A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */,
 				A76EB92C2A6EFA8C00F8E854 /* Info.plist */,
-				A76EB9242A6EFA8B00F8E854 /* Cabide.xcdatamodeld */,
 			);
 			path = Cabide;
 			sourceTree = "<group>";
@@ -100,13 +106,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		A76EB9352A6F053E00F8E854 /* ModelViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ModelViews;
-			sourceTree = "<group>";
-		};
 		A76EB9362A6F058C00F8E854 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +131,24 @@
 			path = Canva;
 			sourceTree = "<group>";
 		};
+          DC2FBBCD2A704244009A447E /* ViewModel */ = {
+            isa = PBXGroup;
+            children = (
+                DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */,
+                DC2FBBD62A704F7C009A447E /* TagViewModel.swift */,
+            );
+            path = ViewModel;
+            sourceTree = "<group>";
+        };
+        DC2FBBD52A7045E6009A447E /* CoreData */ = {
+            isa = PBXGroup;
+            children = (
+                A76EB9242A6EFA8B00F8E854 /* Cabide.xcdatamodeld */,
+                DC2FBBD02A7042BC009A447E /* DataController.swift */,
+            );
+            path = CoreData;
+            sourceTree = "<group>";
+        };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,7 +223,10 @@
 			files = (
 				A76EB93C2A6F061E00F8E854 /* CanvaViewController.swift in Sources */,
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
+				DC2FBBD12A7042BC009A447E /* DataController.swift in Sources */,
+				DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */,
 				A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */,
+				DC2FBBCF2A704254009A447E /* ClotheViewModel.swift in Sources */,
 				A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */,
 				A76EB9262A6EFA8B00F8E854 /* Cabide.xcdatamodeld in Sources */,
 			);
