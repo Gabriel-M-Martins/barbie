@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class ClotheViewModel: ObservableObject {
     @Published var viewContext = DataController.shared.viewContext
@@ -32,5 +33,19 @@ class ClotheViewModel: ObservableObject {
         } catch {
             print("Error saving")
         }
+    }
+    
+    func createClothe(name: String, description: String, image: UIImage) {
+        let clothe = Clothe(context: viewContext)
+        
+        clothe.id = UUID()
+        clothe.name = name
+        clothe.description_ = description
+        if let imageData = image.pngData() {
+            clothe.image = imageData
+        }
+        
+        saveContext()
+        fetchClothes()
     }
 }
