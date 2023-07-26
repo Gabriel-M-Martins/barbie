@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Canva View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="CanvaViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Z5-NB-DPC">
+                                <rect key="frame" x="0.0" y="59" width="393" height="500"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="6b2-DO-7A4"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tshirt" translatesAutoresizingMaskIntoConstraints="NO" id="LH1-UT-YBO">
+                                <rect key="frame" x="126.66666666666669" y="591" width="140" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LH1-UT-YBO" secondAttribute="height" multiplier="1:1" id="KNP-ln-X9w"/>
+                                    <constraint firstAttribute="height" constant="140" id="VDP-Zb-7Ik"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2Z5-NB-DPC" secondAttribute="trailing" id="C9w-9s-jyR"/>
+                            <constraint firstItem="LH1-UT-YBO" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ahv-t2-RcH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LH1-UT-YBO" secondAttribute="bottom" constant="8" id="gYh-v2-6Xy"/>
+                            <constraint firstItem="2Z5-NB-DPC" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="oSf-Cm-4yY"/>
+                            <constraint firstItem="2Z5-NB-DPC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="sIa-Zt-kyE"/>
+                            <constraint firstItem="LH1-UT-YBO" firstAttribute="top" secondItem="2Z5-NB-DPC" secondAttribute="bottom" constant="32" id="waD-OK-giC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="2Z5-NB-DPC" id="yiN-zv-Fdx"/>
+                        <outlet property="placeholderImage" destination="LH1-UT-YBO" id="EjA-gg-Va2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135.1145038167939" y="4.9295774647887329"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="tshirt" width="2050" height="2263"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

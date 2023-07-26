@@ -14,6 +14,8 @@
 		A76EB9262A6EFA8B00F8E854 /* Cabide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A76EB9242A6EFA8B00F8E854 /* Cabide.xcdatamodeld */; };
 		A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */; };
 		A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */; };
+		A76EB9392A6F05FD00F8E854 /* Canva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9382A6F05FD00F8E854 /* Canva.storyboard */; };
+		A76EB93C2A6F061E00F8E854 /* CanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB93B2A6F061E00F8E854 /* CanvaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A76EB92A2A6EFA8C00F8E854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A76EB92C2A6EFA8C00F8E854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A76EB9382A6F05FD00F8E854 /* Canva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Canva.storyboard; sourceTree = "<group>"; };
+		A76EB93B2A6F061E00F8E854 /* CanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 		A76EB9322A6F052600F8E854 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A76EB93A2A6F061100F8E854 /* Canva */,
 				A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */,
 			);
 			path = ViewControllers;
@@ -81,6 +86,7 @@
 		A76EB9332A6F053100F8E854 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				A76EB9372A6F05EB00F8E854 /* Canva */,
 				A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */,
 				A76EB9212A6EFA8B00F8E854 /* Main.storyboard */,
 			);
@@ -108,6 +114,22 @@
 				A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		A76EB9372A6F05EB00F8E854 /* Canva */ = {
+			isa = PBXGroup;
+			children = (
+				A76EB9382A6F05FD00F8E854 /* Canva.storyboard */,
+			);
+			path = Canva;
+			sourceTree = "<group>";
+		};
+		A76EB93A2A6F061100F8E854 /* Canva */ = {
+			isa = PBXGroup;
+			children = (
+				A76EB93B2A6F061E00F8E854 /* CanvaViewController.swift */,
+			);
+			path = Canva;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76EB9392A6F05FD00F8E854 /* Canva.storyboard in Resources */,
 				A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */,
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
@@ -181,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76EB93C2A6F061E00F8E854 /* CanvaViewController.swift in Sources */,
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
 				A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */,
 				A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */,
@@ -336,9 +360,10 @@
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Canva;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -364,9 +389,10 @@
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Canva;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
