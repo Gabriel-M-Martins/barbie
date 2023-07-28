@@ -39,6 +39,7 @@ class OpenedCanvaViewController: UIViewController {
          Reminder: Each clothing image in the tableView should have .isUserInteractionEnabled set to true so the user can drag it into the canva.
         */
         self.carousel.dataSource = self
+        self.carousel.delegate = self
         
         let saveButton = UIBarButtonItem(title: "Salvar", style: .plain, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = saveButton
@@ -50,7 +51,7 @@ class OpenedCanvaViewController: UIViewController {
 }
 
 
-// MARK: - TableView
+// MARK: - TableView Data Source
 extension OpenedCanvaViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.clothes.count
@@ -63,12 +64,42 @@ extension OpenedCanvaViewController : UITableViewDataSource {
         guard let image = clothe.image else { fatalError() }
         
         cell.imageView?.image = UIImage(data: image)
+        cell.imageView?.contentMode = .scaleAspectFit
+        
+        cell.isUserInteractionEnabled = true
+        cell.userInteractionEnabledWhileDragging = true
+        
         cell.textLabel?.text = clothe.name
         cell.detailTextLabel?.text = clothe.description_
         
-        cell.isUserInteractionEnabled = true
-        
         return cell
+    }
+}
+
+
+// MARK: - TableView Delegate
+extension OpenedCanvaViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("aqui")
+        guard let imageData = viewModel.clothes[indexPath.row].image else { return }
+        
+        let image = UIImage(data: imageData)
+        
+        let newObject = UIImageView(frame: .zero)
+        newObject.contentMode = .scaleAspectFit
+        newObject.image = image
+        newObject.isUserInteractionEnabled = true
+
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        newObject.addGestureRecognizer(pan)
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        newObject.addGestureRecognizer(tap)
+        
+        self.view.addSubview(newObject)
+        objects.append(newObject)
+        
+        print("coe ta aqui")
     }
 }
 
