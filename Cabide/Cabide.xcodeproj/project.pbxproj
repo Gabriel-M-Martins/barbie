@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCA00662A7041A100C86DAD /* Clothe.storyboard */; };
 		0BCA00692A70439800C86DAD /* ClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00682A70439800C86DAD /* ClotheViewController.swift */; };
+		0BCA006E2A71B11500C86DAD /* UIImage+RemoveBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA006D2A71B11500C86DAD /* UIImage+RemoveBackground.swift */; };
+		0BCA00702A71B1D500C86DAD /* CIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA006F2A71B1D500C86DAD /* CIImage+Extensions.swift */; };
+		0BCA00732A71B28200C86DAD /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00722A71B28200C86DAD /* UIImage+Extensions.swift */; };
+		0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00742A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift */; };
+		0BCA00772A71B2D100C86DAD /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00762A71B2D100C86DAD /* MLMultiArray+Image.swift */; };
+		0BCA00792A71B2FE00C86DAD /* CVPixelBuffer+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00782A71B2FE00C86DAD /* CVPixelBuffer+Create.swift */; };
+		0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA007A2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift */; };
+		0BCA007D2A71B37F00C86DAD /* CGImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA007C2A71B37F00C86DAD /* CGImage+RawBytes.swift */; };
+		0BCA007F2A71B39B00C86DAD /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA007E2A71B39B00C86DAD /* Math.swift */; };
+		0BCA00812A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00802A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel */; };
 		A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */; };
 		A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */; };
 		A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */; };
@@ -27,6 +37,16 @@
 /* Begin PBXFileReference section */
 		0BCA00662A7041A100C86DAD /* Clothe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Clothe.storyboard; sourceTree = "<group>"; };
 		0BCA00682A70439800C86DAD /* ClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheViewController.swift; sourceTree = "<group>"; };
+		0BCA006D2A71B11500C86DAD /* UIImage+RemoveBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RemoveBackground.swift"; sourceTree = "<group>"; };
+		0BCA006F2A71B1D500C86DAD /* CIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extensions.swift"; sourceTree = "<group>"; };
+		0BCA00722A71B28200C86DAD /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		0BCA00742A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		0BCA00762A71B2D100C86DAD /* MLMultiArray+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Image.swift"; sourceTree = "<group>"; };
+		0BCA00782A71B2FE00C86DAD /* CVPixelBuffer+Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Create.swift"; sourceTree = "<group>"; };
+		0BCA007A2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		0BCA007C2A71B37F00C86DAD /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
+		0BCA007E2A71B39B00C86DAD /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		0BCA00802A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RemoveBackgroundModel.mlmodel; sourceTree = "<group>"; };
 		A76EB9182A6EFA8B00F8E854 /* Cabide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cabide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +75,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BCA006C2A71B0CE00C86DAD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA006D2A71B11500C86DAD /* UIImage+RemoveBackground.swift */,
+				0BCA006F2A71B1D500C86DAD /* CIImage+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0BCA00712A71B25A00C86DAD /* CoreMlLHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA00722A71B28200C86DAD /* UIImage+Extensions.swift */,
+				0BCA00742A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift */,
+				0BCA00762A71B2D100C86DAD /* MLMultiArray+Image.swift */,
+				0BCA00782A71B2FE00C86DAD /* CVPixelBuffer+Create.swift */,
+				0BCA007A2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift */,
+				0BCA007C2A71B37F00C86DAD /* CGImage+RawBytes.swift */,
+				0BCA007E2A71B39B00C86DAD /* Math.swift */,
+			);
+			path = CoreMlLHelpers;
+			sourceTree = "<group>";
+		};
 		A76EB90F2A6EFA8B00F8E854 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +117,8 @@
 		A76EB91A2A6EFA8B00F8E854 /* Cabide */ = {
 			isa = PBXGroup;
 			children = (
+				0BCA00712A71B25A00C86DAD /* CoreMlLHelpers */,
+				0BCA006C2A71B0CE00C86DAD /* Extensions */,
 				A76EB9362A6F058C00F8E854 /* App */,
 				A76EB9342A6F053800F8E854 /* Cells */,
 				A76EB9332A6F053100F8E854 /* Storyboards */,
@@ -82,6 +127,7 @@
 				DC2FBBCD2A704244009A447E /* ViewModel */,
 				A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */,
 				A76EB92C2A6EFA8C00F8E854 /* Info.plist */,
+				0BCA00802A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel */,
 			);
 			path = Cabide;
 			sourceTree = "<group>";
@@ -232,13 +278,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76EB93C2A6F061E00F8E854 /* OpenedCanvaViewController.swift in Sources */,
+				0BCA00792A71B2FE00C86DAD /* CVPixelBuffer+Create.swift in Sources */,
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
+				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
+				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
+				0BCA007D2A71B37F00C86DAD /* CGImage+RawBytes.swift in Sources */,
+				0BCA00702A71B1D500C86DAD /* CIImage+Extensions.swift in Sources */,
+				0BCA006E2A71B11500C86DAD /* UIImage+RemoveBackground.swift in Sources */,
+				0BCA00732A71B28200C86DAD /* UIImage+Extensions.swift in Sources */,
 				0BCA00692A70439800C86DAD /* ClotheViewController.swift in Sources */,
 				DC2FBBD12A7042BC009A447E /* DataController.swift in Sources */,
 				DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */,
+				0BCA00812A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel in Sources */,
+				0BCA007F2A71B39B00C86DAD /* Math.swift in Sources */,
 				A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */,
 				DC2FBBCF2A704254009A447E /* ClotheViewModel.swift in Sources */,
 				A7E6FABD2A71A5EA00D174BB /* OpenedCanvaViewModel.swift in Sources */,
+				0BCA00772A71B2D100C86DAD /* MLMultiArray+Image.swift in Sources */,
 				A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */,
 				A76EB9262A6EFA8B00F8E854 /* Cabide.xcdatamodeld in Sources */,
 			);
@@ -390,6 +446,7 @@
 				DEVELOPMENT_TEAM = 73DNAYF2TM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Canva;
@@ -419,6 +476,7 @@
 				DEVELOPMENT_TEAM = 73DNAYF2TM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Canva;
