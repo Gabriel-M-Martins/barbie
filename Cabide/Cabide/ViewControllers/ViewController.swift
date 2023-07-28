@@ -13,8 +13,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+    
+    
+    @IBAction func clothing(_ sender: Any) {
+        performSegue(withIdentifier: "toClothe", sender: nil)
+    }
+    
+    @IBAction func canva(_ sender: Any) {
+        performSegue(withIdentifier: "toOpenedCanva", sender: nil)
+    }
+    
 }
 
 //class HomeViewController: UIViewController, HomeProtocol {
