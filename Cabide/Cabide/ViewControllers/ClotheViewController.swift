@@ -35,6 +35,12 @@ class ClotheViewController: UIViewController, PHPickerViewControllerDelegate, UI
         imagePickerVC.delegate = self
         present(imagePickerVC, animated: true)
     }
+    
+    @IBAction func removeBackground(_ sender: Any) {
+        DispatchQueue.main.async {
+            self.clotheImageView.image = self.clotheImageView.image?.removeBackground()
+        }
+    }
 }
 
 extension ClotheViewController {
