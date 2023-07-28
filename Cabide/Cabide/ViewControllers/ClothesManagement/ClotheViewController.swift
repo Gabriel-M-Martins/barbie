@@ -11,11 +11,20 @@ import PhotosUI
 class ClotheViewController: UIViewController, PHPickerViewControllerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @IBOutlet weak var clotheImageView: UIImageView!
+    let viewModel = ClotheViewModel()
+    @IBOutlet weak var nameLabel: UITextField!
+    @IBOutlet weak var descriptionLabel: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
-
+    
     @IBAction func selectImagePressed(_ sender: Any) {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         let filter = PHPickerFilter.any(of: [.images])
@@ -36,11 +45,14 @@ class ClotheViewController: UIViewController, PHPickerViewControllerDelegate, UI
         present(imagePickerVC, animated: true)
     }
     
-    @IBAction func removeBackground(_ sender: Any) {
-        DispatchQueue.main.async {
-            self.clotheImageView.image = self.clotheImageView.image?.removeBackground()
-        }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
+    
+    @IBAction func createPressed(_ sender: Any) {
+        viewModel.createClothe(name: nameLabel.text ?? "", description: descriptionLabel.text ?? "", image: clotheImageView.image ?? UIImage())
+    }
+    
 }
 
 extension ClotheViewController {
@@ -52,7 +64,7 @@ extension ClotheViewController {
                 guard let image = reading as? UIImage, error == nil else { return }
                 
                 DispatchQueue.main.async {
-                    self.clotheImageView.image = image
+                    self.clotheImageView.image = image.removeBackground()
                 }
             }
         }
@@ -64,7 +76,7 @@ extension ClotheViewController {
         guard let image = info[.editedImage] as? UIImage else { return }
         
         DispatchQueue.main.async {
-            self.clotheImageView.image = image
+            self.clotheImageView.image = image.removeBackground()
         }
     }
 }
