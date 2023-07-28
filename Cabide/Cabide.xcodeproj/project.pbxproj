@@ -26,6 +26,9 @@
 		A76EB9262A6EFA8B00F8E854 /* Cabide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A76EB9242A6EFA8B00F8E854 /* Cabide.xcdatamodeld */; };
 		A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */; };
 		A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */; };
+		A76EB9392A6F05FD00F8E854 /* Canva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9382A6F05FD00F8E854 /* Canva.storyboard */; };
+		A76EB93C2A6F061E00F8E854 /* OpenedCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB93B2A6F061E00F8E854 /* OpenedCanvaViewController.swift */; };
+		A7E6FABD2A71A5EA00D174BB /* OpenedCanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E6FABC2A71A5EA00D174BB /* OpenedCanvaViewModel.swift */; };
 		DC2FBBCF2A704254009A447E /* ClotheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */; };
 		DC2FBBD12A7042BC009A447E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD02A7042BC009A447E /* DataController.swift */; };
 		DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD62A704F7C009A447E /* TagViewModel.swift */; };
@@ -58,6 +61,9 @@
 		A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A76EB92A2A6EFA8C00F8E854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A76EB92C2A6EFA8C00F8E854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A76EB9382A6F05FD00F8E854 /* Canva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Canva.storyboard; sourceTree = "<group>"; };
+		A76EB93B2A6F061E00F8E854 /* OpenedCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedCanvaViewController.swift; sourceTree = "<group>"; };
+		A7E6FABC2A71A5EA00D174BB /* OpenedCanvaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedCanvaViewModel.swift; sourceTree = "<group>"; };
 		DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheViewModel.swift; sourceTree = "<group>"; };
 		DC2FBBD02A7042BC009A447E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		DC2FBBD62A704F7C009A447E /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				DCF91E132A7443A8002E8277 /* ClothesManagement */,
+				A76EB93A2A6F061100F8E854 /* Canva */,
 				A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */,
 			);
 			path = ViewControllers;
@@ -149,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				DCF91E122A744397002E8277 /* ClothesManagement */,
+				A76EB9372A6F05EB00F8E854 /* Canva */,
 				A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */,
 				A76EB9212A6EFA8B00F8E854 /* Main.storyboard */,
 			);
@@ -172,11 +180,28 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		A76EB9372A6F05EB00F8E854 /* Canva */ = {
+			isa = PBXGroup;
+			children = (
+				A76EB9382A6F05FD00F8E854 /* Canva.storyboard */,
+			);
+			path = Canva;
+			sourceTree = "<group>";
+		};
+		A76EB93A2A6F061100F8E854 /* Canva */ = {
+			isa = PBXGroup;
+			children = (
+				A76EB93B2A6F061E00F8E854 /* OpenedCanvaViewController.swift */,
+			);
+			path = Canva;
+			sourceTree = "<group>";
+		};
 		DC2FBBCD2A704244009A447E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */,
 				DC2FBBD62A704F7C009A447E /* TagViewModel.swift */,
+				A7E6FABC2A71A5EA00D174BB /* OpenedCanvaViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -268,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76EB9392A6F05FD00F8E854 /* Canva.storyboard in Resources */,
 				A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */,
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
@@ -284,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76EB93C2A6F061E00F8E854 /* OpenedCanvaViewController.swift in Sources */,
 				0BCA00792A71B2FE00C86DAD /* CVPixelBuffer+Create.swift in Sources */,
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
 				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
@@ -301,6 +328,7 @@
 				0BCA007F2A71B39B00C86DAD /* Math.swift in Sources */,
 				A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */,
 				DC2FBBCF2A704254009A447E /* ClotheViewModel.swift in Sources */,
+				A7E6FABD2A71A5EA00D174BB /* OpenedCanvaViewModel.swift in Sources */,
 				0BCA00772A71B2D100C86DAD /* MLMultiArray+Image.swift in Sources */,
 				A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */,
 				DCF91E0F2A74428B002E8277 /* ListViewController.swift in Sources */,
@@ -451,13 +479,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
+				DEVELOPMENT_TEAM = 73DNAYF2TM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Canva;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -481,13 +509,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
+				DEVELOPMENT_TEAM = 73DNAYF2TM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Canva;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
