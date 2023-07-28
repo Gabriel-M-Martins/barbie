@@ -49,5 +49,20 @@ extension ListViewController: UITableViewDataSource {
 
 
 extension ListViewController: UITableViewDelegate {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.segue,
+           let clothe = sender as? Clothe {
+            let destination = segue.destination as! ClotheDetailsViewController
+            
+            destination.clothe = clothe
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        self.performSegue(withIdentifier: self.segue, sender: self.viewModel.clothes[indexPath.row])
+        
+    }
     
 }
