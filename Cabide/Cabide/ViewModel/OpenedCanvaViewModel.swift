@@ -7,42 +7,71 @@
 
 import Foundation
 import UIKit
+import CoreData
+
+struct CanvaPosition : Codable {
+    var frame: CGRect
+    var transform: CGAffineTransform
+}
 
 class OpenedCanvaViewModel {
-    /// ID : (Transform, Frame)
-    /// Stores this canva' "session" in a dictionary to be later saved on CoreData.
-    private var canvaStore: [UUID : (transform: CGAffineTransform, frame: CGRect)] = [:]
+    @Published var viewContext = DataController.shared.viewContext
+    var clothes: [Clothe] = []
     
-    /**
-     Adds or updates an image to the store.
-     - Parameters:
-        - id: the image's UUID.
-     */
-    func putImage(id: UUID, _ transform: CGAffineTransform, _ frame: CGRect) {
-        canvaStore[id] = (transform, frame)
+    init() {
+        fetchClothes()
     }
     
-    /**
-     Removes an image from the store.
-     - Parameters:
-        - id: the image's UUID.
-    */
-    func removeImage(id: UUID) {
-        canvaStore.removeValue(forKey: id)
+    // ------------------------------------------------------------------------------------------------------------------------------ this will be moved into a static service
+    func fetchClothes() {
+        let request = NSFetchRequest<Clothe>(entityName: "Clothe")
+        
+        do {
+            clothes = try viewContext.fetch(request)
+        } catch {
+            print("DEBUG: Some error occured while fetching")
+        }
+    }
+    
+    func saveContext() {
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error saving")
+        }
+    }
+    // ------------------------------------------------------------------------------------------------------------------------------ ^
+    
+    var store: [ClotheAtCanva] = []
+    
+    func replaceStoreState(clothes: [(Clothe, CanvaPosition)]) {
+        let encoder = JSONEncoder()
+        var clothesAtCanva: [ClotheAtCanva] = []
+        
+        for (clothe, position) in clothes {
+            let clotheAtCanva = ClotheAtCanva(context: viewContext)
+            clotheAtCanva.id = UUID()
+            clotheAtCanva.clothe = clothe
+            clotheAtCanva.positions = try? encoder.encode(position)
+            clothesAtCanva.append(clotheAtCanva)
+        }
+        
+        store = clothesAtCanva
     }
     
     /**
      Saves the store into the shared CoreData context. This isn't yet implemented as the canva's entity doesn't currently exists, so all the canva's info used when creating one are missing from the method.
      */
-    func save() -> Bool {
+    func save(name: String, description: String) -> Bool {
+        var canva = Canva(context: viewContext)
+        canva.id = UUID()
+        canva.name = name
+        canva.desc = description
+        
+        for clotheAtCanva in store {
+            canva.addToClothes(clotheAtCanva)
+        }
+                
         return false
-    }
-    
-    /**
-     Loads images from shared CoreData context and their respective UUIDs.
-     - Returns: A tuple list where image is an UIImage and id is it's UUID.
-     */
-    func loadImages() -> [(image: UIImage, id: UUID)] {
-        return []
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 class OpenedCanvaViewController: UIViewController {
     
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var carousel: UITableView!
     @IBOutlet weak var placeholderImage: UIImageView!
     
     private var objects: [UIView] = []
@@ -38,8 +39,18 @@ class OpenedCanvaViewController: UIViewController {
          TODO: Call the viewModel to load saved clothes into the tableView.
          Reminder: Each clothing image in the tableView should have .isUserInteractionEnabled set to true so the user can drag it into the canva.
         */
-        let images = viewModel.loadImages()
+        self.carousel.dataSource = self
         placeholderImage.isUserInteractionEnabled = true
+    }
+}
+
+extension OpenedCanvaViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
 
