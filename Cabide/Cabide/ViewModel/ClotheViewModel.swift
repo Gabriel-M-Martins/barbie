@@ -49,13 +49,13 @@ class ClotheViewModel: ObservableObject {
         fetchClothes()
     }
     
-    func returnImage(id: UUID) -> UIImage? {
+    func returnImage(id: UUID?) -> UIImage {
         if let clothe = clothes.first(where: { $0.id == id }) {
             if let imageData = clothe.image, let image = UIImage(data: imageData) {
                 return image
             }
         }
-        return nil
+        return UIImage()
     }
     
     func deleteClothe(id: UUID) {
