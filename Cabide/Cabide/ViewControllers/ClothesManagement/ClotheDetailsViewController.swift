@@ -14,7 +14,7 @@ class ClotheDetailsViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var nameTextfield: UITextField!
     @IBOutlet weak var descriptionTextfield: UITextField!
-    let viewModel = ClotheViewModel()
+    let viewModel = ClotheDetailsViewModel()
     
     var clothe: Clothe!
     
