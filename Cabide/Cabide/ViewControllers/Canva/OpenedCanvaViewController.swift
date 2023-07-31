@@ -11,13 +11,10 @@ class OpenedCanvaViewController: UIViewController {
     
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var carousel: UITableView!
-    @IBOutlet weak var placeholderImage: UIImageView!
     
     private var objects: [UIView] = []
     private var activeObject: UIView?
     private var touch: UITouch?
-    
-    private var tshirt = UIImage(named: "tshirt")
     
     private var viewModel = OpenedCanvaViewModel()
     
@@ -40,19 +37,69 @@ class OpenedCanvaViewController: UIViewController {
          Reminder: Each clothing image in the tableView should have .isUserInteractionEnabled set to true so the user can drag it into the canva.
         */
         self.carousel.dataSource = self
-        placeholderImage.isUserInteractionEnabled = true
+        self.carousel.delegate = self
+        
+        let saveButton = UIBarButtonItem(title: "Salvar", style: .plain, target: self, action: #selector(save))
+        self.navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    @objc func save() {
+        performSegue(withIdentifier: "toCanvaInfo", sender: nil)
     }
 }
 
+
+// MARK: - TableView Data Source
 extension OpenedCanvaViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.clothes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basic", for: indexPath)
+        
+        let clothe = viewModel.clothes[indexPath.row]
+        guard let image = clothe.image else { fatalError() }
+        
+        cell.imageView?.image = UIImage(data: image)
+        cell.imageView?.contentMode = .scaleAspectFit
+        
+        cell.isUserInteractionEnabled = true
+        cell.userInteractionEnabledWhileDragging = true
+        
+        cell.textLabel?.text = clothe.name
+        cell.detailTextLabel?.text = clothe.description_
+        
+        return cell
     }
 }
+
+
+// MARK: - TableView Delegate
+extension OpenedCanvaViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let imageData = viewModel.clothes[indexPath.row].image else { return }
+        let image = UIImage(data: imageData)
+        
+        // this should change somehow so the image is draggable instead of it justing appearing on the canva
+        let newObject = UIImageView(frame: .zero)
+        newObject.contentMode = .scaleAspectFit
+        newObject.image = image
+        newObject.frame.size = .init(width: 150, height: 150)
+        newObject.center = container.center
+        newObject.isUserInteractionEnabled = true
+
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        newObject.addGestureRecognizer(pan)
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        newObject.addGestureRecognizer(tap)
+        
+        self.view.addSubview(newObject)
+        objects.append(newObject)
+    }
+}
+
 
 // MARK: - Enable multi-gesture input
 extension OpenedCanvaViewController : UIGestureRecognizerDelegate {
@@ -62,42 +109,20 @@ extension OpenedCanvaViewController : UIGestureRecognizerDelegate {
 }
 
 // MARK: - Gestures
-/**
- 1. User touches something on the view.
- 2. touchesBegan recognizes it and checks if it is an clothing (object).
- 3. If it is, registers as the active object.
- 4. When a gesture is recognized, the handler tries to use the active object, if there isn't one, the gesture doesn't happen.
- */
 extension OpenedCanvaViewController {
+    private func bringToFront(_ object: UIView) {
+        container.bringSubviewToFront(object)
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let position = touch.location(in: view)
-            guard var touchedView = view.hitTest(position, with: event) else { continue }
-            
-            if touchedView == placeholderImage {
-                let newImage = UIImageView(frame: .zero)
-
-                newImage.contentMode = .scaleAspectFit
-                newImage.frame = placeholderImage.frame
-                newImage.image = placeholderImage.image
-                newImage.isUserInteractionEnabled = true
-                
-                let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-                newImage.addGestureRecognizer(pan)
-                
-                let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-                newImage.addGestureRecognizer(tap)
-                
-                self.view.addSubview(newImage)
-                objects.append(newImage)
-                
-                touchedView = newImage
-            }
+            guard let touchedView = view.hitTest(position, with: event) else { continue }
             
             if objects.contains(touchedView) && activeObject == nil && self.touch == nil {
                 activeObject = touchedView
                 self.touch = touch
+                bringToFront(activeObject!)
             }
         }
     }
