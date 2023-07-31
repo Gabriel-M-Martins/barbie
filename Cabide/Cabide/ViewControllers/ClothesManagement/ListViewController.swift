@@ -12,7 +12,7 @@ class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let cell: String = "ClotheDetails"
     let segue: String = "goToDetails"
-    let viewModel = ClotheViewModel()
+    let viewModel = ListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +30,13 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.clothes.count
+        return viewModel.getClothes().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cell, for: indexPath) as! ClotheDetailsCell
         
-        let clothe = viewModel.clothes[indexPath.row]
+        let clothe = viewModel.getClothes()[indexPath.row]
         
         cell.nameLabel.text = clothe.name
         cell.descritionLabel.text = clothe.description_
@@ -61,7 +61,7 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        self.performSegue(withIdentifier: self.segue, sender: self.viewModel.clothes[indexPath.row])
+        self.performSegue(withIdentifier: self.segue, sender: self.viewModel.getClothes()[indexPath.row])
         
     }
     
