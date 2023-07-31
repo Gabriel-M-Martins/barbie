@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Save Canva View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="SaveCanvaViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,11 +43,17 @@
                                 <rect key="frame" x="8" y="724" width="377" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Cancelar"/>
+                                <connections>
+                                    <action selector="cancel:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3Rt-gt-4xQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzX-hO-b5x">
                                 <rect key="frame" x="8" y="767" width="377" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Salvar"/>
+                                <connections>
+                                    <action selector="save:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="C9n-ZV-k6f"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -73,6 +79,10 @@
                             <constraint firstItem="DMw-8c-ppq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="swk-KH-vJY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="descriptionField" destination="kva-mY-6k2" id="qxa-1Q-2H6"/>
+                        <outlet property="nameField" destination="mhD-P1-caC" id="D3b-fK-66p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,35 +14,12 @@ struct CanvaPosition : Codable {
     var transform: CGAffineTransform
 }
 
-class OpenedCanvaViewModel {
+class EditableCanvaViewModel {
     @Published var viewContext = DataController.shared.viewContext
-    var clothes: [Clothe] = []
-    
-    init() {
-        fetchClothes()
-    }
-    
-    // ------------------------------------------------------------------------------------------------------------------------------ this will be moved into a static service
-    func fetchClothes() {
-        let request = NSFetchRequest<Clothe>(entityName: "Clothe")
-        
-        do {
-            clothes = try viewContext.fetch(request)
-        } catch {
-            print("DEBUG: Some error occured while fetching")
-        }
-    }
-    
-    func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            print("Error saving")
-        }
-    }
-    // ------------------------------------------------------------------------------------------------------------------------------ ^
+    var service: ClotheService = ClotheService()
     
     var store: [ClotheAtCanva] = []
+    var clothes: [Clothe] { service.data }
     
     func replaceStoreState(clothes: [(Clothe, CanvaPosition)]) {
         let encoder = JSONEncoder()
@@ -62,8 +39,8 @@ class OpenedCanvaViewModel {
     /**
      Saves the store into the shared CoreData context. This isn't yet implemented as the canva's entity doesn't currently exists, so all the canva's info used when creating one are missing from the method.
      */
-    func save(name: String, description: String) -> Bool {
-        var canva = Canva(context: viewContext)
+    func save(name: String, description: String) {
+        let canva = Canva(context: viewContext)
         canva.id = UUID()
         canva.name = name
         canva.desc = description
@@ -71,7 +48,7 @@ class OpenedCanvaViewModel {
         for clotheAtCanva in store {
             canva.addToClothes(clotheAtCanva)
         }
-                
-        return false
+        
+        service.save()
     }
 }
