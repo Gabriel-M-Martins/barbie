@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class ListViewModel: ObservableObject {
+class ListViewModel {
     var service = ClotheService()
     
     func returnImage(id: UUID?) -> UIImage {
