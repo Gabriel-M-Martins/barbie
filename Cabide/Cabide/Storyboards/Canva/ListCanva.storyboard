@@ -52,11 +52,22 @@
                     </view>
                     <connections>
                         <outlet property="table" destination="UJ9-Nd-lCi" id="qUo-z1-UGi"/>
+                        <segue destination="Vgu-Qd-aBt" kind="show" identifier="toOpenedCanva" id="xI1-xS-gD5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80" y="5"/>
+            <point key="canvasLocation" x="34" y="8"/>
+        </scene>
+        <!--OpenedCanva-->
+        <scene sceneID="aCX-La-gq8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OpenedCanva" id="Vgu-Qd-aBt" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uyu-Gi-sSA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tqb-Rk-hsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="8"/>
         </scene>
     </scenes>
     <resources>
