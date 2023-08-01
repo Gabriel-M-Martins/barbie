@@ -42,3 +42,56 @@ extension UIImage {
         }
     }
 }
+
+extension UIImage {
+    var opaqueBounds: CGRect? {
+        guard let cgImage = self.cgImage else { return nil }
+        let width = Int(self.size.width)
+        let height = Int(self.size.height)
+        let bitmapData = CFDataCreateMutable(nil, width * height * 4)
+        guard let bitmapContext = CGContext(data: CFDataGetMutableBytePtr(bitmapData),
+                                             width: width,
+                                             height: height,
+                                             bitsPerComponent: 8,
+                                             bytesPerRow: width * 4,
+                                             space: CGColorSpaceCreateDeviceRGB(),
+                                             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+        else { return nil }
+        
+        bitmapContext.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
+        let data = CFDataGetBytePtr(bitmapData)
+        
+        var minX = width
+        var maxX = 0
+        var minY = height
+        var maxY = 0
+        
+        for x in 0..<width {
+            for y in 0..<height {
+                let pixel = data![(x+y*width)*4 + 3]
+                if pixel > 0 {
+                    minX = min(x, minX)
+                    maxX = max(x, maxX)
+                    minY = min(y, minY)
+                    maxY = max(y, maxY)
+                }
+            }
+        }
+        
+        if minX > maxX || minY > maxY {
+            return nil
+        } else {
+            return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+        }
+    }
+    
+    func croppedToOpaque() -> UIImage? {
+        guard let opaqueBounds = self.opaqueBounds else { return nil }
+        let opaqueRect = CGRect(x: opaqueBounds.origin.x,
+                                y: self.size.height - opaqueBounds.origin.y - opaqueBounds.size.height,
+                                width: opaqueBounds.size.width,
+                                height: opaqueBounds.size.height)
+        guard let cgImage = self.cgImage?.cropping(to: opaqueRect) else { return nil }
+        return UIImage(cgImage: cgImage)
+    }
+}

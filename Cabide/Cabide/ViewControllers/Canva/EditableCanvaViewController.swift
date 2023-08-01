@@ -32,13 +32,11 @@ class EditableCanvaViewController: UIViewController {
         pinch.delegate = self
         view.addGestureRecognizer(pinch)
         
-        /*
-         TODO: Call the viewModel to load saved clothes into the tableView.
-         Reminder: Each clothing image in the tableView should have .isUserInteractionEnabled set to true so the user can drag it into the canva.
-        */
+        // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
         self.carousel.dataSource = self
         self.carousel.delegate = self
         
+        // --------------------------------------------------------------------------------------------------------------------------------------------------------------------
         let saveButton = UIBarButtonItem(title: "Salvar", style: .plain, target: self, action: #selector(save))
         let listButton = UIBarButtonItem(title: "Listar", style: .plain, target: self, action: #selector(list))
         
@@ -88,7 +86,6 @@ extension EditableCanvaViewController : UITableViewDataSource {
     }
 }
 
-
 // MARK: - TableView Delegate
 extension EditableCanvaViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -100,7 +97,7 @@ extension EditableCanvaViewController : UITableViewDelegate {
         let newObject = UIImageView(frame: .zero)
         newObject.contentMode = .scaleAspectFit
         newObject.image = image
-        newObject.frame.size = .init(width: 150, height: 150)
+        newObject.frame.size = image!.size
         newObject.center = container.center
         newObject.isUserInteractionEnabled = true
 
