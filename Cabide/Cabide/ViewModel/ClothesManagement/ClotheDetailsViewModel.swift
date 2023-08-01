@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class ClotheDetailsViewModel: ObservableObject {
+class ClotheDetailsViewModel {
     var service = ClotheService()
     
     func returnImage(id: UUID?) -> UIImage {

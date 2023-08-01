@@ -46,6 +46,8 @@
 		DCD4E1572A7826FD0017D4BC /* ClotheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E1562A7826FD0017D4BC /* ClotheService.swift */; };
 		DCD4E15A2A782E790017D4BC /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E1592A782E790017D4BC /* ListViewModel.swift */; };
 		DCD4E15C2A782E8A0017D4BC /* ClotheDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E15B2A782E8A0017D4BC /* ClotheDetailsViewModel.swift */; };
+		DCD4E15E2A784BCB0017D4BC /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E15D2A784BCB0017D4BC /* CollectionService.swift */; };
+		DCD4E1642A784D7C0017D4BC /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E1632A784D7C0017D4BC /* CollectionViewModel.swift */; };
 		DCF91E0F2A74428B002E8277 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF91E0E2A74428B002E8277 /* ListViewController.swift */; };
 		DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF91E102A7442A2002E8277 /* ClotheDetailsViewController.swift */; };
 		DCF91E152A7443CB002E8277 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF91E142A7443CB002E8277 /* List.storyboard */; };
@@ -95,6 +97,8 @@
 		DCD4E1562A7826FD0017D4BC /* ClotheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheService.swift; sourceTree = "<group>"; };
 		DCD4E1592A782E790017D4BC /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		DCD4E15B2A782E8A0017D4BC /* ClotheDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheDetailsViewModel.swift; sourceTree = "<group>"; };
+		DCD4E15D2A784BCB0017D4BC /* CollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
+		DCD4E1632A784D7C0017D4BC /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		DCF91E0E2A74428B002E8277 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		DCF91E102A7442A2002E8277 /* ClotheDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheDetailsViewController.swift; sourceTree = "<group>"; };
 		DCF91E142A7443CB002E8277 /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
@@ -169,10 +173,13 @@
 				0BCA00712A71B25A00C86DAD /* CoreMlLHelpers */,
 				0BCA006C2A71B0CE00C86DAD /* Extensions */,
 				A76EB9362A6F058C00F8E854 /* App */,
+				0BCA00712A71B25A00C86DAD /* CoreMlLHelpers */,
+				DCD4E1552A7826DF0017D4BC /* Services */,
+				DC2FBBD52A7045E6009A447E /* CoreData */,
+				0BCA006C2A71B0CE00C86DAD /* Extensions */,
 				A76EB9342A6F053800F8E854 /* Cells */,
 				A76EB9332A6F053100F8E854 /* Storyboards */,
 				A76EB9322A6F052600F8E854 /* ViewControllers */,
-				DC2FBBD52A7045E6009A447E /* CoreData */,
 				DC2FBBCD2A704244009A447E /* ViewModel */,
 				A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */,
 				A76EB92C2A6EFA8C00F8E854 /* Info.plist */,
@@ -184,6 +191,7 @@
 		A76EB9322A6F052600F8E854 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				DCD4E1602A784C530017D4BC /* CollectionsManagement */,
 				DCF91E132A7443A8002E8277 /* ClothesManagement */,
 				A76EB93A2A6F061100F8E854 /* Canva */,
 				A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */,
@@ -194,6 +202,7 @@
 		A76EB9332A6F053100F8E854 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				DCD4E1612A784C5B0017D4BC /* CollectionsManagement */,
 				DCF91E122A744397002E8277 /* ClothesManagement */,
 				A76EB9372A6F05EB00F8E854 /* Canva */,
 				A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */,
@@ -254,7 +263,9 @@
 		DC2FBBCD2A704244009A447E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DCD4E15F2A784C320017D4BC /* CollectionsManagement */,
 				DCD4E1582A782E380017D4BC /* ClothesManagement */,
+				DCD4E1622A784D0E0017D4BC /* Canva */,
 				DC2FBBD62A704F7C009A447E /* TagViewModel.swift */,
 				A7773AF92A7833EF009096BE /* Canva */,
 			);
@@ -274,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				DCD4E1562A7826FD0017D4BC /* ClotheService.swift */,
+				DCD4E15D2A784BCB0017D4BC /* CollectionService.swift */,
 				A762EF082A784B7A007D64E5 /* CanvaService.swift */,
 			);
 			path = Services;
@@ -287,6 +299,36 @@
 				DCD4E15B2A782E8A0017D4BC /* ClotheDetailsViewModel.swift */,
 			);
 			path = ClothesManagement;
+			sourceTree = "<group>";
+		};
+		DCD4E15F2A784C320017D4BC /* CollectionsManagement */ = {
+			isa = PBXGroup;
+			children = (
+				DCD4E1632A784D7C0017D4BC /* CollectionViewModel.swift */,
+			);
+			path = CollectionsManagement;
+			sourceTree = "<group>";
+		};
+		DCD4E1602A784C530017D4BC /* CollectionsManagement */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionsManagement;
+			sourceTree = "<group>";
+		};
+		DCD4E1612A784C5B0017D4BC /* CollectionsManagement */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionsManagement;
+			sourceTree = "<group>";
+		};
+		DCD4E1622A784D0E0017D4BC /* Canva */ = {
+			isa = PBXGroup;
+			children = (
+				A7E6FABC2A71A5EA00D174BB /* OpenedCanvaViewModel.swift */,
+			);
+			path = Canva;
 			sourceTree = "<group>";
 		};
 		DCF91E122A744397002E8277 /* ClothesManagement */ = {
@@ -393,6 +435,7 @@
 				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
 				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
+				DCD4E15E2A784BCB0017D4BC /* CollectionService.swift in Sources */,
 				A762EF0E2A78616A007D64E5 /* UIView+Extensions.swift in Sources */,
 				DCD4E1572A7826FD0017D4BC /* ClotheService.swift in Sources */,
 				A762EF092A784B7A007D64E5 /* CanvaService.swift in Sources */,
@@ -406,6 +449,7 @@
 				DCD4E15C2A782E8A0017D4BC /* ClotheDetailsViewModel.swift in Sources */,
 				DC2FBBD12A7042BC009A447E /* DataController.swift in Sources */,
 				DCF91E192A744851002E8277 /* ClotheDetailsCell.swift in Sources */,
+				DCD4E1642A784D7C0017D4BC /* CollectionViewModel.swift in Sources */,
 				A7773AFB2A783400009096BE /* ListCanvaViewModel.swift in Sources */,
 				A762EF0C2A784BE0007D64E5 /* CoreDataService.swift in Sources */,
 				DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */,
