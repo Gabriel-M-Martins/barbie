@@ -9,20 +9,6 @@ import Foundation
 import CoreData
 
 class ListCanvaViewModel {
-    @Published var viewContext = DataController.shared.viewContext
-    var canvas: [Canva] = []
-    
-    init() {
-        fetch()
-    }
-    
-    private func fetch() {
-        let request = NSFetchRequest<Canva>(entityName: "Canva")
-        
-        do {
-            canvas = try viewContext.fetch(request)
-        } catch {
-            print("DEBUG: Some error occured while fetching")
-        }
-    }
+    var service: CanvaService = CanvaService.build()
+    var canvas: [Canva] { service.data }
 }

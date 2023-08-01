@@ -4,6 +4,7 @@
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary"/>
         <relationship name="clothes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClotheAtCanva" inverseName="canva" inverseEntity="ClotheAtCanva"/>
     </entity>
     <entity name="Clothe" representedClassName="Clothe" syncable="YES" codeGenerationType="class">

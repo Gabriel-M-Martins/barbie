@@ -21,6 +21,7 @@
 		0BCA00812A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00802A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel */; };
 		A762EF092A784B7A007D64E5 /* CanvaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF082A784B7A007D64E5 /* CanvaService.swift */; };
 		A762EF0C2A784BE0007D64E5 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF0B2A784BE0007D64E5 /* CoreDataService.swift */; };
+		A762EF0E2A78616A007D64E5 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF0D2A78616A007D64E5 /* UIView+Extensions.swift */; };
 		A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */; };
 		A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */; };
 		A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB91F2A6EFA8B00F8E854 /* ViewController.swift */; };
@@ -67,6 +68,7 @@
 		0BCA00802A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RemoveBackgroundModel.mlmodel; sourceTree = "<group>"; };
 		A762EF082A784B7A007D64E5 /* CanvaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaService.swift; sourceTree = "<group>"; };
 		A762EF0B2A784BE0007D64E5 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		A762EF0D2A78616A007D64E5 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		A76EB9182A6EFA8B00F8E854 /* Cabide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cabide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76EB91B2A6EFA8B00F8E854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A76EB91D2A6EFA8B00F8E854 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				0BCA006D2A71B11500C86DAD /* UIImage+RemoveBackground.swift */,
 				0BCA006F2A71B1D500C86DAD /* CIImage+Extensions.swift */,
+				A762EF0D2A78616A007D64E5 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
 				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
+				A762EF0E2A78616A007D64E5 /* UIView+Extensions.swift in Sources */,
 				DCD4E1572A7826FD0017D4BC /* ClotheService.swift in Sources */,
 				A762EF092A784B7A007D64E5 /* CanvaService.swift in Sources */,
 				0BCA007D2A71B37F00C86DAD /* CGImage+RawBytes.swift in Sources */,

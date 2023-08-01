@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 public final class ClotheService: CoreDataService {
-    // firula que vai ser sobrescrita no init padrao do CoreDataService
-    @Published var viewContext: NSManagedObjectContext = .init(concurrencyType: .mainQueueConcurrencyType)
+    @Published var viewContext: NSManagedObjectContext = DataController.shared.viewContext
     var data: [Clothe] = []
 }

@@ -23,9 +23,12 @@ protocol CoreDataService<T> where T : NSManagedObject {
 }
 
 extension CoreDataService {
-    init() {
-        self.init()
-        viewContext = DataController.shared.viewContext
+    static func build() -> Self {
+        var object = Self.init()
+//        self.init()
+        object.viewContext = DataController.shared.viewContext
+        object.fetch()
+        return object
     }
     
     func save() {
@@ -33,7 +36,7 @@ extension CoreDataService {
             try viewContext.save()
         } catch {
             // !!!
-            print("Error saving")
+            print("Error saving ----------------------------------------")
         }
     }
     

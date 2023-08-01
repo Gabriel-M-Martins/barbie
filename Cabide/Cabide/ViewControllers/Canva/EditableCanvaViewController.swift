@@ -50,6 +50,7 @@ class EditableCanvaViewController: UIViewController {
     }
     
     @objc func save() {
+        viewModel.replaceStoreState(canva: container)
         performSegue(withIdentifier: "toSaveCanva", sender: nil)
     }
     
@@ -91,7 +92,8 @@ extension EditableCanvaViewController : UITableViewDataSource {
 // MARK: - TableView Delegate
 extension EditableCanvaViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let imageData = viewModel.service.data[indexPath.row].image else { return }
+        let clothe = viewModel.clothes[indexPath.row]
+        guard let imageData = clothe.image else { return }
         let image = UIImage(data: imageData)
         
         // this should change somehow so the image is draggable instead of it justing appearing on the canva
@@ -107,6 +109,8 @@ extension EditableCanvaViewController : UITableViewDelegate {
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         newObject.addGestureRecognizer(tap)
+        
+        newObject.layer.setValue(clothe, forKey: "clothe")
         
         self.view.addSubview(newObject)
         objects.append(newObject)
