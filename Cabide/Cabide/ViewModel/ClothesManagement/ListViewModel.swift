@@ -9,19 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class ListViewModel {
-    var service = ClotheService()
-    
-    func returnImage(id: UUID?) -> UIImage {
-        if let clothe = service.clothes.first(where: { $0.id == id }) {
-            if let imageData = clothe.image, let image = UIImage(data: imageData) {
-                return image
-            }
-        }
-        return UIImage()
-    }
-
-    func getClothes() -> [Clothe] {
-        return service.clothes
-    }
+class ListViewModel: ObservableObject {
+    var service = ClotheService.build()
+    var clothes: [Clothe] { service.data }
 }

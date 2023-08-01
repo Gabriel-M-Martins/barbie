@@ -21,7 +21,7 @@ class ClotheViewModel {
         if let imageData = image.pngData() {
             clothe.image = imageData
         }
-
+        
         service.update()
     }
 }

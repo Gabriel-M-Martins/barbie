@@ -53,10 +53,10 @@
             </objects>
             <point key="canvasLocation" x="910.68702290076328" y="45.774647887323944"/>
         </scene>
-        <!--OpenedCanva-->
+        <!--EditableCanva-->
         <scene sceneID="Hxw-8q-FJg">
             <objects>
-                <viewControllerPlaceholder storyboardName="OpenedCanva" id="WN3-BX-sWc" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="EditableCanva" id="WN3-BX-sWc" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="je6-df-buG"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlK-rI-rnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
