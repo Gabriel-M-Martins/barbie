@@ -11,7 +11,6 @@ import CoreData
 protocol CoreDataService<T> where T : NSManagedObject {
     associatedtype T
     
-    var viewContext: NSManagedObjectContext { get set }
     var data: [T] { get set }
     
     init()
@@ -23,10 +22,10 @@ protocol CoreDataService<T> where T : NSManagedObject {
 }
 
 extension CoreDataService {
+    var viewContext: NSManagedObjectContext { DataController.shared.viewContext }
+    
     static func build() -> Self {
         var object = Self.init()
-//        self.init()
-        object.viewContext = DataController.shared.viewContext
         object.fetch()
         return object
     }

@@ -9,6 +9,5 @@ import Foundation
 import CoreData
 
 public final class CanvaService : CoreDataService {
-    @Published var viewContext: NSManagedObjectContext = .init(concurrencyType: .mainQueueConcurrencyType)
     var data: [Canva] = []
 }

@@ -9,6 +9,5 @@ import Foundation
 import CoreData
 
 public final class ClotheService: CoreDataService {
-    @Published var viewContext: NSManagedObjectContext = DataController.shared.viewContext
     var data: [Clothe] = []
 }
