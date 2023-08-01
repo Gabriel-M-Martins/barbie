@@ -27,10 +27,11 @@ extension ListCanvaViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "basic", for: indexPath)
         
         let canva = viewModel.canvas[indexPath.row]
+        let imageData = canva.thumbnail ?? Data()
         
         cell.textLabel?.text = canva.name
         cell.detailTextLabel?.text = canva.desc
-        
+        cell.imageView?.image = UIImage(data: imageData)
         return cell
     }
 }
