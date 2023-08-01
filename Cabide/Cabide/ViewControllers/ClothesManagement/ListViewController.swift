@@ -30,17 +30,20 @@ class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getClothes().count
+        return viewModel.clothes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cell, for: indexPath) as! ClotheDetailsCell
         
-        let clothe = viewModel.getClothes()[indexPath.row]
+        let clothe = viewModel.clothes[indexPath.row]
+        let imageData = clothe.image! // !!!!
         
         cell.nameLabel.text = clothe.name
         cell.descritionLabel.text = clothe.description_
-        cell.clotheImage.image = viewModel.returnImage(id: clothe.id ?? UUID())
+        cell.clotheImage.image = UIImage(data: imageData)
+        
+//        cell.clotheImage.image = viewModel.returnImage(id: clothe.id ?? UUID())
         
         return cell
     }
@@ -61,7 +64,7 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        self.performSegue(withIdentifier: self.segue, sender: self.viewModel.getClothes()[indexPath.row])
+        self.performSegue(withIdentifier: self.segue, sender: self.viewModel.clothes[indexPath.row])
         
     }
     

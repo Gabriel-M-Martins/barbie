@@ -21,7 +21,7 @@ class ClotheViewModel: ObservableObject {
         if let imageData = image.pngData() {
             clothe.image = imageData
         }
-
+        
         service.update()
     }
 }
