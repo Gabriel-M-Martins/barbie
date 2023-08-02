@@ -48,7 +48,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sh2-I6-5Fa">
-                                        <rect key="frame" x="8" y="54.333333333333272" width="359" height="173.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="54.333333333333272" width="375" height="173.33333333333337"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="UbG-9D-rsv">
                                             <size key="itemSize" width="60" height="60"/>
@@ -74,10 +74,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="sh2-I6-5Fa" firstAttribute="top" secondItem="8ar-3S-yVn" secondAttribute="bottom" constant="8" id="6jO-I9-Zfq"/>
-                                    <constraint firstAttribute="trailing" secondItem="sh2-I6-5Fa" secondAttribute="trailing" constant="8" id="HCg-pc-Ntv"/>
+                                    <constraint firstAttribute="trailing" secondItem="sh2-I6-5Fa" secondAttribute="trailing" id="HCg-pc-Ntv"/>
                                     <constraint firstAttribute="trailing" secondItem="YRj-Mj-d2q" secondAttribute="trailing" constant="16" id="J70-cr-7TJ"/>
                                     <constraint firstItem="YRj-Mj-d2q" firstAttribute="leading" secondItem="8ar-3S-yVn" secondAttribute="trailing" constant="8" id="K2j-Bn-F0y"/>
-                                    <constraint firstItem="sh2-I6-5Fa" firstAttribute="leading" secondItem="iHd-By-Ba9" secondAttribute="leading" constant="8" id="MNs-ce-i8v"/>
+                                    <constraint firstItem="sh2-I6-5Fa" firstAttribute="leading" secondItem="iHd-By-Ba9" secondAttribute="leading" id="MNs-ce-i8v"/>
                                     <constraint firstItem="YRj-Mj-d2q" firstAttribute="centerY" secondItem="8ar-3S-yVn" secondAttribute="centerY" id="UJZ-DM-Mso"/>
                                     <constraint firstAttribute="bottom" secondItem="sh2-I6-5Fa" secondAttribute="bottom" constant="16" id="dvR-ed-yOy"/>
                                     <constraint firstItem="8ar-3S-yVn" firstAttribute="leading" secondItem="iHd-By-Ba9" secondAttribute="leading" constant="16" id="pGh-fK-Ohm"/>
