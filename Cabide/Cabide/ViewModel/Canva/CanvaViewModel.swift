@@ -11,15 +11,16 @@ class CanvaViewModel {
     var clotheService: ClotheService = .build()
     
     var isEditingCanva: Bool = false
-    
-    var mainButtonAction: () -> Void = {}
     var mainButtonText: String { isEditingCanva ? "Salvar" : "Editar" }
     
-    var deleteButtonAction: () -> Void = {}
     
     var clothes: [Clothe] { clotheService.data }
     
-    func changeState() {
+    func changeCanvaState() {
         isEditingCanva.toggle()
+    }
+    
+    func delete() {
+        
     }
 }

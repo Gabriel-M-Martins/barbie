@@ -7,11 +7,13 @@
 
 import UIKit
 
-class CanvaViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class CanvaViewController: UIViewController {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var modal: UIView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     let clotheCard = UINib(nibName: "ClotheCard", bundle: nil)
     
@@ -20,13 +22,28 @@ class CanvaViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        deleteButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        
         collection.delegate = self
         collection.dataSource = self
         (collection.collectionViewLayout as! UICollectionViewFlowLayout).minimumInteritemSpacing = 1000
         
         collection.register(clotheCard, forCellWithReuseIdentifier: "clotheCard")
+        
+        modal.clipsToBounds = true
+        modal.layer.cornerRadius = 16
+        modal.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
     
+    
+    
+    @IBAction func mainButtonPressed(_ sender: Any) {
+        model.changeCanvaState()
+    }
+}
+
+// MARK: - Collection View
+extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -46,10 +63,6 @@ class CanvaViewController: UIViewController, UICollectionViewDelegate, UICollect
 
         return cell ?? UICollectionViewCell()
     }
-    
-    @IBAction func actionPressed(_ sender: Any) {
-        model.changeState()
-    }
 }
 
 extension CanvaViewController: UICollectionViewDelegateFlowLayout {
@@ -61,4 +74,3 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: size, height: size)
     }
 }
-
