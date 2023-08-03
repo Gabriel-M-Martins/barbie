@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Clothe View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="CreateClotheViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="WYj-8O-A8p">
+                                <rect key="frame" x="61.333333333333343" y="313.33333333333326" width="270.66666666666663" height="472.66666666666674"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nova peça" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G68-fA-7as">
+                                        <rect key="frame" x="78" y="0.0" width="114.66666666666669" height="28.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5QS-ur-P3x">
+                                        <rect key="frame" x="0.0" y="60.666666666666686" width="270.66666666666669" height="412"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0Ga-Ep-IRF">
+                                                <rect key="frame" x="0.0" y="0.0" width="270.66666666666669" height="270"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="270" id="ADd-uH-IgF"/>
+                                                </constraints>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Brd-SM-vqg">
+                                                <rect key="frame" x="77" y="286" width="116.33333333333331" height="76.666666666666686"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aI-lR-dIB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="34.333333333333336"/>
+                                                        <color key="tintColor" name="purple"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Tirar foto"/>
+                                                        <connections>
+                                                            <action selector="openCameraPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ySo-SK-1Bi"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKW-zX-RMr">
+                                                        <rect key="frame" x="0.0" y="42.333333333333371" width="116.33333333333333" height="34.333333333333343"/>
+                                                        <color key="tintColor" name="purple"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Abrir galeria"/>
+                                                        <connections>
+                                                            <action selector="openGaleryPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="SY2-LF-d9M"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XA8-D4-Ida">
+                                                <rect key="frame" x="101" y="378.66666666666663" width="68.666666666666686" height="33.333333333333314"/>
+                                                <color key="tintColor" name="lilac"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Salvar" cornerStyle="fixed">
+                                                    <backgroundConfiguration key="background" cornerRadius="0.0"/>
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="saveButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qq2-D3-nDY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHK-cY-CeN">
+                                <rect key="frame" x="285.33333333333331" y="75" width="91.666666666666686" height="34.333333333333343"/>
+                                <color key="tintColor" name="purple"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cancelar"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZKW-WC-QDx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WYj-8O-A8p" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="1T2-Sb-R9U"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="YHK-cY-CeN" secondAttribute="trailing" constant="16" id="2lc-ik-aDG"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="WYj-8O-A8p" secondAttribute="bottom" constant="32" id="IPs-vf-MJL"/>
+                            <constraint firstItem="YHK-cY-CeN" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="o6Z-cd-fmi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="clotheImage" destination="0Ga-Ep-IRF" id="efj-RR-gE7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="placeholder" width="270.66665649414062" height="249"/>
+        <namedColor name="lilac">
+            <color red="0.74509803921568629" green="0.52941176470588236" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="purple">
+            <color red="0.56470588235294117" green="0.23137254901960785" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
