@@ -203,6 +203,7 @@
 				A76EB9192A6EFA8B00F8E854 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		A76EB9192A6EFA8B00F8E854 /* Products */ = {
 			isa = PBXGroup;
