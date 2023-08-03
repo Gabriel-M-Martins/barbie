@@ -13,10 +13,12 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
     let viewModel = ClotheViewModel()
     
     @IBOutlet weak var clotheImage: UIImageView!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.preferredContentSize = CGSize(width: 300, height: 200)
+        saveButton.isEnabled = false
+        //        self.preferredContentSize = CGSize(width: 300, height: 200)
 //        // Defina o estilo de apresentação como custom
 //        self.modalPresentationStyle = .custom
     }
@@ -46,7 +48,7 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        viewModel.createClothe(name: "", description: "", image: clotheImage.image ?? UIImage())
+        viewModel.createClothe(image: clotheImage.image ?? UIImage())
         dismiss(animated: true, completion: nil)
     }
     
@@ -72,6 +74,8 @@ extension CreateClotheViewController {
             }
         }
         
+        saveButton.isEnabled = true
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -82,5 +86,7 @@ extension CreateClotheViewController {
         DispatchQueue.main.async {
             self.clotheImage.image = image.removeBackground()
         }
+        
+        saveButton.isEnabled = true
     }
 }
