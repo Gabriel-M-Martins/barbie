@@ -8,6 +8,11 @@
 import Foundation
 
 class CanvaViewModel {
+    enum Buttons {
+        case delete
+        case main
+    }
+    
     var clotheService: ClotheService = .build()
     
     var isEditingCanva: Bool = false
@@ -16,11 +21,16 @@ class CanvaViewModel {
     
     var clothes: [Clothe] { clotheService.data }
     
-    func changeCanvaState() {
-        isEditingCanva.toggle()
+    func buttonPressed(_ button: Buttons) {
+        switch button {
+        case .main:
+            isEditingCanva.toggle()
+            self.updateState()
+        case .delete:
+            break
+        }
     }
     
-    func delete() {
-        
+    private func updateState() {
     }
 }

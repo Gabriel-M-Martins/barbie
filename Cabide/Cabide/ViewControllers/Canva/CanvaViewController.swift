@@ -38,7 +38,7 @@ class CanvaViewController: UIViewController {
     
     
     @IBAction func mainButtonPressed(_ sender: Any) {
-        model.changeCanvaState()
+        model.buttonPressed(.main)
     }
 }
 
