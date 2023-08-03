@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collection-->
-        <scene sceneID="tk1-5G-6QS">
+        <!--EditableCanva-->
+        <scene sceneID="Hxw-8q-FJg">
             <objects>
-                <viewControllerPlaceholder storyboardName="Collection" id="eKK-ci-VhA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Gsj-Kj-PHH"/>
+                <viewControllerPlaceholder storyboardName="EditableCanva" id="WN3-BX-sWc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="je6-df-buG"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ka9-ed-P3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,6 +39,16 @@
             </objects>
             <point key="canvasLocation" x="2549" y="251"/>
         </scene>
+        <!--Collection-->
+        <scene sceneID="kPx-b2-1zg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Collection" id="DOu-Tv-Giz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Qp8-IF-z3d"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fdl-X0-1Bo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2484" y="364"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="64W-4Q-bAB">
             <objects>
@@ -54,7 +64,7 @@
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
-                        <segue destination="eKK-ci-VhA" kind="relationship" relationship="viewControllers" id="65o-fG-VP1"/>
+                        <segue destination="DOu-Tv-Giz" kind="relationship" relationship="viewControllers" id="P9L-Rb-WMe"/>
                         <segue destination="psN-xS-EHU" kind="relationship" relationship="viewControllers" id="ofI-57-iYR"/>
                         <segue destination="Eyv-lx-oNi" kind="relationship" relationship="viewControllers" id="3o0-Bh-FJd"/>
                     </connections>

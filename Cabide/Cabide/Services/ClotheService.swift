@@ -8,36 +8,6 @@
 import Foundation
 import CoreData
 
-public class ClotheService {
-    @Published var viewContext = DataController.shared.viewContext
-    var clothes: [Clothe] = []
-    
-    init() {
-        fetchClothes()
-    }
-    
-    func fetchClothes() {
-        let request = NSFetchRequest<Clothe>(entityName: "Clothe")
-        
-        do {
-            clothes = try viewContext.fetch(request)
-        } catch {
-            print("DEBUG: Some error occured while fetching")
-        }
-    }
-    
-    func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            print("Error saving")
-        }
-    }
-    
-    func update() {
-        self.saveContext()
-        self.fetchClothes()
-    }
+public final class ClotheService: CoreDataService {
+    var data: [Clothe] = []
 }
-
-

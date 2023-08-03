@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class ClotheViewModel: ObservableObject {
+class ClotheViewModel {
     var service = ClotheService()
     
     func createClothe(name: String, description: String, image: UIImage) {
@@ -21,7 +21,7 @@ class ClotheViewModel: ObservableObject {
         if let imageData = image.pngData() {
             clothe.image = imageData
         }
-
+        
         service.update()
     }
 }

@@ -64,7 +64,10 @@ extension ClotheViewController {
                 guard let image = reading as? UIImage, error == nil else { return }
                 
                 DispatchQueue.main.async {
-                    self.clotheImageView.image = image.removeBackground()
+                    if let imageWithoutBG = image.removeBackground(),
+                       let croppedImage = imageWithoutBG.croppedToOpaque() {
+                        self.clotheImageView.image = croppedImage
+                    }
                 }
             }
         }
