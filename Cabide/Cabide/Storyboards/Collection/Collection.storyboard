@@ -45,11 +45,11 @@
         <scene sceneID="zwH-SH-qa8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jro-NC-BcX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Collections" image="square.stack" catalog="system" selectedImage="square.grid.2x2.fill" id="VPA-wE-thL"/>
+                    <tabBarItem key="tabBarItem" title="Collections" image="square.grid.2x2" catalog="system" selectedImage="square.grid.2x2.fill" id="VPA-wE-thL"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="7KR-Vp-eqO">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="white"/>
@@ -66,8 +66,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
-        <image name="square.stack" catalog="system" width="112" height="128"/>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
