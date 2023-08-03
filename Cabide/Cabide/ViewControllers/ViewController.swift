@@ -11,9 +11,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-    
     
     @IBAction func clothing(_ sender: Any) {
         performSegue(withIdentifier: "toClothe", sender: nil)
@@ -23,6 +21,9 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "toOpenedCanva", sender: nil)
     }
     
+    @IBAction func addTapped(_ sender: Any) {
+
+    }
 }
 
 //class HomeViewController: UIViewController, HomeProtocol {

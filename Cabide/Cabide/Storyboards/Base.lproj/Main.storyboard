@@ -1,105 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6So-GU-tHd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SX3-91-kwx">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Collection-->
+        <scene sceneID="tk1-5G-6QS">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoP-uM-UZt">
-                                <rect key="frame" x="152.66666666666666" y="408.66666666666669" width="88" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Clothing"/>
-                                <connections>
-                                    <action selector="clothing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2uK-co-GBB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFU-54-Tog">
-                                <rect key="frame" x="160.66666666666666" y="459.66666666666669" width="72" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Canva"/>
-                                <connections>
-                                    <action selector="canva:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k2b-lX-0ec"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hbg-Fn-ckI">
-                                <rect key="frame" x="16" y="73" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="BFU-54-Tog" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Eu-B1-WvT"/>
-                            <constraint firstItem="BFU-54-Tog" firstAttribute="top" secondItem="MoP-uM-UZt" secondAttribute="bottom" constant="16" id="evf-qJ-Tiv"/>
-                            <constraint firstItem="MoP-uM-UZt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fzi-UJ-bcl"/>
-                            <constraint firstItem="MoP-uM-UZt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="pxc-9m-aA3"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="atp-1A-LFZ"/>
-                    <connections>
-                        <segue destination="UOO-5m-cnJ" kind="show" identifier="toClothe" id="2IW-jT-kNa"/>
-                        <segue destination="WN3-BX-sWc" kind="show" identifier="toOpenedCanva" id="9Dq-XI-5rv"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="910.68702290076328" y="45.774647887323944"/>
-        </scene>
-        <!--OpenedCanva-->
-        <scene sceneID="Hxw-8q-FJg">
-            <objects>
-                <viewControllerPlaceholder storyboardName="OpenedCanva" id="WN3-BX-sWc" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="je6-df-buG"/>
+                <viewControllerPlaceholder storyboardName="Collection" id="eKK-ci-VhA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Gsj-Kj-PHH"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZlK-rI-rnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ka9-ed-P3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1653" y="46"/>
+            <point key="canvasLocation" x="2548" y="68"/>
         </scene>
         <!--Clothe-->
-        <scene sceneID="0LT-PK-p8K">
+        <scene sceneID="cSr-Y0-A7y">
             <objects>
-                <viewControllerPlaceholder storyboardName="Clothe" id="UOO-5m-cnJ" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="iNn-JV-lyi"/>
+                <viewControllerPlaceholder storyboardName="Clothe" id="Eyv-lx-oNi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ht4-pt-kNA"/>
+                    <navigationItem key="navigationItem" id="2h4-xS-fvA"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Uo-0Z-apx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KoK-Gr-vgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1618" y="5"/>
+            <point key="canvasLocation" x="2548" y="163"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="DBQ-jp-Ua0">
+        <!--OpenedCanva-->
+        <scene sceneID="GgX-74-HB8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6So-GU-tHd" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FyX-jd-XMF">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mAY-VG-cNB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="38g-wU-IvQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="OpenedCanva" id="psN-xS-EHU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="PIA-xq-Qhg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rMM-Qc-ax3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16.030534351145036" y="45.774647887323944"/>
+            <point key="canvasLocation" x="2549" y="251"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="64W-4Q-bAB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="SX3-91-kwx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K7m-Vk-iJi">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="83"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.043137259779999999" green="0.043137259779999999" blue="0.043137259779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <tabBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" name="white"/>
+                        </tabBarAppearance>
+                    </tabBar>
+                    <connections>
+                        <segue destination="eKK-ci-VhA" kind="relationship" relationship="viewControllers" id="65o-fG-VP1"/>
+                        <segue destination="psN-xS-EHU" kind="relationship" relationship="viewControllers" id="ofI-57-iYR"/>
+                        <segue destination="Eyv-lx-oNi" kind="relationship" relationship="viewControllers" id="3o0-Bh-FJd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqN-Vt-X1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1381" y="68"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="2275" height="340"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
