@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="2548" y="163"/>
         </scene>
-        <!--OpenedCanva-->
+        <!--Canva-->
         <scene sceneID="GgX-74-HB8">
             <objects>
-                <viewControllerPlaceholder storyboardName="OpenedCanva" id="psN-xS-EHU" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Canva" id="psN-xS-EHU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="PIA-xq-Qhg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMM-Qc-ax3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
