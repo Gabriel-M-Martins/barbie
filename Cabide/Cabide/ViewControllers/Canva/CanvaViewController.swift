@@ -10,37 +10,206 @@ import UIKit
 class CanvaViewController: UIViewController {
     
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var modal: UIView!
-    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var canva: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     let clotheCard = UINib(nibName: "ClotheCard", bundle: nil)
     
     var model: CanvaViewModel = CanvaViewModel()
     
+    var mainButton: UIBarButtonItem = UIBarButtonItem()
+    var deleteButton: UIBarButtonItem = UIBarButtonItem()
+    
+    private var objects: [UIView] = []
+    private var activeObject: UIView?
+    private var touch: UITouch?
+    
+    let purple = UIColor(named: "Roxo")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        deleteButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        model.delegate = self
+        
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRectMake(0.0, nameField.frame.height - 8, nameField.frame.width, 1.0)
+        bottomLine.backgroundColor = UIColor.tertiaryLabel.cgColor
+        
+        nameField.borderStyle = UITextField.BorderStyle.none
+        nameField.layer.addSublayer(bottomLine)
         
         collection.delegate = self
         collection.dataSource = self
         (collection.collectionViewLayout as! UICollectionViewFlowLayout).minimumInteritemSpacing = 1000
-        
         collection.register(clotheCard, forCellWithReuseIdentifier: "clotheCard")
         
-        modal.clipsToBounds = true
-        modal.layer.cornerRadius = 16
-        modal.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        
+        modal.layer.shadowColor = UIColor.lightGray.cgColor
+        modal.layer.shadowOffset = CGSize(width: 0, height: -1.5)
+        modal.layer.shadowOpacity = 0.5
+        modal.layer.shadowRadius = 2.0
+        modal.clipsToBounds = false
+        
+        mainButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(self.mainButtonPressed))
+        mainButton.tintColor = purple
+        
+        deleteButton = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(self.deleteButtonPressed))
+        deleteButton.tintColor = purple
+        
+
+        setupState()
     }
     
-    
-    
-    @IBAction func mainButtonPressed(_ sender: Any) {
+    @objc private func mainButtonPressed() {
         model.buttonPressed(.main)
     }
+    
+    @objc private func deleteButtonPressed() {
+        model.buttonPressed(.delete)
+    }
+    
 }
+
+// MARK: - multi-gesture input
+extension CanvaViewController : UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
+    }
+}
+
+// MARK: - model delegate
+extension CanvaViewController : CanvaDelegate {
+    func setupState() {
+        nameField.isHidden = model.hideNameTextField
+        nameLabel.isHidden = model.hideNameLabel
+        
+        nameField.placeholder = model.canvaName
+        nameLabel.text = model.canvaName
+        
+        mainButton.image = model.mainButtonImage
+        
+        switch model.state {
+        case .visualization:
+            canva.gestureRecognizers = []
+            navigationItem.rightBarButtonItems = [mainButton]
+        case .editing:
+            let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate))
+            rotate.cancelsTouchesInView = false
+            rotate.delegate = self
+            view.addGestureRecognizer(rotate)
+
+            let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
+            pinch.cancelsTouchesInView = false
+            pinch.delegate = self
+            view.addGestureRecognizer(pinch)
+
+            navigationItem.setRightBarButtonItems([mainButton, deleteButton], animated: true)
+        }
+    }
+}
+
+// MARK: - gestures
+extension CanvaViewController {
+    private func bringToFront(_ object: UIView) {
+        canva.bringSubviewToFront(object)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let position = touch.location(in: view)
+            guard let touchedView = view.hitTest(position, with: event) else { continue }
+            
+            if objects.contains(touchedView) && activeObject == nil && self.touch == nil {
+                activeObject = touchedView
+                self.touch = touch
+                bringToFront(activeObject!)
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = self.touch else { return }
+        if touches.contains(touch) {
+            gestureEnded()
+        }
+    }
+    
+    private func gestureEnded() {
+        guard let object = activeObject else { return }
+        
+        var containerFrame = view.convert(canva.frame, to: view)
+        let objectFrame = view.convert(object.frame, to: view)
+        
+        containerFrame.size.width = containerFrame.size.width * 0.85
+        containerFrame.size.height = containerFrame.size.height * 0.85
+        
+        if containerFrame.intersects(objectFrame) {
+            if !canva.subviews.contains(object) {
+                let convertedPos = canva.convert(object.center, from: view)
+                object.removeFromSuperview()
+                canva.addSubview(object)
+                object.center = convertedPos
+            }
+        } else {
+            objects.remove(at: objects.firstIndex(of: object)!)
+            object.removeFromSuperview()
+        }
+        
+        self.touch = nil
+        self.activeObject = nil
+    }
+    
+    @objc private func handlePan(_ gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            guard let object = activeObject else { return }
+            let translation = gesture.translation(in: view)
+            
+            object.center = CGPoint(x: object.center.x + translation.x, y: object.center.y + translation.y)
+            gesture.setTranslation(.zero, in: view)
+        case .ended:
+            gestureEnded()
+        default:
+            break
+        }
+    }
+    
+    @objc private func handleRotate(_ gesture: UIRotationGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            guard let object = activeObject else { return }
+            
+            object.transform = object.transform.rotated(by: gesture.rotation)
+            gesture.rotation = 0
+        case .ended:
+            gestureEnded()
+        default:
+            break
+        }
+    }
+    
+    @objc private func handlePinch(_ gesture: UIPinchGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            guard let object = activeObject else { return }
+            
+            object.transform = object.transform.scaledBy(x: gesture.scale, y: gesture.scale)
+            gesture.scale = 1
+        case .ended:
+            gestureEnded()
+        default:
+            break
+        }
+    }
+    
+    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+        guard let object = activeObject else { return }
+        self.canva.bringSubviewToFront(object)
+    }
+}
+
 
 // MARK: - Collection View
 extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -62,6 +231,33 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell?.image.image = image
 
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard model.collectionIsUserInteractionEnabled else { return }
+        
+        let clothe = model.clothes[indexPath.row]
+        let imageData = clothe.image ?? Data()
+        let image = UIImage(data: imageData)
+        
+        // this should change somehow so the image is draggable instead of it justing appearing on the canva
+        let newObject = UIImageView(frame: .zero)
+        newObject.contentMode = .scaleAspectFit
+        newObject.image = image
+        newObject.frame.size = image!.size
+        newObject.center = canva.center
+        newObject.isUserInteractionEnabled = true
+
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        newObject.addGestureRecognizer(pan)
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        newObject.addGestureRecognizer(tap)
+        
+        newObject.layer.setValue(clothe, forKey: "clothe")
+        
+        self.canva.addSubview(newObject)
+        objects.append(newObject)
     }
 }
 

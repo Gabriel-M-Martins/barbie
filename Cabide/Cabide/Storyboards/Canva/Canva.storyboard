@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fl6-3X-n2W">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Canva View Controller-->
+        <!--View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="CanvaViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,11 +111,118 @@
             </objects>
             <point key="canvasLocation" x="77.599999999999994" y="4.4334975369458132"/>
         </scene>
+        <!--Look-->
+        <scene sceneID="iru-Ik-0UV">
+            <objects>
+                <viewController id="LaK-Ti-QwB" customClass="CanvaViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="937-0u-ls1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do look" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zeq-iN-d3V">
+                                <rect key="frame" x="16" y="102" width="343" height="38"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0j-Sr-ehr">
+                                <rect key="frame" x="16" y="102" width="343" height="38"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSo-Dv-rHd" userLabel="Canva">
+                                <rect key="frame" x="0.0" y="148.00000000000003" width="375" height="478.66666666666674"/>
+                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" name="LightGray"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIF-eN-Cx1" userLabel="Modal">
+                                <rect key="frame" x="0.0" y="626.66666666666663" width="375" height="151.33333333333337"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-2f-651">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="151.33333333333334"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="sNI-Mr-a7r">
+                                            <size key="itemSize" width="60" height="60"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstItem="Kpu-2f-651" firstAttribute="leading" secondItem="tIF-eN-Cx1" secondAttribute="leading" id="VYF-nB-iYw"/>
+                                    <constraint firstItem="Kpu-2f-651" firstAttribute="top" secondItem="tIF-eN-Cx1" secondAttribute="top" id="cfd-gf-GZG"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kpu-2f-651" secondAttribute="bottom" id="yaZ-mJ-j9P"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kpu-2f-651" secondAttribute="trailing" id="zUU-Yn-XZe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Afy-oR-VrD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CSo-Dv-rHd" firstAttribute="height" secondItem="Afy-oR-VrD" secondAttribute="height" multiplier="0.7" id="4Zp-eY-sD2"/>
+                            <constraint firstItem="Afy-oR-VrD" firstAttribute="trailing" secondItem="Zeq-iN-d3V" secondAttribute="trailing" constant="16" id="53f-zc-CoB"/>
+                            <constraint firstItem="tIF-eN-Cx1" firstAttribute="leading" secondItem="Afy-oR-VrD" secondAttribute="leading" id="5gq-eu-hoy"/>
+                            <constraint firstItem="CSo-Dv-rHd" firstAttribute="leading" secondItem="Afy-oR-VrD" secondAttribute="leading" id="8VY-ME-tBI"/>
+                            <constraint firstItem="Afy-oR-VrD" firstAttribute="trailing" secondItem="q0j-Sr-ehr" secondAttribute="trailing" constant="16" id="Bbf-6B-Zb5"/>
+                            <constraint firstItem="Zeq-iN-d3V" firstAttribute="top" secondItem="Afy-oR-VrD" secondAttribute="top" constant="8" id="CCh-3B-niT"/>
+                            <constraint firstItem="q0j-Sr-ehr" firstAttribute="width" secondItem="Zeq-iN-d3V" secondAttribute="width" id="G2W-i4-TMQ"/>
+                            <constraint firstItem="Afy-oR-VrD" firstAttribute="trailing" secondItem="tIF-eN-Cx1" secondAttribute="trailing" id="ILo-EO-U9w"/>
+                            <constraint firstItem="q0j-Sr-ehr" firstAttribute="leading" secondItem="Afy-oR-VrD" secondAttribute="leading" constant="16" id="Tnf-Mm-5A7"/>
+                            <constraint firstItem="CSo-Dv-rHd" firstAttribute="top" secondItem="q0j-Sr-ehr" secondAttribute="bottom" constant="8" id="Ubp-XZ-aVb"/>
+                            <constraint firstItem="Afy-oR-VrD" firstAttribute="bottom" secondItem="tIF-eN-Cx1" secondAttribute="bottom" id="ZfL-Gd-DSn"/>
+                            <constraint firstItem="Afy-oR-VrD" firstAttribute="trailing" secondItem="CSo-Dv-rHd" secondAttribute="trailing" id="Zpa-t2-brQ"/>
+                            <constraint firstItem="tIF-eN-Cx1" firstAttribute="top" secondItem="CSo-Dv-rHd" secondAttribute="bottom" id="dJ7-Ic-ojq"/>
+                            <constraint firstItem="CSo-Dv-rHd" firstAttribute="top" secondItem="Zeq-iN-d3V" secondAttribute="bottom" constant="8" id="dLK-Fe-McP"/>
+                            <constraint firstItem="q0j-Sr-ehr" firstAttribute="top" secondItem="Afy-oR-VrD" secondAttribute="top" constant="8" id="dOR-k8-U7s"/>
+                            <constraint firstItem="Zeq-iN-d3V" firstAttribute="leading" secondItem="Afy-oR-VrD" secondAttribute="leading" constant="16" id="rxi-jb-rSv"/>
+                            <constraint firstItem="q0j-Sr-ehr" firstAttribute="height" secondItem="Zeq-iN-d3V" secondAttribute="height" id="vSB-AW-DDc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Look" largeTitleDisplayMode="never" id="ZO0-bb-fjM"/>
+                    <connections>
+                        <outlet property="canva" destination="CSo-Dv-rHd" id="XoE-h0-k1S"/>
+                        <outlet property="collection" destination="Kpu-2f-651" id="L2e-Tq-lIE"/>
+                        <outlet property="modal" destination="tIF-eN-Cx1" id="XN4-so-SrB"/>
+                        <outlet property="nameField" destination="Zeq-iN-d3V" id="WsO-R6-h8l"/>
+                        <outlet property="nameLabel" destination="q0j-Sr-ehr" id="M5A-SK-zes"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IO1-s1-dC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2820" y="3.6945812807881775"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gwT-xC-MSt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fl6-3X-n2W" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="YcZ-sa-h6L">
+                        <rect key="frame" x="0.0" y="50" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LaK-Ti-QwB" kind="relationship" relationship="rootViewController" id="wiF-RG-zfH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8XG-3S-w85" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1877.5999999999999" y="3.6945812807881775"/>
+        </scene>
     </scenes>
     <resources>
         <image name="trash.fill" catalog="system" width="119" height="128"/>
+        <namedColor name="LightGray">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
