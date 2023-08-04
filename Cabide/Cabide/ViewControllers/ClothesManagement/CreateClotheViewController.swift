@@ -64,10 +64,12 @@ extension CreateClotheViewController {
             result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
                 guard let image = reading as? UIImage, error == nil else { return }
                 
-                DispatchQueue.main.async {
+                DispatchQueue.global(qos: .userInitiated).async {
                     if let imageWithoutBG = image.removeBackground(),
                        let croppedImage = imageWithoutBG.croppedToOpaque() {
-                        self.clotheImage.image = croppedImage
+                        DispatchQueue.main.async {
+                            self.clotheImage.image = croppedImage
+                        }
                     }
                 }
                 
@@ -83,8 +85,17 @@ extension CreateClotheViewController {
         
         guard let image = info[.editedImage] as? UIImage else { return }
         
-        DispatchQueue.main.async {
-            self.clotheImage.image = image.removeBackground()
+//        DispatchQueue.main.async {
+//            self.clotheImage.image = image.removeBackground()
+//        }
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let imageWithoutBG = image.removeBackground(),
+               let croppedImage = imageWithoutBG.croppedToOpaque() {
+                DispatchQueue.main.async {
+                    self.clotheImage.image = croppedImage
+                }
+            }
         }
         
         saveButton.isEnabled = true

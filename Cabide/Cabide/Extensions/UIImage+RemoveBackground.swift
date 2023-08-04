@@ -19,7 +19,7 @@ extension UIImage {
         guard
             let pixelBuffer = resizedImage.pixelBuffer(width: Int(width), height: Int(height)),
             let outputPredictionImage = try? model.prediction(x_1: pixelBuffer)
-            else { return nil }
+        else { return nil }
         
         let outputCIImage = CIImage(cvPixelBuffer: outputPredictionImage.activation_out)
         
@@ -50,12 +50,12 @@ extension UIImage {
         let height = Int(self.size.height)
         let bitmapData = CFDataCreateMutable(nil, width * height * 4)
         guard let bitmapContext = CGContext(data: CFDataGetMutableBytePtr(bitmapData),
-                                             width: width,
-                                             height: height,
-                                             bitsPerComponent: 8,
-                                             bytesPerRow: width * 4,
-                                             space: CGColorSpaceCreateDeviceRGB(),
-                                             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+                                            width: width,
+                                            height: height,
+                                            bitsPerComponent: 8,
+                                            bytesPerRow: width * 4,
+                                            space: CGColorSpaceCreateDeviceRGB(),
+                                            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
         else { return nil }
         
         bitmapContext.draw(cgImage, in: CGRect(x: 0, y: 0, width: width, height: height))
