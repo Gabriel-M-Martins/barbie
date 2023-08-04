@@ -1,58 +1,59 @@
 //
-//  ClotheViewController.swift
+//  CollectionViewController.swift
 //  Cabide
 //
-//  Created by Eduardo Filot Brum on 25/07/23.
+//  Created by Eduardo Filot Brum on 01/08/23.
 //
 
 import UIKit
 
-class ClotheViewController: UIViewController {
-        
-    @IBOutlet weak var collectionView: UICollectionView!
+class CollectionsViewController: UIViewController {
     
-    let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
+    @IBOutlet weak var collectionViewRecents: UICollectionView!
     
-    var model: ClotheViewModel = ClotheViewModel()
+    let largeCard = UINib(nibName: "LargeCard", bundle: nil)
+    
+    //TODO: Change viewmodel
+    var viewModel: ListCanvaViewModel = ListCanvaViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.register(clotheCard, forCellWithReuseIdentifier: "largeCard")
+        collectionViewRecents.delegate = self
+        collectionViewRecents.dataSource = self
+        collectionViewRecents.register(largeCard, forCellWithReuseIdentifier: "largeCard")
     }
+    
 }
 
 // MARK: - Collection View
-extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CollectionsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.clothes.count
+        viewModel.canvas.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
         
-        let clothe = model.clothes[indexPath.row]
-        let image = UIImage(data: clothe.image ?? Data())
+        let canva = viewModel.canvas[indexPath.row]
+        let imageData = canva.thumbnail ?? Data()
         
-        cell?.imageView.image = image
-
+        cell?.imageView?.image = UIImage(data: imageData)
+        
         return cell ?? UICollectionViewCell()
     }
 }
 
-extension ClotheViewController: UICollectionViewDelegateFlowLayout {
+extension CollectionsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let columns: CGFloat = 3
-        let spacing: CGFloat = 0
+        let columns: CGFloat = 2
+        let spacing: CGFloat = 1
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
         
         let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
@@ -66,10 +67,5 @@ extension ClotheViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
     }
 }

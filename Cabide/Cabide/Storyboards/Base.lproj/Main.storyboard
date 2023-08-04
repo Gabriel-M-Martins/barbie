@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SX3-91-kwx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SX3-91-kwx">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,6 +12,7 @@
         <scene sceneID="Hxw-8q-FJg">
             <objects>
                 <viewControllerPlaceholder storyboardName="EditableCanva" id="WN3-BX-sWc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="G7g-dD-P3e"/>
                     <navigationItem key="navigationItem" id="je6-df-buG"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ka9-ed-P3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -29,10 +30,10 @@
             </objects>
             <point key="canvasLocation" x="2548" y="163"/>
         </scene>
-        <!--OpenedCanva-->
+        <!--Canva-->
         <scene sceneID="GgX-74-HB8">
             <objects>
-                <viewControllerPlaceholder storyboardName="OpenedCanva" id="psN-xS-EHU" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Canva" id="psN-xS-EHU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="PIA-xq-Qhg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMM-Qc-ax3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -65,13 +66,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="DOu-Tv-Giz" kind="relationship" relationship="viewControllers" id="P9L-Rb-WMe"/>
-                        <segue destination="psN-xS-EHU" kind="relationship" relationship="viewControllers" id="ofI-57-iYR"/>
                         <segue destination="Eyv-lx-oNi" kind="relationship" relationship="viewControllers" id="3o0-Bh-FJd"/>
+                        <segue destination="WN3-BX-sWc" kind="relationship" relationship="viewControllers" id="ukj-Xc-eU0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqN-Vt-X1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="68"/>
+            <point key="canvasLocation" x="1637" y="91"/>
         </scene>
     </scenes>
     <resources>
