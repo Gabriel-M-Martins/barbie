@@ -485,6 +485,8 @@
 				DCF91E152A7443CB002E8277 /* List.storyboard in Resources */,
 				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
 				0B3BF00B2A7C319C00C5E626 /* LargeCard.xib in Resources */,
+				DC5E61F62A7C35A900C668A8 /* CreateClothe.storyboard in Resources */,
+				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,13 +8,13 @@
 import UIKit
 
 class CollectionsViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionViewRecents: UICollectionView!
     
     let largeCard = UINib(nibName: "LargeCard", bundle: nil)
     
     //TODO: Change viewmodel
-    var model: CanvaViewModel = CanvaViewModel()
+    var viewModel: ListCanvaViewModel = ListCanvaViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class CollectionsViewController: UIViewController {
         collectionViewRecents.dataSource = self
         collectionViewRecents.register(largeCard, forCellWithReuseIdentifier: "largeCard")
     }
-
+    
 }
 
 // MARK: - Collection View
@@ -31,36 +31,41 @@ extension CollectionsViewController: UICollectionViewDelegate, UICollectionViewD
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.clothes.count
+        viewModel.canvas.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
         
-        let clothe = model.clothes[indexPath.row]
-        let image = UIImage(data: clothe.image ?? Data())
+        let canva = viewModel.canvas[indexPath.row]
+        let imageData = canva.thumbnail ?? Data()
         
-        cell?.imageView.image = image
-
+        cell?.imageView?.image = UIImage(data: imageData)
+        
         return cell ?? UICollectionViewCell()
     }
 }
 
 extension CollectionsViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let size = collectionView.frame.width * 0.7
-//        return CGSize(width: size, height: size)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let columns: CGFloat = 2
+        let spacing: CGFloat = 1
+        let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
+        
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+        return itemSize
+    }
     
-        func collectionView(_ collectionView: UICollectionView,
-                            layout collectionViewLayout: UICollectionViewLayout,
-                            sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 220, height: 360)
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }
