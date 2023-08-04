@@ -50,7 +50,7 @@ class ClotheViewController: UIViewController, PHPickerViewControllerDelegate, UI
     }
     
     @IBAction func createPressed(_ sender: Any) {
-        viewModel.createClothe(name: nameLabel.text ?? "", description: descriptionLabel.text ?? "", image: clotheImageView.image ?? UIImage())
+        viewModel.createClothe(image: clotheImageView.image ?? UIImage())
     }
     
 }

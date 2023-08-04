@@ -12,12 +12,12 @@ import UIKit
 class ClotheViewModel {
     var service = ClotheService()
     
-    func createClothe(name: String, description: String, image: UIImage) {
+    func createClothe(image: UIImage) {
         let clothe = Clothe(context: service.viewContext)
 
         clothe.id = UUID()
-        clothe.name = name
-        clothe.description_ = description
+        //clothe.name = name
+        //clothe.description_ = description
         if let imageData = image.pngData() {
             clothe.image = imageData
         }
