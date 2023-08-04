@@ -10,5 +10,5 @@ import CoreData
 
 class ListCanvaViewModel {
     var service: CanvaService = CanvaService.build()
-    var canvas: [Canva] { service.data }
+    var canvas: [Canva] { CanvaService.data }
 }

@@ -24,6 +24,12 @@ class CollectionsViewController: UIViewController {
         collectionViewRecents.register(largeCard, forCellWithReuseIdentifier: "largeCard")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.service.update()
+        DispatchQueue.main.async {
+            self.collectionViewRecents.reloadData()
+        }
+    }
 }
 
 // MARK: - Collection View

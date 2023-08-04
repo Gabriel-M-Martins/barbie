@@ -58,6 +58,13 @@ class EditableCanvaViewController: UIViewController {
             vc.viewModel = self.viewModel
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.clotheService.update()
+        DispatchQueue.main.async {
+            self.carousel.reloadData()
+        }
+    }
 }
 
 
@@ -109,7 +116,7 @@ extension EditableCanvaViewController : UITableViewDelegate {
         
         newObject.layer.setValue(clothe, forKey: "clothe")
         
-        self.view.addSubview(newObject)
+        self.container.addSubview(newObject)
         objects.append(newObject)
     }
 }

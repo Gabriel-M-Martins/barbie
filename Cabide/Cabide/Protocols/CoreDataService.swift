@@ -11,7 +11,7 @@ import CoreData
 protocol CoreDataService<T> where T : NSManagedObject {
     associatedtype T
     
-    var data: [T] { get set }
+    static var data: [T] { get set }
     
     init()
     
@@ -43,7 +43,7 @@ extension CoreDataService {
         let request = NSFetchRequest<T>(entityName: T.description())
         
         do {
-            data = try viewContext.fetch(request)
+            Self.data = try viewContext.fetch(request)
         } catch {
             // !!!
             print("DEBUG: Some error occured while fetching")

@@ -49,7 +49,8 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         viewModel.createClothe(image: clotheImage.image ?? UIImage())
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true)
     }
     
 

@@ -19,7 +19,7 @@ class CanvaViewModel {
     var mainButtonText: String { isEditingCanva ? "Salvar" : "Editar" }
     
     
-    var clothes: [Clothe] { clotheService.data }
+    var clothes: [Clothe] { ClotheService.data }
     
     func buttonPressed(_ button: Buttons) {
         switch button {

@@ -11,7 +11,7 @@ import UIKit
 
 class ClotheViewModel {
     var service: ClotheService = .build()
-    var clothes: [Clothe] { service.data }
+    var clothes: [Clothe] { ClotheService.data }
     
     func createClothe(image: UIImage) {
         let clothe = Clothe(context: service.viewContext)

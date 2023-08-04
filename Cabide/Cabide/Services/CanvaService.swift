@@ -9,5 +9,5 @@ import Foundation
 import CoreData
 
 public final class CanvaService : CoreDataService {
-    var data: [Canva] = []
+    static var data: [Canva] = []
 }

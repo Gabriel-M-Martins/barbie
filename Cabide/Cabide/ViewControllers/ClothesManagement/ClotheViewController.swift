@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClotheViewController: UIViewController {
+class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
         
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -22,6 +22,32 @@ class ClotheViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.register(clotheCard, forCellWithReuseIdentifier: "largeCard")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        model.service.update()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @IBAction func newClothe(_ sender: Any) {
+        performSegue(withIdentifier: "toNewClothe", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewClothe" {
+            guard let navVC = segue.destination as? UINavigationController else { return }
+            
+            navVC.presentationController?.delegate = self
+        }
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        model.service.update()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
