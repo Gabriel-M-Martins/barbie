@@ -19,7 +19,7 @@ class ClotheDetailsViewController: UIViewController {
     var clothe: Clothe!
     
     @IBAction func updatePressed(_ sender: Any) {
-        viewModel.updateClothe(id: clothe.id ?? UUID(), name: nameTextfield.text ?? "", description: descriptionTextfield.text ?? "", image: clotheImage.image)
+        viewModel.updateClothe(id: clothe.id ?? UUID(), image: clotheImage.image)
         
     }
     

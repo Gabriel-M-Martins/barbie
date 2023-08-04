@@ -28,10 +28,11 @@ class ClotheDetailsViewModel {
         }
     }
 
-    func updateClothe(id: UUID, name: String?, description: String?, image: UIImage?){
+//    func updateClothe(id: UUID, name: String?, description: String?, image: UIImage?){
+    func updateClothe(id: UUID, image: UIImage?){
         if let clothe = service.data.first(where: { $0.id == id}) {
-            clothe.name = name
-            clothe.description_ = description
+//            clothe.name = name
+//            clothe.description_ = description
             if let imageData = image?.pngData() {
                 clothe.image = imageData
             }
