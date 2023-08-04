@@ -45,7 +45,6 @@ class CanvaViewController: UIViewController {
         (collection.collectionViewLayout as! UICollectionViewFlowLayout).minimumInteritemSpacing = 1000
         collection.register(clotheCard, forCellWithReuseIdentifier: "clotheCard")
         
-        
         modal.layer.shadowColor = UIColor.lightGray.cgColor
         modal.layer.shadowOffset = CGSize(width: 0, height: -1.5)
         modal.layer.shadowOpacity = 0.5
@@ -139,13 +138,12 @@ extension CanvaViewController {
     private func gestureEnded() {
         guard let object = activeObject else { return }
         
-        var containerFrame = view.convert(canva.frame, to: view)
-        let objectFrame = view.convert(object.frame, to: view)
+        let containerFrame = view.convert(canva.frame, to: view.coordinateSpace)
+        let objectFrame = view.convert(object.frame, to: view.coordinateSpace)
         
-        containerFrame.size.width = containerFrame.size.width * 0.85
-        containerFrame.size.height = containerFrame.size.height * 0.85
-        
-        if containerFrame.intersects(objectFrame) {
+//        containerFrame.size.width = containerFrame.size.width * 0.85
+//        containerFrame.size.height = containerFrame.size.height * 0.85
+        if CGRectIntersectsRect(containerFrame, objectFrame) {
             if !canva.subviews.contains(object) {
                 let convertedPos = canva.convert(object.center, from: view)
                 object.removeFromSuperview()
@@ -242,11 +240,19 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         // this should change somehow so the image is draggable instead of it justing appearing on the canva
         let newObject = UIImageView(frame: .zero)
+        
+        self.canva.addSubview(newObject)
+        objects.append(newObject)
+        
         newObject.contentMode = .scaleAspectFit
         newObject.image = image
-        newObject.frame.size = image!.size
-        newObject.center = canva.center
+//        newObject.frame.size = image!.size
+        newObject.frame = .init(origin: canva.frame.origin, size: image!.size)
+//        let foo = view.convert(canva.frame, from: canva)
+//        newObject.center = .init(x: foo.midX, y: canva.frame.minY)
+        newObject.frame.origin = .init(x: canva.frame.midX, y: canva.frame.minY)
         newObject.isUserInteractionEnabled = true
+        newObject.isMultipleTouchEnabled = true
 
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         newObject.addGestureRecognizer(pan)
@@ -255,9 +261,6 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         newObject.addGestureRecognizer(tap)
         
         newObject.layer.setValue(clothe, forKey: "clothe")
-        
-        self.canva.addSubview(newObject)
-        objects.append(newObject)
     }
 }
 

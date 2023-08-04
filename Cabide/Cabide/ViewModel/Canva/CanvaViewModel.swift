@@ -24,7 +24,7 @@ class CanvaViewModel {
     var clotheService: ClotheService = .build()
     var clothes: [Clothe] { clotheService.data }
     
-    var state: State = .visualization
+    var state: State = .editing
     var canva: Canva?
     
     var hideNameLabel: Bool {
