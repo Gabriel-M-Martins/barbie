@@ -59,6 +59,11 @@ class CanvaViewController: UIViewController {
         
 
         setupState()
+        self.tabBarController?.tabBar.layer.shadowColor = UIColor.lightGray.cgColor
+        self.tabBarController?.tabBar.layer.shadowOffset = CGSize(width: 0, height: -1.5)
+        self.tabBarController?.tabBar.layer.shadowOpacity = 0.3
+        self.tabBarController?.tabBar.layer.shadowRadius = 2.0
+        self.tabBarController?.tabBar.clipsToBounds = false
     }
     
     @objc private func mainButtonPressed() {
@@ -138,11 +143,12 @@ extension CanvaViewController {
     private func gestureEnded() {
         guard let object = activeObject else { return }
         
-        let containerFrame = view.convert(canva.frame, to: view.coordinateSpace)
-        let objectFrame = view.convert(object.frame, to: view.coordinateSpace)
+        var containerFrame = canva.convert(canva.bounds, to: view.coordinateSpace)
+        let objectFrame = object.convert(object.bounds, to: view.coordinateSpace)
         
-//        containerFrame.size.width = containerFrame.size.width * 0.85
-//        containerFrame.size.height = containerFrame.size.height * 0.85
+        containerFrame.size.width = containerFrame.size.width * 0.8
+        containerFrame.size.height = containerFrame.size.height * 0.8
+        
         if CGRectIntersectsRect(containerFrame, objectFrame) {
             if !canva.subviews.contains(object) {
                 let convertedPos = canva.convert(object.center, from: view)
@@ -243,14 +249,13 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         self.canva.addSubview(newObject)
         objects.append(newObject)
-        
+
         newObject.contentMode = .scaleAspectFit
         newObject.image = image
-//        newObject.frame.size = image!.size
-        newObject.frame = .init(origin: canva.frame.origin, size: image!.size)
-//        let foo = view.convert(canva.frame, from: canva)
-//        newObject.center = .init(x: foo.midX, y: canva.frame.minY)
-        newObject.frame.origin = .init(x: canva.frame.midX, y: canva.frame.minY)
+
+        newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
+        newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
+
         newObject.isUserInteractionEnabled = true
         newObject.isMultipleTouchEnabled = true
 

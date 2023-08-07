@@ -19,26 +19,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do look" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zeq-iN-d3V">
-                                <rect key="frame" x="16" y="102" width="343" height="38"/>
+                                <rect key="frame" x="16" y="154" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0j-Sr-ehr">
-                                <rect key="frame" x="16" y="102" width="343" height="38"/>
+                                <rect key="frame" x="16" y="154" width="343" height="38"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSo-Dv-rHd" userLabel="Canva">
-                                <rect key="frame" x="0.0" y="148.00000000000003" width="375" height="444.66666666666674"/>
+                                <rect key="frame" x="0.0" y="200" width="375" height="408"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" name="LightGray"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIF-eN-Cx1" userLabel="Modal">
-                                <rect key="frame" x="0.0" y="592.66666666666663" width="375" height="136.33333333333337"/>
+                                <rect key="frame" x="0.0" y="608" width="375" height="121"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-2f-651">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="136.33333333333334"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="sNI-Mr-a7r">
                                             <size key="itemSize" width="60" height="60"/>
@@ -80,7 +80,7 @@
                             <constraint firstItem="q0j-Sr-ehr" firstAttribute="height" secondItem="Zeq-iN-d3V" secondAttribute="height" id="vSB-AW-DDc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Look" largeTitleDisplayMode="never" id="ZO0-bb-fjM"/>
+                    <navigationItem key="navigationItem" title="Look" largeTitleDisplayMode="always" id="ZO0-bb-fjM"/>
                     <connections>
                         <outlet property="canva" destination="CSo-Dv-rHd" id="XoE-h0-k1S"/>
                         <outlet property="collection" destination="Kpu-2f-651" id="L2e-Tq-lIE"/>
