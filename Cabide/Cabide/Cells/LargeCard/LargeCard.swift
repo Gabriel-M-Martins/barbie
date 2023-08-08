@@ -11,6 +11,7 @@ class LargeCard: UICollectionViewCell {
 
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var labelName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
