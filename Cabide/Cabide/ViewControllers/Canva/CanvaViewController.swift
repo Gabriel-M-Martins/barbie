@@ -20,25 +20,26 @@ class CanvaViewController: UIViewController {
     var model: CanvaViewModel = CanvaViewModel()
     
     var mainButton: UIBarButtonItem = UIBarButtonItem()
-    var deleteButton: UIBarButtonItem = UIBarButtonItem()
     
-    private var objects: [UIView] = []
+    var objects: [(view: UIView, clothe: Clothe)] = []
+    
     private var activeObject: UIView?
     private var touch: UITouch?
+    private var nameFieldUnderline: CALayer?
     
-    let purple = UIColor(named: "Roxo")
+    let tintColor = UIColor(named: "Roxo")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         model.delegate = self
         
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRectMake(0.0, nameField.frame.height - 8, nameField.frame.width, 1.0)
-        bottomLine.backgroundColor = UIColor.tertiaryLabel.cgColor
+        nameFieldUnderline = CALayer()
+        nameFieldUnderline!.frame = CGRectMake(0.0, nameField.frame.height - 8, nameField.frame.width, 1.0)
+        nameFieldUnderline!.backgroundColor = UIColor.tertiaryLabel.cgColor
         
         nameField.borderStyle = UITextField.BorderStyle.none
-        nameField.layer.addSublayer(bottomLine)
+        nameField.layer.addSublayer(nameFieldUnderline!)
         
         collection.delegate = self
         collection.dataSource = self
@@ -52,10 +53,7 @@ class CanvaViewController: UIViewController {
         modal.clipsToBounds = false
         
         mainButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(self.mainButtonPressed))
-        mainButton.tintColor = purple
-        
-        deleteButton = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: .plain, target: self, action: #selector(self.deleteButtonPressed))
-        deleteButton.tintColor = purple
+        mainButton.tintColor = tintColor
         
 
         setupState()
@@ -67,13 +65,8 @@ class CanvaViewController: UIViewController {
     }
     
     @objc private func mainButtonPressed() {
-        model.buttonPressed(.main)
+        model.buttonPressed()
     }
-    
-    @objc private func deleteButtonPressed() {
-        model.buttonPressed(.delete)
-    }
-    
 }
 
 // MARK: - multi-gesture input
@@ -85,6 +78,13 @@ extension CanvaViewController : UIGestureRecognizerDelegate {
 
 // MARK: - model delegate
 extension CanvaViewController : CanvaDelegate {
+    var canvaName: String? { nameField.text }
+    
+    func segueToSaveModal() {
+        // call segue to save modal, pass viewmodel to modal
+        // performSegue(withIdentifier: , sender: )
+    }
+    
     func setupState() {
         nameField.isHidden = model.hideNameTextField
         nameLabel.isHidden = model.hideNameLabel
@@ -102,14 +102,14 @@ extension CanvaViewController : CanvaDelegate {
             let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate))
             rotate.cancelsTouchesInView = false
             rotate.delegate = self
-            view.addGestureRecognizer(rotate)
+            canva.addGestureRecognizer(rotate)
 
             let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
             pinch.cancelsTouchesInView = false
             pinch.delegate = self
-            view.addGestureRecognizer(pinch)
+            canva.addGestureRecognizer(pinch)
 
-            navigationItem.setRightBarButtonItems([mainButton, deleteButton], animated: true)
+            navigationItem.setRightBarButtonItems([mainButton], animated: true)
         }
     }
 }
@@ -125,7 +125,7 @@ extension CanvaViewController {
             let position = touch.location(in: view)
             guard let touchedView = view.hitTest(position, with: event) else { continue }
             
-            if objects.contains(touchedView) && activeObject == nil && self.touch == nil {
+            if objects.contains(where: {$0.view == touchedView}) && activeObject == nil && self.touch == nil {
                 activeObject = touchedView
                 self.touch = touch
                 bringToFront(activeObject!)
@@ -157,7 +157,7 @@ extension CanvaViewController {
                 object.center = convertedPos
             }
         } else {
-            objects.remove(at: objects.firstIndex(of: object)!)
+            objects.remove(at: objects.firstIndex(where: { $0.view == object })!)
             object.removeFromSuperview()
         }
         
@@ -248,7 +248,7 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let newObject = UIImageView(frame: .zero)
         
         self.canva.addSubview(newObject)
-        objects.append(newObject)
+        objects.append((newObject, clothe))
 
         newObject.contentMode = .scaleAspectFit
         newObject.image = image

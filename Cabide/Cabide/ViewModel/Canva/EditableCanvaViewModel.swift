@@ -54,7 +54,7 @@ class EditableCanvaViewModel {
             let clotheAtCanva = ClotheAtCanva(context: context)
             clotheAtCanva.id = UUID()
             clotheAtCanva.clothe = clothe
-            clotheAtCanva.positions = try? encoder.encode(position)
+            clotheAtCanva.position = try? encoder.encode(position)
             clothesAtCanva.append(clotheAtCanva)
         }
 

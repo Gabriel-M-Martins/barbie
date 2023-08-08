@@ -9,11 +9,6 @@ import Foundation
 import UIKit
 
 class CanvaViewModel {
-    enum Button: Int {
-        case delete
-        case main
-    }
-    
     enum State {
         case visualization
         case editing
@@ -24,9 +19,13 @@ class CanvaViewModel {
     var clotheService: ClotheService = .build()
     var clothes: [Clothe] { clotheService.data }
     
-    var state: State = .editing
-    var canva: Canva?
+    var canvaService: CanvaService = .build()
+    var canva: Canva
+    var canvaName: String { canva.name ?? "Novo canva" }
     
+    var state: State
+    
+    // MARK: - Hide name label or text field
     var hideNameLabel: Bool {
         switch state {
         case .visualization:
@@ -37,6 +36,7 @@ class CanvaViewModel {
     }
     var hideNameTextField: Bool { !hideNameLabel }
     
+    // MARK: - Collections is interactable
     var collectionIsUserInteractionEnabled: Bool {
         switch state {
         case .visualization:
@@ -45,8 +45,6 @@ class CanvaViewModel {
             return true
         }
     }
-    
-    var canvaName: String { canva?.name ?? "Default" }
     
     var mainButtonImage: UIImage? {
         switch state {
@@ -57,15 +55,43 @@ class CanvaViewModel {
         }
     }
     
-    func buttonPressed(_ button: Button) {
-        switch button {
-        case .main:
-            self.updateState()
-        case .delete:
-            break
-        }
+    init(canva: Canva, state: State) {
+        self.canva = canva
+        self.state = state
     }
     
+    init() {
+        self.canva = Canva(context: canvaService.viewContext)
+        self.state = .visualization
+    }
+    
+    func buttonPressed() {
+        switch state {
+        case .visualization:
+            self.updateState()
+        case .editing:
+            guard let delegate = delegate else { return }
+            
+            canva.name = delegate.canvaName
+            
+            for (view, clothe) in delegate.objects {
+                let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
+                
+                
+                let position = ClotheAtCanvaPosition(position: view.frame, transform: view.transform)
+                let encoder = JSONEncoder()
+                
+                newClotheAtCanva.clothe = clothe
+                newClotheAtCanva.position = try? encoder.encode(position)
+                
+                canva.addToClothes(newClotheAtCanva)
+            }
+            
+            // call segue to save sheet
+            // canvaService.update()
+        }
+    }
+
     private func updateState() {
         switch state {
         case .visualization:
@@ -80,5 +106,14 @@ class CanvaViewModel {
 
 
 protocol CanvaDelegate : AnyObject {
+    var canvaName: String? { get }
+    var objects: [(view: UIView, clothe: Clothe)] { get set }
+    
     func setupState()
+    func segueToSaveModal()
+}
+
+struct ClotheAtCanvaPosition : Codable {
+    var position: CGRect
+    var transform: CGAffineTransform
 }
