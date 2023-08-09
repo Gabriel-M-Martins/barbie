@@ -3,22 +3,11 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--EditableCanva-->
-        <scene sceneID="Hxw-8q-FJg">
-            <objects>
-                <viewControllerPlaceholder storyboardName="EditableCanva" id="WN3-BX-sWc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="G7g-dD-P3e"/>
-                    <navigationItem key="navigationItem" id="je6-df-buG"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ka9-ed-P3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2548" y="68"/>
-        </scene>
         <!--Clothe-->
         <scene sceneID="cSr-Y0-A7y">
             <objects>
@@ -28,17 +17,18 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KoK-Gr-vgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2548" y="163"/>
+            <point key="canvasLocation" x="2467" y="162"/>
         </scene>
         <!--Canva-->
         <scene sceneID="GgX-74-HB8">
             <objects>
                 <viewControllerPlaceholder storyboardName="Canva" id="psN-xS-EHU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="PIA-xq-Qhg"/>
+                    <navigationItem key="navigationItem" id="5fS-wM-lo5"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rMM-Qc-ax3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2549" y="251"/>
+            <point key="canvasLocation" x="2466" y="256"/>
         </scene>
         <!--Collection-->
         <scene sceneID="kPx-b2-1zg">
@@ -48,7 +38,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fdl-X0-1Bo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2484" y="364"/>
+            <point key="canvasLocation" x="2482" y="363"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="64W-4Q-bAB">
@@ -59,15 +49,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="83"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.043137259779999999" green="0.043137259779999999" blue="0.043137259779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" name="lilac"/>
                         <tabBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="white"/>
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
                         <segue destination="DOu-Tv-Giz" kind="relationship" relationship="viewControllers" id="P9L-Rb-WMe"/>
+                        <segue destination="psN-xS-EHU" kind="relationship" relationship="viewControllers" id="pn3-BM-7th"/>
                         <segue destination="Eyv-lx-oNi" kind="relationship" relationship="viewControllers" id="3o0-Bh-FJd"/>
-                        <segue destination="WN3-BX-sWc" kind="relationship" relationship="viewControllers" id="ukj-Xc-eU0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqN-Vt-X1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -76,6 +66,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="lilac">
+            <color red="0.74509803921568629" green="0.52941176470588236" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

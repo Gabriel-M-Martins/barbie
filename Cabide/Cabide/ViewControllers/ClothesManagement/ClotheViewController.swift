@@ -25,7 +25,8 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        model.service.update()
+        //model.service.update()
+        model.service.fetch()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -44,7 +45,9 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     }
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        model.service.update()
+        //TODO: Avaliar mudanca para fetch()
+//        model.service.update()
+        model.service.fetch()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

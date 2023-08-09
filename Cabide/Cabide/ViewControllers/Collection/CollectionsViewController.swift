@@ -25,7 +25,8 @@ class CollectionsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.service.update()
+        //viewModel.service.update()
+        viewModel.service.fetch()
         DispatchQueue.main.async {
             self.collectionViewRecents.reloadData()
         }
