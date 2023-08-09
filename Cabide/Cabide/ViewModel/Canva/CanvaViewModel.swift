@@ -17,7 +17,7 @@ class CanvaViewModel {
     weak var delegate: CanvaDelegate?
     
     var clotheService: ClotheService = .build()
-    var clothes: [Clothe] { clotheService.data }
+    var clothes: [Clothe] { ClotheService.data }
     
     var canvaService: CanvaService = .build()
     var canva: Canva
@@ -58,11 +58,17 @@ class CanvaViewModel {
     init(canva: Canva, state: State) {
         self.canva = canva
         self.state = state
+        
+        canvaService.fetch()
+        clotheService.fetch()
     }
     
     init() {
         self.canva = Canva(context: canvaService.viewContext)
-        self.state = .visualization
+        self.state = .editing
+        
+        canvaService.fetch()
+        clotheService.fetch()
     }
     
     func buttonPressed() {
@@ -84,7 +90,7 @@ class CanvaViewModel {
                 newClotheAtCanva.clothe = clothe
                 newClotheAtCanva.position = try? encoder.encode(position)
                 
-                canva.addToClothes(newClotheAtCanva)
+                //canva.addToClothes(newClotheAtCanva)
             }
             
             // call segue to save sheet

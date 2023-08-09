@@ -1,55 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jro-NC-BcX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jro-NC-BcX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collections-->
+        <!--Coleções-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="CollectionViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="CollectionsViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T9M-M2-WQ1" customClass="LargeCardView" customModule="Cabide" customModuleProvider="target">
-                                <rect key="frame" x="18" y="202" width="299" height="360"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tob-xJ-ozw">
+                                <rect key="frame" x="0.0" y="119" width="393" height="733"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Look recentes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdx-ss-B2B">
-                                <rect key="frame" x="16" y="163" width="145" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="WJd-yQ-SFF">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tob-xJ-ozw" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="OxT-Og-9NZ"/>
+                            <constraint firstAttribute="bottom" secondItem="tob-xJ-ozw" secondAttribute="bottom" id="T75-KV-baL"/>
+                            <constraint firstItem="tob-xJ-ozw" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="dKz-O2-Yzc"/>
+                            <constraint firstItem="tob-xJ-ozw" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xEG-tS-Izo"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Collections" id="f0h-1l-3Ye"/>
+                    <navigationItem key="navigationItem" title="Coleções" id="f0h-1l-3Ye"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionViewRecents" destination="tob-xJ-ozw" id="Qnx-NR-HhF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1063.3587786259541" y="4.9295774647887329"/>
         </scene>
-        <!--Collections-->
+        <!--Coleções-->
         <scene sceneID="zwH-SH-qa8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jro-NC-BcX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Collections" image="square.grid.2x2" catalog="system" selectedImage="square.grid.2x2.fill" id="VPA-wE-thL"/>
+                    <tabBarItem key="tabBarItem" title="Coleções" image="square.grid.2x2" catalog="system" selectedImage="square.grid.2x2.fill" id="VPA-wE-thL"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="7KR-Vp-eqO">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" name="white"/>

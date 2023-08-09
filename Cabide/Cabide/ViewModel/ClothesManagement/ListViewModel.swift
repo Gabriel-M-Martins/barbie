@@ -11,5 +11,5 @@ import UIKit
 
 class ListViewModel: ObservableObject {
     var service = ClotheService.build()
-    var clothes: [Clothe] { service.data }
+    var clothes: [Clothe] { ClotheService.data }
 }

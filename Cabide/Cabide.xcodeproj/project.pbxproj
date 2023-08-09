@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3BF00A2A7C319C00C5E626 /* LargeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3BF0082A7C319C00C5E626 /* LargeCard.swift */; };
+		0B3BF00B2A7C319C00C5E626 /* LargeCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3BF0092A7C319C00C5E626 /* LargeCard.xib */; };
 		0BC845412A79972B0010DB02 /* Collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC845402A79972B0010DB02 /* Collection.storyboard */; };
-		0BC845442A7997FF0010DB02 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC845432A7997FF0010DB02 /* CollectionViewController.swift */; };
-		0BC845462A799B800010DB02 /* LargeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC845452A799B800010DB02 /* LargeCardView.swift */; };
-		0BC845482A799BA30010DB02 /* LargeCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC845472A799BA30010DB02 /* LargeCardView.xib */; };
+		0BC845442A7997FF0010DB02 /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC845432A7997FF0010DB02 /* CollectionsViewController.swift */; };
 		0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCA00662A7041A100C86DAD /* Clothe.storyboard */; };
 		0BCA00692A70439800C86DAD /* ClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00682A70439800C86DAD /* ClotheViewController.swift */; };
 		0BCA006E2A71B11500C86DAD /* UIImage+RemoveBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA006D2A71B11500C86DAD /* UIImage+RemoveBackground.swift */; };
@@ -67,10 +67,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B3BF0082A7C319C00C5E626 /* LargeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCard.swift; sourceTree = "<group>"; };
+		0B3BF0092A7C319C00C5E626 /* LargeCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LargeCard.xib; sourceTree = "<group>"; };
 		0BC845402A79972B0010DB02 /* Collection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collection.storyboard; sourceTree = "<group>"; };
-		0BC845432A7997FF0010DB02 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		0BC845452A799B800010DB02 /* LargeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCardView.swift; sourceTree = "<group>"; };
-		0BC845472A799BA30010DB02 /* LargeCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LargeCardView.xib; sourceTree = "<group>"; };
+		0BC845432A7997FF0010DB02 /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
 		0BCA00662A7041A100C86DAD /* Clothe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Clothe.storyboard; sourceTree = "<group>"; };
 		0BCA00682A70439800C86DAD /* ClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheViewController.swift; sourceTree = "<group>"; };
 		0BCA006D2A71B11500C86DAD /* UIImage+RemoveBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RemoveBackground.swift"; sourceTree = "<group>"; };
@@ -139,11 +139,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B3BEFFF2A7C2D4B00C5E626 /* LargeCard */ = {
+			isa = PBXGroup;
+			children = (
+				0B3BF0082A7C319C00C5E626 /* LargeCard.swift */,
+				0B3BF0092A7C319C00C5E626 /* LargeCard.xib */,
+			);
+			path = LargeCard;
+			sourceTree = "<group>";
+		};
 		0B655D4A2A784ABC00842EEA /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				0BC845452A799B800010DB02 /* LargeCardView.swift */,
-				0BC845472A799BA30010DB02 /* LargeCardView.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -159,7 +166,7 @@
 		0BC845422A7997A10010DB02 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				0BC845432A7997FF0010DB02 /* CollectionViewController.swift */,
+				0BC845432A7997FF0010DB02 /* CollectionsViewController.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -262,6 +269,7 @@
 		A76EB9342A6F053800F8E854 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0B3BEFFF2A7C2D4B00C5E626 /* LargeCard */,
 				A7D2E8BA2A7B0812009FF292 /* ClotheCard */,
 				DCF91E182A744851002E8277 /* ClotheDetailsCell.swift */,
 			);
@@ -475,7 +483,8 @@
 				A7D2E8BE2A7B087A009FF292 /* ClotheCard.xib in Resources */,
 				A7D2E8B52A7AEB31009FF292 /* Canva.storyboard in Resources */,
 				DCF91E152A7443CB002E8277 /* List.storyboard in Resources */,
-				0BC845482A799BA30010DB02 /* LargeCardView.xib in Resources */,
+				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
+				0B3BF00B2A7C319C00C5E626 /* LargeCard.xib in Resources */,
 				DC5E61F62A7C35A900C668A8 /* CreateClothe.storyboard in Resources */,
 				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
 			);
@@ -488,13 +497,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BC845442A7997FF0010DB02 /* CollectionViewController.swift in Sources */,
+				0BC845442A7997FF0010DB02 /* CollectionsViewController.swift in Sources */,
 				A76EB93C2A6F061E00F8E854 /* EditableCanvaViewController.swift in Sources */,
 				A76EB93C2A6F061E00F8E854 /* EditableCanvaViewController.swift in Sources */,
 				0BCA00792A71B2FE00C86DAD /* CVPixelBuffer+Create.swift in Sources */,
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
 				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
 				A7D2E8B92A7AF8A9009FF292 /* CanvaViewModel.swift in Sources */,
+				0B3BF00A2A7C319C00C5E626 /* LargeCard.swift in Sources */,
 				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
 				DCD4E15E2A784BCB0017D4BC /* CollectionService.swift in Sources */,
@@ -504,7 +514,6 @@
 				0BCA007D2A71B37F00C86DAD /* CGImage+RawBytes.swift in Sources */,
 				A7D2E8B72A7AEC36009FF292 /* CanvaViewController.swift in Sources */,
 				0BCA00702A71B1D500C86DAD /* CIImage+Extensions.swift in Sources */,
-				0BC845462A799B800010DB02 /* LargeCardView.swift in Sources */,
 				A7773AFF2A783C81009096BE /* OpenedCanvaViewController.swift in Sources */,
 				A7773AF82A7833BC009096BE /* ListCanvaViewController.swift in Sources */,
 				A7D2E8BD2A7B087A009FF292 /* ClotheCard.swift in Sources */,

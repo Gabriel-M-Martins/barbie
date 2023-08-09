@@ -22,7 +22,7 @@ class EditableCanvaViewModel {
     
     var store: [ClotheAtCanva] = []
     var thumbnail: UIImage?
-    var clothes: [Clothe] { clotheService.data }
+    var clothes: [Clothe] { ClotheService.data }
     
 //    func replaceStoreState(clothes: [(Clothe, CanvaPosition)]) {
 //        let encoder = JSONEncoder()

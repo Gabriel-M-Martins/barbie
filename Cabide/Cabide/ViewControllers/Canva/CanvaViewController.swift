@@ -64,6 +64,13 @@ class CanvaViewController: UIViewController {
         self.tabBarController?.tabBar.clipsToBounds = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        model.clotheService.fetch()
+        DispatchQueue.main.async {
+            self.collection.reloadData()
+        }
+    }
+    
     @objc private func mainButtonPressed() {
         model.buttonPressed()
     }

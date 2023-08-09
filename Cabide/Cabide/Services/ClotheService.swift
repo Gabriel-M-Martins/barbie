@@ -9,5 +9,5 @@ import Foundation
 import CoreData
 
 public final class ClotheService: CoreDataService {
-    var data: [Clothe] = []
+    static var data: [Clothe] = []
 }

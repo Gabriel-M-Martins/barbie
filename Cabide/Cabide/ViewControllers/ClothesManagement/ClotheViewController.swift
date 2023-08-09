@@ -6,80 +6,99 @@
 //
 
 import UIKit
-import PhotosUI
 
-class ClotheViewController: UIViewController, PHPickerViewControllerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
+        
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var clotheImageView: UIImageView!
-    let viewModel = ClotheViewModel()
-    @IBOutlet weak var nameLabel: UITextField!
-    @IBOutlet weak var descriptionLabel: UITextField!
+    let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
+    
+    var model: ClotheViewModel = ClotheViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
-        //Uncomment the line below if you want the tap not interfere and cancel other interactions.
-        //tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+        collectionView.register(clotheCard, forCellWithReuseIdentifier: "largeCard")
     }
     
-    @IBAction func selectImagePressed(_ sender: Any) {
-        var configuration = PHPickerConfiguration(photoLibrary: .shared())
-        let filter = PHPickerFilter.any(of: [.images])
-        
-        configuration.filter = filter
-        
-        let picker = PHPickerViewController(configuration: configuration)
-        
-        picker.delegate = self
-        present(picker, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        //model.service.update()
+        model.service.fetch()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
-    @IBAction func openCameraPressed(_ sender: Any) {
-        let imagePickerVC = UIImagePickerController()
-        imagePickerVC.sourceType = .camera
-        imagePickerVC.allowsEditing = true
-        imagePickerVC.delegate = self
-        present(imagePickerVC, animated: true)
+    @IBAction func newClothe(_ sender: Any) {
+        performSegue(withIdentifier: "toNewClothe", sender: nil)
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewClothe" {
+            guard let navVC = segue.destination as? UINavigationController else { return }
+            
+            navVC.presentationController?.delegate = self
+        }
     }
     
-    @IBAction func createPressed(_ sender: Any) {
-        viewModel.createClothe(image: clotheImageView.image ?? UIImage())
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        //TODO: Avaliar mudanca para fetch()
+//        model.service.update()
+        model.service.fetch()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
-    
 }
 
-extension ClotheViewController {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true, completion: .none)
+// MARK: - Collection View
+extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        model.clothes.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
         
-        results.forEach { result in
-            result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
-                guard let image = reading as? UIImage, error == nil else { return }
-                
-                DispatchQueue.main.async {
-                    if let imageWithoutBG = image.removeBackground(),
-                       let croppedImage = imageWithoutBG.croppedToOpaque() {
-                        self.clotheImageView.image = croppedImage
-                    }
-                }
-            }
-        }
+        let clothe = model.clothes[indexPath.row]
+        let image = UIImage(data: clothe.image ?? Data())
+        
+        cell?.imageView.image = image
+
+        return cell ?? UICollectionViewCell()
+    }
+}
+
+extension ClotheViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let columns: CGFloat = 3
+        let spacing: CGFloat = 0
+        let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
+        
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+        return itemSize
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-        
-        guard let image = info[.editedImage] as? UIImage else { return }
-        
-        DispatchQueue.main.async {
-            self.clotheImageView.image = image.removeBackground()
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }
