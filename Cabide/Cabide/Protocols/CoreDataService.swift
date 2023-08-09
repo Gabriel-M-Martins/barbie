@@ -25,12 +25,14 @@ extension CoreDataService {
     var viewContext: NSManagedObjectContext { DataController.shared.viewContext }
     
     static func build() -> Self {
+        print("build", type(of: self))
         var object = Self.init()
         object.fetch()
         return object
     }
     
     func save() {
+        print("save")
         do {
             try viewContext.save()
         } catch {
@@ -40,6 +42,7 @@ extension CoreDataService {
     }
     
     mutating func fetch() {
+        print("fetch")
         let request = NSFetchRequest<T>(entityName: T.description())
         
         
@@ -47,6 +50,7 @@ extension CoreDataService {
     }
     
     mutating func update() {
+        print("update")
         save()
         fetch()
     }

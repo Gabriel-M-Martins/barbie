@@ -20,8 +20,8 @@ class CanvaViewModel {
     var clothes: [Clothe] { ClotheService.data }
     
     var canvaService: CanvaService = .build()
-    var canva: Canva
-    var canvaName: String { canva.name ?? "Novo canva" }
+    var canva: Canva?
+    var canvaName: String { canva?.name ?? "Novo canva" }
     
     var state: State
     
@@ -64,7 +64,6 @@ class CanvaViewModel {
     }
     
     init() {
-        self.canva = Canva(context: canvaService.viewContext)
         self.state = .editing
         
         canvaService.fetch()
@@ -78,7 +77,8 @@ class CanvaViewModel {
         case .editing:
             guard let delegate = delegate else { return }
             
-            canva.name = delegate.canvaName
+            canva = Canva(context: canvaService.viewContext)
+            canva?.name = delegate.canvaName
             
             for (view, clothe) in delegate.objects {
                 let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
@@ -90,11 +90,11 @@ class CanvaViewModel {
                 newClotheAtCanva.clothe = clothe
                 newClotheAtCanva.position = try? encoder.encode(position)
                 
-                //canva.addToClothes(newClotheAtCanva)
+                canva?.addToClothes(newClotheAtCanva)
             }
             
             // call segue to save sheet
-            // canvaService.update()
+             canvaService.update()
         }
     }
 
