@@ -17,6 +17,11 @@ class CanvaViewModel {
     weak var delegate: CanvaDelegate?
     
     var clotheService: ClotheService = .build()
+    
+    var isEditingCanva: Bool = false
+    var mainButtonText: String { isEditingCanva ? "Salvar" : "Editar" }
+    
+    var canvas: [Canva] { CanvaService.data }
     var clothes: [Clothe] { ClotheService.data }
     
     var canvaService: CanvaService = .build()
@@ -79,6 +84,7 @@ class CanvaViewModel {
             
             canva = Canva(context: canvaService.viewContext)
             canva?.name = delegate.canvaName
+            canva?.thumbnail = delegate.thumbnail.pngData()
             
             for (view, clothe) in delegate.objects {
                 let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
@@ -114,6 +120,7 @@ class CanvaViewModel {
 protocol CanvaDelegate : AnyObject {
     var canvaName: String? { get }
     var objects: [(view: UIView, clothe: Clothe)] { get set }
+    var thumbnail: UIImage { get }
     
     func setupState()
     func segueToSaveModal()

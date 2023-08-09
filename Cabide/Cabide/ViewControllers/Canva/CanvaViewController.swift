@@ -62,6 +62,14 @@ class CanvaViewController: UIViewController {
         self.tabBarController?.tabBar.layer.shadowOpacity = 0.3
         self.tabBarController?.tabBar.layer.shadowRadius = 2.0
         self.tabBarController?.tabBar.clipsToBounds = false
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +94,7 @@ extension CanvaViewController : UIGestureRecognizerDelegate {
 // MARK: - model delegate
 extension CanvaViewController : CanvaDelegate {
     var canvaName: String? { nameField.text }
+    var thumbnail: UIImage { canva.asImage() }
     
     func segueToSaveModal() {
         // call segue to save modal, pass viewmodel to modal
