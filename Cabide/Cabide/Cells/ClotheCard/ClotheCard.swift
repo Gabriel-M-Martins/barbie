@@ -14,13 +14,13 @@ class ClotheCard: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        image.layer.cornerRadius = 10
-        background.layer.cornerRadius = 10
+//        image.layer.cornerRadius = 10
+//        background.layer.cornerRadius = 10
         
         background.layer.shadowColor = UIColor.lightGray.cgColor
         background.layer.shadowOffset = CGSize(width: 0, height: 1)
-        background.layer.shadowOpacity = 0.8
-        background.layer.shadowRadius = 1.0
+        background.layer.shadowOpacity = 0.5
+        background.layer.shadowRadius = 2.0
         background.clipsToBounds = false
     }
 

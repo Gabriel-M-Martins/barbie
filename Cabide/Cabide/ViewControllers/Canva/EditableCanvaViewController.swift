@@ -60,7 +60,8 @@ class EditableCanvaViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.clotheService.update()
+//        viewModel.clotheService.update()
+        viewModel.clotheService.fetch()
         DispatchQueue.main.async {
             self.carousel.reloadData()
         }
