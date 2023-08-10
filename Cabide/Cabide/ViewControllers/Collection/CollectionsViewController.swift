@@ -55,7 +55,7 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "carouselcell") as? HorizontalCarouselTableViewCell {
                 cell.headerLabel.text = viewModel.folders[indexPath.row].name
                 cell.row = viewModel.getCanvasFolder(viewModel.folders[indexPath.row])
-    //            cell.updateCellWith(row: viewModel.folders[indexPath.row].canvas)
+                cell.updateCellWith(row: viewModel.getCanvasFolder(viewModel.folders[indexPath.row]))
                 
                 return cell
             }
