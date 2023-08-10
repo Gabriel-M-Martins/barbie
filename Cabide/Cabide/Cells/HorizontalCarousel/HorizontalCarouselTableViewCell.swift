@@ -39,11 +39,10 @@ class HorizontalCarouselTableViewCell: UITableViewCell {
 }
 
 extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
-    // The data we passed from the TableView send them to the CollectionView Model
-    //func updateCellWith(row: [CollectionViewCellModel]) {
-    //    self.rowWithColors = row
-    //    self.collectionView.reloadData()
-    //}
+    func updateCellWith(row: [Canva]?) {
+        self.row = row
+        self.collectionView.reloadData()
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.row?.count ?? 0
@@ -52,8 +51,7 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollect
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
-    // Set the data for each cell (color and color name)
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard {
             

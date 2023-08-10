@@ -19,5 +19,16 @@ class LargeCard: UICollectionViewCell {
         background.layer.shadowColor = UIColor.black.cgColor
         background.layer.shadowOffset = CGSize(width: 2, height: 1)
         background.layer.shadowOpacity = 0.1
+        background.layer.cornerRadius = 8
+    }
+    
+    func select() {
+        background.layer.borderColor = UIColor(named: "lilac")?.cgColor
+        background.layer.borderWidth = 2
+    }
+    
+    func deselect() {
+        background.layer.borderColor = .none
+        background.layer.borderWidth = 0
     }
 }

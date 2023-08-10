@@ -42,12 +42,8 @@ extension CoreDataService {
     mutating func fetch() {
         let request = NSFetchRequest<T>(entityName: T.description())
         
-        do {
-            Self.data = try viewContext.fetch(request)
-        } catch {
-            // !!!
-            print("DEBUG: Some error occured while fetching")
-        }
+        
+        Self.data = (try? viewContext.fetch(request)) ?? Self.data
     }
     
     mutating func update() {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Canva" representedClassName="Canva" syncable="YES" codeGenerationType="class">
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary"/>
         <relationship name="clothes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClotheAtCanva" inverseName="canva" inverseEntity="ClotheAtCanva"/>
-        <relationship name="collections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Collection" inverseName="canvas" inverseEntity="Collection"/>
+        <relationship name="folders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="canvas" inverseEntity="Folder"/>
     </entity>
     <entity name="Clothe" representedClassName="Clothe" syncable="YES" codeGenerationType="class">
         <attribute name="description_" optional="YES" attributeType="String"/>
@@ -14,24 +14,22 @@
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="atCanvas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClotheAtCanva" inverseName="clothe" inverseEntity="ClotheAtCanva"/>
-        <relationship name="collections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Collection" inverseName="clothes" inverseEntity="Collection"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="clothe" inverseEntity="Tag"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="clothes" inverseEntity="Tag"/>
     </entity>
     <entity name="ClotheAtCanva" representedClassName="ClotheAtCanva" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="positions" optional="YES" attributeType="Binary"/>
+        <attribute name="position" optional="YES" attributeType="Binary"/>
         <relationship name="canva" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Canva" inverseName="clothes" inverseEntity="Canva"/>
         <relationship name="clothe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Clothe" inverseName="atCanvas" inverseEntity="Clothe"/>
     </entity>
-    <entity name="Collection" representedClassName="Collection" syncable="YES" codeGenerationType="class">
+    <entity name="Folder" representedClassName="Folder" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="canvas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Canva" inverseName="collections" inverseEntity="Canva"/>
-        <relationship name="clothes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Clothe" inverseName="collections" inverseEntity="Clothe"/>
+        <relationship name="canvas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Canva" inverseName="folders" inverseEntity="Canva"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="clothe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Clothe" inverseName="tags" inverseEntity="Clothe"/>
+        <relationship name="clothes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Clothe" inverseName="tags" inverseEntity="Clothe"/>
     </entity>
 </model>

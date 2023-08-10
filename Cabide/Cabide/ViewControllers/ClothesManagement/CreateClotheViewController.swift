@@ -18,9 +18,6 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.isEnabled = false
-        //        self.preferredContentSize = CGSize(width: 300, height: 200)
-//        // Defina o estilo de apresentação como custom
-//        self.modalPresentationStyle = .custom
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {

@@ -32,7 +32,13 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="AJ6-25-0Tu" secondAttribute="bottom" id="iqc-j9-lFo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Coleções" id="f0h-1l-3Ye"/>
+                    <navigationItem key="navigationItem" title="Coleções" id="f0h-1l-3Ye">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="IVU-6o-FyT">
+                            <connections>
+                                <segue destination="Dqx-eH-cwv" kind="presentation" id="TR0-NJ-TY1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="AJ6-25-0Tu" id="WNi-Qr-ghG"/>
@@ -41,6 +47,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1063.3587786259541" y="4.9295774647887329"/>
+        </scene>
+        <!--CreateCollection-->
+        <scene sceneID="bQ5-mc-ldS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateCollection" id="Dqx-eH-cwv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1vj-Kl-GBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="-101"/>
         </scene>
         <!--Coleções-->
         <scene sceneID="zwH-SH-qa8">

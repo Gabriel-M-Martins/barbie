@@ -56,6 +56,10 @@
 		DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD62A704F7C009A447E /* TagViewModel.swift */; };
 		DC5E61F62A7C35A900C668A8 /* CreateClothe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E61F52A7C35A800C668A8 /* CreateClothe.storyboard */; };
 		DC5E61F82A7C35E700C668A8 /* CreateClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */; };
+		DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */; };
+		DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */; };
+		DCCECA5C2A82B9CD00CFF363 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */; };
+		DCCECA5E2A82BA9500CFF363 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCECA5D2A82BA9500CFF363 /* Fonts.swift */; };
 		DCD4E1572A7826FD0017D4BC /* ClotheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E1562A7826FD0017D4BC /* ClotheService.swift */; };
 		DCD4E15A2A782E790017D4BC /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E1592A782E790017D4BC /* ListViewModel.swift */; };
 		DCD4E15C2A782E8A0017D4BC /* ClotheDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E15B2A782E8A0017D4BC /* ClotheDetailsViewModel.swift */; };
@@ -120,6 +124,10 @@
 		DC2FBBD62A704F7C009A447E /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		DC5E61F52A7C35A800C668A8 /* CreateClothe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateClothe.storyboard; sourceTree = "<group>"; };
 		DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateClotheViewController.swift; sourceTree = "<group>"; };
+		DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCollection.storyboard; sourceTree = "<group>"; };
+		DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCollectionViewController.swift; sourceTree = "<group>"; };
+		DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Montserrat.ttf; sourceTree = "<group>"; };
+		DCCECA5D2A82BA9500CFF363 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		DCD4E1562A7826FD0017D4BC /* ClotheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheService.swift; sourceTree = "<group>"; };
 		DCD4E1592A782E790017D4BC /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		DCD4E15B2A782E8A0017D4BC /* ClotheDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -236,6 +244,7 @@
 		A76EB91A2A6EFA8B00F8E854 /* Cabide */ = {
 			isa = PBXGroup;
 			children = (
+				DCCECA582A82B99D00CFF363 /* Fonts */,
 				0B655D4A2A784ABC00842EEA /* Components */,
 				A762EF0A2A784BC3007D64E5 /* Protocols */,
 				A76EB9362A6F058C00F8E854 /* App */,
@@ -363,6 +372,15 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		DCCECA582A82B99D00CFF363 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */,
+				DCCECA5D2A82BA9500CFF363 /* Fonts.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		DCD4E1552A7826DF0017D4BC /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +412,7 @@
 		DCD4E1602A784C530017D4BC /* CollectionsManagement */ = {
 			isa = PBXGroup;
 			children = (
+				DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */,
 			);
 			path = CollectionsManagement;
 			sourceTree = "<group>";
@@ -401,6 +420,7 @@
 		DCD4E1612A784C5B0017D4BC /* CollectionsManagement */ = {
 			isa = PBXGroup;
 			children = (
+				DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */,
 			);
 			path = CollectionsManagement;
 			sourceTree = "<group>";
@@ -492,6 +512,7 @@
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
 				0B5BC6372A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib in Resources */,
 				A7773AF62A7833AC009096BE /* ListCanva.storyboard in Resources */,
+				DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */,
 				A7B935B32A744EB800F9F40B /* SaveCanva.storyboard in Resources */,
 				0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */,
 				0BC845412A79972B0010DB02 /* Collection.storyboard in Resources */,
@@ -501,6 +522,7 @@
 				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
 				0B3BF00B2A7C319C00C5E626 /* LargeCard.xib in Resources */,
 				DC5E61F62A7C35A900C668A8 /* CreateClothe.storyboard in Resources */,
+				DCCECA5C2A82B9CD00CFF363 /* Montserrat.ttf in Resources */,
 				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,11 +545,13 @@
 				0B3BF00A2A7C319C00C5E626 /* LargeCard.swift in Sources */,
 				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
+				DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */,
 				DCD4E15E2A784BCB0017D4BC /* CollectionService.swift in Sources */,
 				A762EF0E2A78616A007D64E5 /* UIView+Extensions.swift in Sources */,
 				DCD4E1572A7826FD0017D4BC /* ClotheService.swift in Sources */,
 				A762EF092A784B7A007D64E5 /* CanvaService.swift in Sources */,
 				0BCA007D2A71B37F00C86DAD /* CGImage+RawBytes.swift in Sources */,
+				DCCECA5E2A82BA9500CFF363 /* Fonts.swift in Sources */,
 				A7D2E8B72A7AEC36009FF292 /* CanvaViewController.swift in Sources */,
 				0BCA00702A71B1D500C86DAD /* CIImage+Extensions.swift in Sources */,
 				A7773AFF2A783C81009096BE /* OpenedCanvaViewController.swift in Sources */,
@@ -702,7 +726,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
+				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
@@ -732,7 +756,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
+				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
