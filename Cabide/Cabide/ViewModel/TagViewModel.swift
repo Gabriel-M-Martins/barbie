@@ -9,28 +9,29 @@ import Foundation
 import CoreData
 
 class TagViewModel: ObservableObject {
-    @Published var viewContext = DataController.shared.viewContext
-    var tags: [Tag] = []
+    var service: TagService = .build()
     
-    init() {
-        fetchTags()
+    func delete(_ tag: Tag) {
+        service.delete(tag)
     }
     
-    func fetchTags() {
-        let request = NSFetchRequest<Tag>(entityName: "Tag")
+    func create(name: String, clothes: [Clothe]) {
+        let newTag = Tag(context: service.viewContext)
+        newTag.id = .init()
+        newTag.name = name
+        newTag.clothes = NSSet(array: clothes)
+        service.update()
+    }
+    
+    func update(tag: Tag, newName: String?, clothes: [Clothe]?) {
+        guard let idx = TagService.data.firstIndex(of: tag) else { return }
         
-        do {
-            tags = try viewContext.fetch(request)
-        } catch {
-            print("DEBUG: Some error occured while fetching")
+        if let newName = newName {
+            TagService.data[idx].name = newName
         }
-    }
-    
-    func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            print("Error saving")
+        
+        if let clothes = clothes {
+            TagService.data[idx].clothes = NSSet(array: clothes)
         }
     }
 }
