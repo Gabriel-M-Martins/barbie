@@ -15,19 +15,25 @@ class HorizontalCarouselTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 150, height: 180)
-        flowLayout.minimumLineSpacing = 2.0
-        flowLayout.minimumInteritemSpacing = 5.0
-        self.collectionView.collectionViewLayout = flowLayout
-        self.collectionView.showsHorizontalScrollIndicator = false
-        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
         let cellNib = UINib(nibName: "LargeCard", bundle: nil)
         self.collectionView.register(cellNib, forCellWithReuseIdentifier: "largeCard")
+        
+        configFlowLayout()
+    }
+    
+    func configFlowLayout() {
+        let flowLayout = UICollectionViewFlowLayout()
+        
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: 220, height: 360)
+        flowLayout.minimumLineSpacing = 8.0
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 8)
+        
+        self.collectionView.collectionViewLayout = flowLayout
+        self.collectionView.showsHorizontalScrollIndicator = false
     }
     
 }
@@ -50,10 +56,13 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollect
     // Set the data for each cell (color and color name)
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard {
-            //let canva = self.row?[indexPath.item].thumbnail
+            
+            let canva = self.row?[indexPath.item]
             let imageData = self.row?[indexPath.item].thumbnail ?? Data()
             
             cell.imageView?.image = UIImage(data: imageData)
+            cell.labelName.text = canva?.name
+            
             return cell
         }
         
@@ -61,7 +70,7 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollect
     }
     
     // Add spaces at the beginning and the end of the collection view
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 5)
+//    }
 }
