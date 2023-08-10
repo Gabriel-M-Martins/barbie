@@ -11,17 +11,22 @@ import PhotosUI
 class CreateClotheViewController: UIViewController, PHPickerViewControllerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     let viewModel = ClotheViewModel()
-    
+    weak var delegate: CreateClotheDelegate?
+
     @IBOutlet weak var clotheImage: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.isEnabled = false
+        
+        let cancelButton = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cancelPressed) )
+        navigationItem.setLeftBarButton(cancelButton, animated: true)
+
     }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    @objc func cancelPressed(_ sender: Any) {
+        self.presentingViewController?.dismiss(animated: true)
     }
     
     @IBAction func openCameraPressed(_ sender: Any) {
@@ -46,12 +51,9 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         viewModel.createClothe(image: clotheImage.image ?? UIImage())
-//        dismiss(animated: true, completion: nil)
+        delegate?.didUpdateData()
         self.presentingViewController?.dismiss(animated: true)
     }
-    
-
-    
 }
 
 extension CreateClotheViewController {
@@ -98,4 +100,8 @@ extension CreateClotheViewController {
         
         saveButton.isEnabled = true
     }
+}
+
+protocol CreateClotheDelegate: AnyObject {
+    func didUpdateData()
 }

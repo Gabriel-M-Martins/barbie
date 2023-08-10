@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
-        
+class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDelegate, CreateClotheDelegate {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
     
     var model: ClotheViewModel = ClotheViewModel()
+    var isExclusionModeEnabled = false
+    var tapGesture: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +24,68 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
         collectionView.dataSource = self
         
         collectionView.register(clotheCard, forCellWithReuseIdentifier: "largeCard")
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        tapGesture?.delegate = self
+        tapGesture?.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture!)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        longPressGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(longPressGesture)
+    }
+    
+    func confirmDeleteForItem(at indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "Excluir peça", message: "Tem certeza de que deseja excluir esta peça?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Excluir", style: .destructive) { _ in
+            let selectedClothe = self.model.clothes[indexPath.row]
+            self.model.deleteClothe(id: selectedClothe.id ?? UUID())
+            self.collectionView.reloadData()
+            // Remove o item do modelo de dados e atualiza a coleção
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
+        if isExclusionModeEnabled {
+            let location = gesture.location(in: collectionView)
+            
+            if let indexPath = collectionView.indexPathForItem(at: location) {
+                confirmDeleteForItem(at: indexPath)
+            } else {
+                isExclusionModeEnabled = false
+                for cell in collectionView.visibleCells {
+                    if let clothingCell = cell as? LargeCard {
+                        clothingCell.hideDeleteIcon()
+                    }
+                }
+            }
+            collectionView.reloadData()
+        }
+    }
+    
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            self.tapGesture?.isEnabled = false
+            isExclusionModeEnabled = true
+            for cell in collectionView.visibleCells {
+                if let clothingCell = cell as? LargeCard {
+                    clothingCell.showDeleteIcon()
+                }
+            }
+            let feedbackGenerator = UIImpactFeedbackGenerator(style: .light) // Escolha o estilo adequado
+            feedbackGenerator.prepare()
+            feedbackGenerator.impactOccurred()
+            collectionView.reloadData()
+        } else {
+            self.tapGesture?.isEnabled = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //model.service.update()
         model.service.fetch()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -38,19 +98,32 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNewClothe" {
-            guard let navVC = segue.destination as? UINavigationController else { return }
             
+            guard let navVC = segue.destination as? UINavigationController,
+                  let modalVC = navVC.viewControllers.first as? CreateClotheViewController else { return }
             navVC.presentationController?.delegate = self
+            modalVC.delegate = self
         }
     }
     
+    func didUpdateData() {
+        self.collectionView.reloadData()
+    }
+    
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        //TODO: Avaliar mudanca para fetch()
-//        model.service.update()
         model.service.fetch()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+}
+
+extension ClotheViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer is UITapGestureRecognizer && otherGestureRecognizer is UILongPressGestureRecognizer {
+            return true
+        }
+        return false
     }
 }
 
@@ -59,20 +132,20 @@ extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         model.clothes.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
         
         let clothe = model.clothes[indexPath.row]
         let image = UIImage(data: clothe.image ?? Data())
         
         cell?.imageView.image = image
-
+        
         return cell ?? UICollectionViewCell()
     }
 }
