@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="carouselcell" rowHeight="404" id="KGk-i7-Jjw" customClass="HorizontalCarouselTableViewCell" customModule="Cabide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzo-8J-Cge">
+                        <rect key="frame" x="20" y="16" width="300" height="20"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0u1-1V-f9X">
+                        <rect key="frame" x="0.0" y="44" width="320" height="360"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="360" id="QpZ-lj-jnU"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QKk-EJ-DBh">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="0u1-1V-f9X" secondAttribute="trailing" id="2GM-6g-cAv"/>
+                    <constraint firstItem="Uzo-8J-Cge" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="BrD-CA-jTX"/>
+                    <constraint firstItem="0u1-1V-f9X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="BsN-yx-U6K"/>
+                    <constraint firstAttribute="bottom" secondItem="0u1-1V-f9X" secondAttribute="bottom" id="MmB-fX-Q9w"/>
+                    <constraint firstItem="Uzo-8J-Cge" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="dwu-Ld-YyS"/>
+                    <constraint firstItem="0u1-1V-f9X" firstAttribute="top" secondItem="Uzo-8J-Cge" secondAttribute="bottom" constant="8" id="jV4-Iv-blx"/>
+                    <constraint firstAttribute="trailing" secondItem="Uzo-8J-Cge" secondAttribute="trailing" id="z2p-b5-jtI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="collectionView" destination="0u1-1V-f9X" id="X5m-qQ-Yn5"/>
+                <outlet property="headerLabel" destination="Uzo-8J-Cge" id="ceC-DX-JUT"/>
+            </connections>
+            <point key="canvasLocation" x="129.7709923664122" y="115.49295774647888"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

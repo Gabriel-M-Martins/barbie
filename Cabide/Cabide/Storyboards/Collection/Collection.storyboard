@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jro-NC-BcX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jro-NC-BcX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,36 +18,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tob-xJ-ozw">
-                                <rect key="frame" x="0.0" y="119" width="393" height="733"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AJ6-25-0Tu">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="WJd-yQ-SFF">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tob-xJ-ozw" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="OxT-Og-9NZ"/>
-                            <constraint firstAttribute="bottom" secondItem="tob-xJ-ozw" secondAttribute="bottom" id="T75-KV-baL"/>
-                            <constraint firstItem="tob-xJ-ozw" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="dKz-O2-Yzc"/>
-                            <constraint firstItem="tob-xJ-ozw" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="xEG-tS-Izo"/>
+                            <constraint firstItem="AJ6-25-0Tu" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="4LM-ZN-5mG"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AJ6-25-0Tu" secondAttribute="trailing" id="5nO-Cp-IOb"/>
+                            <constraint firstItem="AJ6-25-0Tu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="bGb-uk-ssR"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="AJ6-25-0Tu" secondAttribute="bottom" id="iqc-j9-lFo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Coleções" id="f0h-1l-3Ye"/>
+                    <navigationItem key="navigationItem" title="Coleções" id="f0h-1l-3Ye">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="IVU-6o-FyT">
+                            <connections>
+                                <segue destination="Dqx-eH-cwv" kind="presentation" id="TR0-NJ-TY1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="collectionViewRecents" destination="tob-xJ-ozw" id="Qnx-NR-HhF"/>
+                        <outlet property="tableView" destination="AJ6-25-0Tu" id="WNi-Qr-ghG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1063.3587786259541" y="4.9295774647887329"/>
+        </scene>
+        <!--CreateCollection-->
+        <scene sceneID="bQ5-mc-ldS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateCollection" id="Dqx-eH-cwv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1vj-Kl-GBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="-101"/>
         </scene>
         <!--Coleções-->
         <scene sceneID="zwH-SH-qa8">

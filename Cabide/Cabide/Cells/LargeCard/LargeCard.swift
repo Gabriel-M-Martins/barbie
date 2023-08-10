@@ -11,10 +11,14 @@ class LargeCard: UICollectionViewCell {
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var imageView: UIImageView!
+
+    @IBOutlet weak var labelName: UILabel!
+
     @IBOutlet weak var deleteIcon: UIImageView!
     
     weak var delegate: LargeCardDelegate?
     var isDeleteIconVisible: Bool = false
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

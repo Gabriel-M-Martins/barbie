@@ -1,6 +1,6 @@
-//
-//  CollectionViewController.swift
-//  Cabide
+////
+////  CollectionViewController.swift
+////  Cabide
 //
 //  Created by Eduardo Filot Brum on 01/08/23.
 //
@@ -9,70 +9,59 @@ import UIKit
 
 class CollectionsViewController: UIViewController {
     
-    @IBOutlet weak var collectionViewRecents: UICollectionView!
-    
-    let largeCard = UINib(nibName: "LargeCard", bundle: nil)
+    @IBOutlet weak var tableView: UITableView!
     
     //TODO: Change viewmodel
-    var viewModel: ListCanvaViewModel = ListCanvaViewModel()
+    var viewModel: CollectionViewModel = CollectionViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionViewRecents.delegate = self
-        collectionViewRecents.dataSource = self
-        collectionViewRecents.register(largeCard, forCellWithReuseIdentifier: "largeCard")
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
+        let carousel = UINib(nibName: "HorizontalCarouselTableViewCell", bundle: nil)
+        self.tableView.register(carousel, forCellReuseIdentifier: "carouselcell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //viewModel.service.update()
         viewModel.service.fetch()
         DispatchQueue.main.async {
-            self.collectionViewRecents.reloadData()
+            self.tableView.reloadData()
         }
     }
 }
 
-// MARK: - Collection View
-extension CollectionsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.canvas.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 ? 1 : viewModel.folders.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "carouselcell") as? HorizontalCarouselTableViewCell {
+                cell.headerLabel.text = "Looks recentes"
+                cell.row = viewModel.getRecentCanvas()
+                cell.updateCellWith(row: viewModel.getRecentCanvas())
+                
+                return cell
+            }
+        } else {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "carouselcell") as? HorizontalCarouselTableViewCell {
+                cell.headerLabel.text = viewModel.folders[indexPath.row].name
+                cell.row = viewModel.getCanvasFolder(viewModel.folders[indexPath.row])
+                cell.updateCellWith(row: viewModel.getCanvasFolder(viewModel.folders[indexPath.row]))
+                
+                return cell
+            }
+        }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
+        return UITableViewCell()
         
-        let canva = viewModel.canvas[indexPath.row]
-        let imageData = canva.thumbnail ?? Data()
-        
-        cell?.imageView?.image = UIImage(data: imageData)
-        
-        return cell ?? UICollectionViewCell()
-    }
-}
-
-extension CollectionsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let columns: CGFloat = 2
-        let spacing: CGFloat = 1
-        let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
-        
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
-        return itemSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
     }
 }
