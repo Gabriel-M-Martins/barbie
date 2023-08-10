@@ -8,13 +8,22 @@
 import UIKit
 
 class LargeCard: UICollectionViewCell {
-
+    
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var imageView: UIImageView!
+
     @IBOutlet weak var labelName: UILabel!
+
+    @IBOutlet weak var deleteIcon: UIImageView!
+    
+    weak var delegate: LargeCardDelegate?
+    var isDeleteIconVisible: Bool = false
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        deleteIcon.isHidden = true
         
         background.layer.shadowColor = UIColor.black.cgColor
         background.layer.shadowOffset = CGSize(width: 2, height: 1)
@@ -31,4 +40,22 @@ class LargeCard: UICollectionViewCell {
         background.layer.borderColor = .none
         background.layer.borderWidth = 0
     }
+    
+    func showDeleteIcon() {
+        deleteIcon.isHidden = false
+        isDeleteIconVisible = true
+    }
+    
+    func hideDeleteIcon() {
+        deleteIcon.isHidden = true
+        isDeleteIconVisible = false
+    }
+    
+//    func delete(indexPath: IndexPath) {
+//        delegate?.confirmDeleteForItem(at: indexPath)
+//    }
+}
+
+protocol LargeCardDelegate: AnyObject {
+    func confirmDeleteForItem(at indexPath: IndexPath)
 }
