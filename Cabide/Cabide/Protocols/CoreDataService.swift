@@ -56,3 +56,42 @@ extension CoreDataService {
         update()
     }
 }
+
+// TODO: ! http://equinocios.com/ios/2016/03/16/protocol-oriented-programming/ Renan apoiou esse link aqui parece mt bala, vou ler e depois refazer as parada aqui
+
+
+/*
+ protocol Foo<T> where T : NSManagedObject {
+    associatedtype T
+
+    static var data: [T] { get set }
+    static var context: NSManagedObjectContext { get set }
+
+    init()
+}
+
+extension Foo {
+    static var context: NSManagedObjectContext { DataController.shared.viewContext }
+
+    static private func save() {
+        try? Self.context.save()
+    }
+
+    static func fetch() {
+        let request = NSFetchRequest<T>(entityName: T.description())
+        data = (try? context.fetch(request)) ?? data
+    }
+
+    static func update() {
+        save()
+        fetch()
+    }
+
+    static func delete(_ object: T) {
+        context.delete(object)
+        update()
+    }
+}
+
+public final class Bar : Foo<Canva> {}
+*/
