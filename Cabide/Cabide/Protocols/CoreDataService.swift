@@ -42,7 +42,6 @@ extension CoreDataService {
     mutating func fetch() {
         let request = NSFetchRequest<T>(entityName: T.description())
         
-        
         Self.data = (try? viewContext.fetch(request)) ?? Self.data
     }
     

@@ -21,6 +21,7 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
         saveButton.isEnabled = false
         
         let cancelButton = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cancelPressed) )
+        cancelButton.tintColor = UIColor(named: "Roxo") ?? UIColor.black
         navigationItem.setLeftBarButton(cancelButton, animated: true)
 
     }
