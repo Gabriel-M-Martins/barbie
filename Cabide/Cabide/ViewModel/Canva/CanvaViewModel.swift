@@ -41,10 +41,14 @@ class CanvaViewModel {
     
     var canvaService: CanvaService = .build()
     var canva: Canva?
-    var canvaName: String { canva?.name ?? "Novo canva" }
+    var canvaName: String { canva?.name ?? delegate?.canvaName ?? "Novo canva" }
     
     var tagService: TagService = .build()
     var selectedTags: [Tag] = []
+    
+    var collectionService: CollectionService = .build()
+    var folders: [Folder] { CollectionService.data }
+    var selectedFolders: [Folder] = []
     
     var state: State
     
@@ -93,6 +97,14 @@ class CanvaViewModel {
         clotheService.fetch()
     }
     
+    func selectFolder(_ folder: Folder) {
+        if let idx = selectedFolders.firstIndex(of: folder) {
+            selectedFolders.remove(at: idx)
+        } else {
+            selectedFolders.append(folder)
+        }
+    }
+    
     func toggleTag(_ tag: Tag) {
         if let idx = selectedTags.firstIndex(of: tag) {
             selectedTags.remove(at: idx)
@@ -125,11 +137,25 @@ class CanvaViewModel {
                 canva?.addToClothes(newClotheAtCanva)
             }
             
-            // call segue to save sheet
-             canvaService.update()
+            delegate.segueToSaveModal()
         }
     }
 
+    func save() {
+        guard let canva = canva else { return }
+        
+        for folder in selectedFolders {
+            canva.addToFolders(folder)
+            folder.addToCanvas(canva)
+        }
+        
+        canvaService.update()
+    }
+    
+    func rollback() {
+        canvaService.viewContext.rollback()
+    }
+    
     private func updateState() {
         switch state {
         case .visualization:

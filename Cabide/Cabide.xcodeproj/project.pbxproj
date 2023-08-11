@@ -51,7 +51,6 @@
 		DC5E61F82A7C35E700C668A8 /* CreateClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */; };
 		DC77FBE22A8582A300EF5D15 /* CreateCanva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */; };
 		DC77FBE42A8582D300EF5D15 /* CreateCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */; };
-		DC77FBE62A8582E800EF5D15 /* CreateCanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77FBE52A8582E800EF5D15 /* CreateCanvaViewModel.swift */; };
 		DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */; };
 		DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */; };
 		DCCECA5C2A82B9CD00CFF363 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */; };
@@ -115,7 +114,6 @@
 		DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateClotheViewController.swift; sourceTree = "<group>"; };
 		DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCanva.storyboard; sourceTree = "<group>"; };
 		DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCanvaViewController.swift; sourceTree = "<group>"; };
-		DC77FBE52A8582E800EF5D15 /* CreateCanvaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCanvaViewModel.swift; sourceTree = "<group>"; };
 		DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCollection.storyboard; sourceTree = "<group>"; };
 		DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCollectionViewController.swift; sourceTree = "<group>"; };
 		DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Montserrat.ttf; sourceTree = "<group>"; };
@@ -333,7 +331,6 @@
 			children = (
 				A7323A5F2A85A30300277CE7 /* ListCanvaViewModel.swift */,
 				A7D2E8B82A7AF8A9009FF292 /* CanvaViewModel.swift */,
-				DC77FBE52A8582E800EF5D15 /* CreateCanvaViewModel.swift */,
 			);
 			path = Canva;
 			sourceTree = "<group>";
@@ -536,7 +533,6 @@
 				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
 				A7D2E8B92A7AF8A9009FF292 /* CanvaViewModel.swift in Sources */,
 				0B3BF00A2A7C319C00C5E626 /* LargeCard.swift in Sources */,
-				DC77FBE62A8582E800EF5D15 /* CreateCanvaViewModel.swift in Sources */,
 				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
 				DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */,
