@@ -49,6 +49,9 @@
 		DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD62A704F7C009A447E /* TagViewModel.swift */; };
 		DC5E61F62A7C35A900C668A8 /* CreateClothe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E61F52A7C35A800C668A8 /* CreateClothe.storyboard */; };
 		DC5E61F82A7C35E700C668A8 /* CreateClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */; };
+		DC77FBE22A8582A300EF5D15 /* CreateCanva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */; };
+		DC77FBE42A8582D300EF5D15 /* CreateCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */; };
+		DC77FBE62A8582E800EF5D15 /* CreateCanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77FBE52A8582E800EF5D15 /* CreateCanvaViewModel.swift */; };
 		DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */; };
 		DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */; };
 		DCCECA5C2A82B9CD00CFF363 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */; };
@@ -110,6 +113,9 @@
 		DC2FBBD62A704F7C009A447E /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		DC5E61F52A7C35A800C668A8 /* CreateClothe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateClothe.storyboard; sourceTree = "<group>"; };
 		DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateClotheViewController.swift; sourceTree = "<group>"; };
+		DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCanva.storyboard; sourceTree = "<group>"; };
+		DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCanvaViewController.swift; sourceTree = "<group>"; };
+		DC77FBE52A8582E800EF5D15 /* CreateCanvaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCanvaViewModel.swift; sourceTree = "<group>"; };
 		DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCollection.storyboard; sourceTree = "<group>"; };
 		DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCollectionViewController.swift; sourceTree = "<group>"; };
 		DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Montserrat.ttf; sourceTree = "<group>"; };
@@ -308,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				A7D2E8B42A7AEB31009FF292 /* Canva.storyboard */,
+				DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */,
 			);
 			path = Canva;
 			sourceTree = "<group>";
@@ -316,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				A7D2E8B62A7AEC36009FF292 /* CanvaViewController.swift */,
+				DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */,
 			);
 			path = Canva;
 			sourceTree = "<group>";
@@ -325,6 +333,7 @@
 			children = (
 				A7323A5F2A85A30300277CE7 /* ListCanvaViewModel.swift */,
 				A7D2E8B82A7AF8A9009FF292 /* CanvaViewModel.swift */,
+				DC77FBE52A8582E800EF5D15 /* CreateCanvaViewModel.swift */,
 			);
 			path = Canva;
 			sourceTree = "<group>";
@@ -497,7 +506,6 @@
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
 				0B5BC6372A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib in Resources */,
-				A7773AF62A7833AC009096BE /* ListCanva.storyboard in Resources */,
 				DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */,
 				0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */,
 				0BC845412A79972B0010DB02 /* Collection.storyboard in Resources */,
@@ -507,6 +515,7 @@
 				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
 				0B3BF00B2A7C319C00C5E626 /* LargeCard.xib in Resources */,
 				DC5E61F62A7C35A900C668A8 /* CreateClothe.storyboard in Resources */,
+				DC77FBE22A8582A300EF5D15 /* CreateCanva.storyboard in Resources */,
 				DCCECA5C2A82B9CD00CFF363 /* Montserrat.ttf in Resources */,
 				DCF91E172A7443DF002E8277 /* ClotheDetails.storyboard in Resources */,
 			);
@@ -527,6 +536,7 @@
 				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
 				A7D2E8B92A7AF8A9009FF292 /* CanvaViewModel.swift in Sources */,
 				0B3BF00A2A7C319C00C5E626 /* LargeCard.swift in Sources */,
+				DC77FBE62A8582E800EF5D15 /* CreateCanvaViewModel.swift in Sources */,
 				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
 				DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */,
@@ -547,6 +557,7 @@
 				DCF91E192A744851002E8277 /* ClotheDetailsCell.swift in Sources */,
 				DCD4E1642A784D7C0017D4BC /* CollectionViewModel.swift in Sources */,
 				A762EF0C2A784BE0007D64E5 /* CoreDataService.swift in Sources */,
+				DC77FBE42A8582D300EF5D15 /* CreateCanvaViewController.swift in Sources */,
 				DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */,
 				DCD4E15A2A782E790017D4BC /* ListViewModel.swift in Sources */,
 				0BCA00812A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel in Sources */,
@@ -706,7 +717,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
+				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
@@ -715,6 +726,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -736,7 +748,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
+				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
@@ -745,6 +757,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

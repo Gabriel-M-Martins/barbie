@@ -38,12 +38,13 @@ class CollectionViewModel {
         
         collection.id = UUID()
         collection.name = name
-        
         service.update()
-        
+
         for canva in canvas {
             addCanva(id: collection.id ?? UUID(), canva: canva)
         }
+        
+        service.update()
     }
     
     func addCanva(id: UUID, canva: Canva) {
