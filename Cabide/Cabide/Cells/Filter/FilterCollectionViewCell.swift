@@ -33,8 +33,8 @@ class FilterCollectionViewCell: UICollectionViewCell {
         changeBackgroundAppearence()
     }
     
-    func toggle() {
-        enabled.toggle()
+    func toggle(_ enabled: Bool) {
+        self.enabled = enabled
         changeBackgroundAppearence()
     }
     
@@ -44,11 +44,13 @@ class FilterCollectionViewCell: UICollectionViewCell {
             background.layer.borderColor = UIColor.clear.cgColor
             name.textColor = .white
             xImage.tintColor = .white
+            xImage.image = UIImage(systemName: "xmark")
         } else {
             background.backgroundColor = UIColor.clear
             background.layer.borderColor = UIColor(named: "lilac")?.cgColor
             name.textColor = .black
             xImage.tintColor = .black
+            xImage.image = UIImage(systemName: "plus")
         }
     }
 

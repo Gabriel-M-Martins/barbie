@@ -51,7 +51,7 @@ class CanvaViewController: UIViewController {
         filtersCollection.dataSource = self
         filtersCollection.register(filterCell, forCellWithReuseIdentifier: "FilterCell")
         if let filtersCollectionViewLayout = filtersCollection.collectionViewLayout as? UICollectionViewFlowLayout {
-            filtersCollectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            filtersCollectionViewLayout.estimatedItemSize = CGSize(width: 1, height: 1)// UICollectionViewFlowLayout.automaticSize
         }
         
         /*
@@ -111,7 +111,7 @@ extension CanvaViewController : CanvaDelegate {
     var thumbnail: UIImage { canva.asImage() }
     
     func segueToSaveModal() {
-        // call segue to save modal, pass viewmodel to modal
+        // TODO: - call segue to save modal, pass viewmodel to modal
         // performSegue(withIdentifier: , sender: )
     }
     
@@ -270,7 +270,11 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if collectionView == filtersCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCollectionViewCell
             
-            cell?.name.text = model.tags[indexPath.row].name
+            let tag = model.tags[indexPath.row]
+            
+            cell?.name.text = tag.name
+            cell?.toggle(model.selectedTags.contains(tag))
+            
             return cell ?? UICollectionViewCell()
         }
         
@@ -278,35 +282,59 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard collectionView == clothesCollection else { return }
-        guard model.collectionIsUserInteractionEnabled else { return }
+        if collectionView == filtersCollection {
+            let tag = model.tags[indexPath.row]
+            model.toggleTag(tag)
+            
+            DispatchQueue.main.async { [weak self] in
+                
+                /*
+                 [self.collectionView performBatchUpdates:^{
+                     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+                 } completion:nil];
+                 */
+                self?.filtersCollection.performBatchUpdates({
+                    self?.filtersCollection.reloadSections(IndexSet(integer: 0))
+                })
+                self?.clothesCollection.reloadData()
+            }
+            
+            return
+        }
         
-        let clothe = model.clothes[indexPath.row]
-        let imageData = clothe.image ?? Data()
-        let image = UIImage(data: imageData)
         
-        // this should change somehow so the image is draggable instead of it justing appearing on the canva
-        let newObject = UIImageView(frame: .zero)
-        
-        self.canva.addSubview(newObject)
-        objects.append((newObject, clothe))
-
-        newObject.contentMode = .scaleAspectFit
-        newObject.image = image
-
-        newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
-        newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
-
-        newObject.isUserInteractionEnabled = true
-        newObject.isMultipleTouchEnabled = true
-
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        newObject.addGestureRecognizer(pan)
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        newObject.addGestureRecognizer(tap)
-        
-        newObject.layer.setValue(clothe, forKey: "clothe")
+        if collectionView == clothesCollection {
+            guard model.collectionIsUserInteractionEnabled else { return }
+            
+            let clothe = model.clothes[indexPath.row]
+            let imageData = clothe.image ?? Data()
+            let image = UIImage(data: imageData)
+            
+            // this should change somehow so the image is draggable instead of it justing appearing on the canva
+            let newObject = UIImageView(frame: .zero)
+            
+            self.canva.addSubview(newObject)
+            objects.append((newObject, clothe))
+            
+            newObject.contentMode = .scaleAspectFit
+            newObject.image = image
+            
+            newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
+            newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
+            
+            newObject.isUserInteractionEnabled = true
+            newObject.isMultipleTouchEnabled = true
+            
+            let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+            newObject.addGestureRecognizer(pan)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            newObject.addGestureRecognizer(tap)
+            
+            newObject.layer.setValue(clothe, forKey: "clothe")
+            
+            return
+        }
     }
 }
 
@@ -314,7 +342,7 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard collectionView == clothesCollection else { return collectionView.contentSize }
+        guard collectionView == clothesCollection else { return CGSize(width: 15, height: 100) }
         
         let width = (collectionView.frame.width * 0.25) - 16
         let height = (collectionView.frame.height * 0.5)  - 16
@@ -322,7 +350,7 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        guard collectionView == clothesCollection else { return collectionView.safeAreaInsets }
+        guard collectionView == clothesCollection else { return UIEdgeInsets(top: collectionView.safeAreaInsets.top, left: 12, bottom: collectionView.safeAreaInsets.bottom, right: collectionView.safeAreaInsets.right) }
         return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     }
     
