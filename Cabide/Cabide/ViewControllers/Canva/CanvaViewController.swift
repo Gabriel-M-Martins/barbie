@@ -350,7 +350,7 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        guard collectionView == clothesCollection else { return collectionView.safeAreaInsets }
+        guard collectionView == clothesCollection else { return UIEdgeInsets(top: collectionView.safeAreaInsets.top, left: 12, bottom: collectionView.safeAreaInsets.bottom, right: collectionView.safeAreaInsets.right) }
         return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     }
     
