@@ -270,7 +270,11 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if collectionView == filtersCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCollectionViewCell
             
-            cell?.name.text = model.tags[indexPath.row].name
+            let tag = model.tags[indexPath.row]
+            
+            cell?.name.text = tag.name
+            cell?.toggle(model.selectedTags.contains(tag))
+            
             return cell ?? UICollectionViewCell()
         }
         
@@ -278,35 +282,51 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard collectionView == clothesCollection else { return }
-        guard model.collectionIsUserInteractionEnabled else { return }
+        if collectionView == filtersCollection {
+            let tag = model.tags[indexPath.row]
+            model.toggleTag(tag)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.filtersCollection.reloadData()
+                self?.clothesCollection.reloadData()
+            }
+            
+            return
+        }
         
-        let clothe = model.clothes[indexPath.row]
-        let imageData = clothe.image ?? Data()
-        let image = UIImage(data: imageData)
         
-        // this should change somehow so the image is draggable instead of it justing appearing on the canva
-        let newObject = UIImageView(frame: .zero)
-        
-        self.canva.addSubview(newObject)
-        objects.append((newObject, clothe))
-
-        newObject.contentMode = .scaleAspectFit
-        newObject.image = image
-
-        newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
-        newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
-
-        newObject.isUserInteractionEnabled = true
-        newObject.isMultipleTouchEnabled = true
-
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        newObject.addGestureRecognizer(pan)
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        newObject.addGestureRecognizer(tap)
-        
-        newObject.layer.setValue(clothe, forKey: "clothe")
+        if collectionView == clothesCollection {
+            guard model.collectionIsUserInteractionEnabled else { return }
+            
+            let clothe = model.clothes[indexPath.row]
+            let imageData = clothe.image ?? Data()
+            let image = UIImage(data: imageData)
+            
+            // this should change somehow so the image is draggable instead of it justing appearing on the canva
+            let newObject = UIImageView(frame: .zero)
+            
+            self.canva.addSubview(newObject)
+            objects.append((newObject, clothe))
+            
+            newObject.contentMode = .scaleAspectFit
+            newObject.image = image
+            
+            newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
+            newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
+            
+            newObject.isUserInteractionEnabled = true
+            newObject.isMultipleTouchEnabled = true
+            
+            let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+            newObject.addGestureRecognizer(pan)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            newObject.addGestureRecognizer(tap)
+            
+            newObject.layer.setValue(clothe, forKey: "clothe")
+            
+            return
+        }
     }
 }
 

@@ -22,7 +22,18 @@ class CanvaViewModel {
     var mainButtonText: String { isEditingCanva ? "Salvar" : "Editar" }
     
     var canvas: [Canva] { CanvaService.data }
-    var clothes: [Clothe] { ClotheService.data }
+    
+    var clothes: [Clothe] {
+        if selectedTags.count == 0 { return ClotheService.data }
+        
+        return ClotheService.data.filter { clothe in
+            guard let tags = clothe.tags,
+                  tags.count > 0 else { return false }
+            
+            return NSSet(array: selectedTags).isSubset(of: tags as! Set<AnyHashable>)
+        }
+    }
+    
     var tags: [Tag] { TagService.data }
     
     var canvaService: CanvaService = .build()
@@ -77,6 +88,17 @@ class CanvaViewModel {
         
         canvaService.fetch()
         clotheService.fetch()
+    }
+    
+    func toggleTag(_ tag: Tag) {
+        if let idx = selectedTags.firstIndex(of: tag) {
+            selectedTags.remove(at: idx)
+        } else {
+            selectedTags.append(tag)
+        }
+        
+        print(selectedTags, "------------------ tags")
+        print(clothes, "------------------ clothes")
     }
     
     func buttonPressed() {
