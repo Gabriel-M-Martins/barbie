@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B3BF00A2A7C319C00C5E626 /* LargeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3BF0082A7C319C00C5E626 /* LargeCard.swift */; };
 		0B3BF00B2A7C319C00C5E626 /* LargeCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3BF0092A7C319C00C5E626 /* LargeCard.xib */; };
+		0B5BC6362A847F56008C93B2 /* HorizontalCarouselTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5BC6342A847F56008C93B2 /* HorizontalCarouselTableViewCell.swift */; };
+		0B5BC6372A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B5BC6352A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib */; };
 		0BC845412A79972B0010DB02 /* Collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC845402A79972B0010DB02 /* Collection.storyboard */; };
 		0BC845442A7997FF0010DB02 /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC845432A7997FF0010DB02 /* CollectionsViewController.swift */; };
 		0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCA00662A7041A100C86DAD /* Clothe.storyboard */; };
@@ -23,6 +25,9 @@
 		0BCA007D2A71B37F00C86DAD /* CGImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA007C2A71B37F00C86DAD /* CGImage+RawBytes.swift */; };
 		0BCA007F2A71B39B00C86DAD /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA007E2A71B39B00C86DAD /* Math.swift */; };
 		0BCA00812A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA00802A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel */; };
+		A7323A5D2A859A2E00277CE7 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7323A5B2A859A2E00277CE7 /* FilterCollectionViewCell.swift */; };
+		A7323A5E2A859A2E00277CE7 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7323A5C2A859A2E00277CE7 /* FilterCollectionViewCell.xib */; };
+		A7323A602A85A30300277CE7 /* ListCanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7323A5F2A85A30300277CE7 /* ListCanvaViewModel.swift */; };
 		A762EF092A784B7A007D64E5 /* CanvaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF082A784B7A007D64E5 /* CanvaService.swift */; };
 		A762EF0C2A784BE0007D64E5 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF0B2A784BE0007D64E5 /* CoreDataService.swift */; };
 		A762EF0E2A78616A007D64E5 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF0D2A78616A007D64E5 /* UIView+Extensions.swift */; };
@@ -33,23 +38,12 @@
 		A76EB9262A6EFA8B00F8E854 /* Cabide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A76EB9242A6EFA8B00F8E854 /* Cabide.xcdatamodeld */; };
 		A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */; };
 		A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9292A6EFA8C00F8E854 /* LaunchScreen.storyboard */; };
-		A76EB9392A6F05FD00F8E854 /* EditableCanva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A76EB9382A6F05FD00F8E854 /* EditableCanva.storyboard */; };
-		A76EB93C2A6F061E00F8E854 /* EditableCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB93B2A6F061E00F8E854 /* EditableCanvaViewController.swift */; };
-		A7773AF42A782F58009096BE /* SaveCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7773AF32A782F58009096BE /* SaveCanvaViewController.swift */; };
-		A7773AF62A7833AC009096BE /* ListCanva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7773AF52A7833AC009096BE /* ListCanva.storyboard */; };
-		A7773AF82A7833BC009096BE /* ListCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7773AF72A7833BC009096BE /* ListCanvaViewController.swift */; };
-		A7773AFB2A783400009096BE /* ListCanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7773AFA2A783400009096BE /* ListCanvaViewModel.swift */; };
-		A7773AFD2A783C6B009096BE /* OpenedCanva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7773AFC2A783C6B009096BE /* OpenedCanva.storyboard */; };
-		A7773AFF2A783C81009096BE /* OpenedCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7773AFE2A783C81009096BE /* OpenedCanvaViewController.swift */; };
-		A7773B012A783DA8009096BE /* OpenedCanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7773B002A783DA8009096BE /* OpenedCanvaViewModel.swift */; };
 		A7B7FE502A855E9800D3FE1C /* TagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7FE4F2A855E9800D3FE1C /* TagService.swift */; };
-		A7B935B32A744EB800F9F40B /* SaveCanva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7B935B22A744EB800F9F40B /* SaveCanva.storyboard */; };
 		A7D2E8B52A7AEB31009FF292 /* Canva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7D2E8B42A7AEB31009FF292 /* Canva.storyboard */; };
 		A7D2E8B72A7AEC36009FF292 /* CanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D2E8B62A7AEC36009FF292 /* CanvaViewController.swift */; };
 		A7D2E8B92A7AF8A9009FF292 /* CanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D2E8B82A7AF8A9009FF292 /* CanvaViewModel.swift */; };
 		A7D2E8BD2A7B087A009FF292 /* ClotheCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D2E8BB2A7B087A009FF292 /* ClotheCard.swift */; };
 		A7D2E8BE2A7B087A009FF292 /* ClotheCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7D2E8BC2A7B087A009FF292 /* ClotheCard.xib */; };
-		A7E6FABD2A71A5EA00D174BB /* EditableCanvaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E6FABC2A71A5EA00D174BB /* EditableCanvaViewModel.swift */; };
 		DC2FBBCF2A704254009A447E /* ClotheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */; };
 		DC2FBBD12A7042BC009A447E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD02A7042BC009A447E /* DataController.swift */; };
 		DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2FBBD62A704F7C009A447E /* TagViewModel.swift */; };
@@ -77,6 +71,8 @@
 /* Begin PBXFileReference section */
 		0B3BF0082A7C319C00C5E626 /* LargeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCard.swift; sourceTree = "<group>"; };
 		0B3BF0092A7C319C00C5E626 /* LargeCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LargeCard.xib; sourceTree = "<group>"; };
+		0B5BC6342A847F56008C93B2 /* HorizontalCarouselTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCarouselTableViewCell.swift; sourceTree = "<group>"; };
+		0B5BC6352A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalCarouselTableViewCell.xib; sourceTree = "<group>"; };
 		0BC845402A79972B0010DB02 /* Collection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collection.storyboard; sourceTree = "<group>"; };
 		0BC845432A7997FF0010DB02 /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
 		0BCA00662A7041A100C86DAD /* Clothe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Clothe.storyboard; sourceTree = "<group>"; };
@@ -91,6 +87,9 @@
 		0BCA007C2A71B37F00C86DAD /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
 		0BCA007E2A71B39B00C86DAD /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		0BCA00802A72EC4100C86DAD /* RemoveBackgroundModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RemoveBackgroundModel.mlmodel; sourceTree = "<group>"; };
+		A7323A5B2A859A2E00277CE7 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		A7323A5C2A859A2E00277CE7 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		A7323A5F2A85A30300277CE7 /* ListCanvaViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCanvaViewModel.swift; sourceTree = "<group>"; };
 		A762EF082A784B7A007D64E5 /* CanvaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaService.swift; sourceTree = "<group>"; };
 		A762EF0B2A784BE0007D64E5 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		A762EF0D2A78616A007D64E5 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -103,23 +102,12 @@
 		A76EB9272A6EFA8C00F8E854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A76EB92A2A6EFA8C00F8E854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A76EB92C2A6EFA8C00F8E854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A76EB9382A6F05FD00F8E854 /* EditableCanva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditableCanva.storyboard; sourceTree = "<group>"; };
-		A76EB93B2A6F061E00F8E854 /* EditableCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCanvaViewController.swift; sourceTree = "<group>"; };
-		A7773AF32A782F58009096BE /* SaveCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCanvaViewController.swift; sourceTree = "<group>"; };
-		A7773AF52A7833AC009096BE /* ListCanva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListCanva.storyboard; sourceTree = "<group>"; };
-		A7773AF72A7833BC009096BE /* ListCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCanvaViewController.swift; sourceTree = "<group>"; };
-		A7773AFA2A783400009096BE /* ListCanvaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCanvaViewModel.swift; sourceTree = "<group>"; };
-		A7773AFC2A783C6B009096BE /* OpenedCanva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OpenedCanva.storyboard; sourceTree = "<group>"; };
-		A7773AFE2A783C81009096BE /* OpenedCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedCanvaViewController.swift; sourceTree = "<group>"; };
-		A7773B002A783DA8009096BE /* OpenedCanvaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedCanvaViewModel.swift; sourceTree = "<group>"; };
 		A7B7FE4F2A855E9800D3FE1C /* TagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagService.swift; sourceTree = "<group>"; };
-		A7B935B22A744EB800F9F40B /* SaveCanva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SaveCanva.storyboard; sourceTree = "<group>"; };
 		A7D2E8B42A7AEB31009FF292 /* Canva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Canva.storyboard; sourceTree = "<group>"; };
 		A7D2E8B62A7AEC36009FF292 /* CanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaViewController.swift; sourceTree = "<group>"; };
 		A7D2E8B82A7AF8A9009FF292 /* CanvaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaViewModel.swift; sourceTree = "<group>"; };
 		A7D2E8BB2A7B087A009FF292 /* ClotheCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheCard.swift; sourceTree = "<group>"; };
 		A7D2E8BC2A7B087A009FF292 /* ClotheCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClotheCard.xib; sourceTree = "<group>"; };
-		A7E6FABC2A71A5EA00D174BB /* EditableCanvaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableCanvaViewModel.swift; sourceTree = "<group>"; };
 		DC2FBBCE2A704254009A447E /* ClotheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheViewModel.swift; sourceTree = "<group>"; };
 		DC2FBBD02A7042BC009A447E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		DC2FBBD62A704F7C009A447E /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
@@ -162,6 +150,15 @@
 				0B3BF0092A7C319C00C5E626 /* LargeCard.xib */,
 			);
 			path = LargeCard;
+			sourceTree = "<group>";
+		};
+		0B5BC6332A847EFB008C93B2 /* HorizontalCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				0B5BC6342A847F56008C93B2 /* HorizontalCarouselTableViewCell.swift */,
+				0B5BC6352A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib */,
+			);
+			path = HorizontalCarousel;
 			sourceTree = "<group>";
 		};
 		0B655D4A2A784ABC00842EEA /* Components */ = {
@@ -209,6 +206,15 @@
 				0BCA007E2A71B39B00C86DAD /* Math.swift */,
 			);
 			path = CoreMlLHelpers;
+			sourceTree = "<group>";
+		};
+		A7323A5A2A859A1300277CE7 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				A7323A5B2A859A2E00277CE7 /* FilterCollectionViewCell.swift */,
+				A7323A5C2A859A2E00277CE7 /* FilterCollectionViewCell.xib */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		A762EF0A2A784BC3007D64E5 /* Protocols */ = {
@@ -286,6 +292,8 @@
 		A76EB9342A6F053800F8E854 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A7323A5A2A859A1300277CE7 /* Filter */,
+				0B5BC6332A847EFB008C93B2 /* HorizontalCarousel */,
 				0B3BEFFF2A7C2D4B00C5E626 /* LargeCard */,
 				A7D2E8BA2A7B0812009FF292 /* ClotheCard */,
 				DCF91E182A744851002E8277 /* ClotheDetailsCell.swift */,
@@ -305,10 +313,6 @@
 		A76EB9372A6F05EB00F8E854 /* Canva */ = {
 			isa = PBXGroup;
 			children = (
-				A76EB9382A6F05FD00F8E854 /* EditableCanva.storyboard */,
-				A7B935B22A744EB800F9F40B /* SaveCanva.storyboard */,
-				A7773AF52A7833AC009096BE /* ListCanva.storyboard */,
-				A7773AFC2A783C6B009096BE /* OpenedCanva.storyboard */,
 				A7D2E8B42A7AEB31009FF292 /* Canva.storyboard */,
 				DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */,
 			);
@@ -318,10 +322,6 @@
 		A76EB93A2A6F061100F8E854 /* Canva */ = {
 			isa = PBXGroup;
 			children = (
-				A76EB93B2A6F061E00F8E854 /* EditableCanvaViewController.swift */,
-				A7773AF32A782F58009096BE /* SaveCanvaViewController.swift */,
-				A7773AF72A7833BC009096BE /* ListCanvaViewController.swift */,
-				A7773AFE2A783C81009096BE /* OpenedCanvaViewController.swift */,
 				A7D2E8B62A7AEC36009FF292 /* CanvaViewController.swift */,
 				DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */,
 			);
@@ -331,9 +331,7 @@
 		A7773AF92A7833EF009096BE /* Canva */ = {
 			isa = PBXGroup;
 			children = (
-				A7E6FABC2A71A5EA00D174BB /* EditableCanvaViewModel.swift */,
-				A7773AFA2A783400009096BE /* ListCanvaViewModel.swift */,
-				A7773B002A783DA8009096BE /* OpenedCanvaViewModel.swift */,
+				A7323A5F2A85A30300277CE7 /* ListCanvaViewModel.swift */,
 				A7D2E8B82A7AF8A9009FF292 /* CanvaViewModel.swift */,
 				DC77FBE52A8582E800EF5D15 /* CreateCanvaViewModel.swift */,
 			);
@@ -503,14 +501,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A76EB9392A6F05FD00F8E854 /* EditableCanva.storyboard in Resources */,
 				A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */,
+				A7323A5E2A859A2E00277CE7 /* FilterCollectionViewCell.xib in Resources */,
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
-				A7773AFD2A783C6B009096BE /* OpenedCanva.storyboard in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
+				0B5BC6372A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib in Resources */,
 				A7773AF62A7833AC009096BE /* ListCanva.storyboard in Resources */,
 				DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */,
-				A7B935B32A744EB800F9F40B /* SaveCanva.storyboard in Resources */,
 				0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */,
 				0BC845412A79972B0010DB02 /* Collection.storyboard in Resources */,
 				A7D2E8BE2A7B087A009FF292 /* ClotheCard.xib in Resources */,
@@ -533,8 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BC845442A7997FF0010DB02 /* CollectionsViewController.swift in Sources */,
-				A76EB93C2A6F061E00F8E854 /* EditableCanvaViewController.swift in Sources */,
-				A76EB93C2A6F061E00F8E854 /* EditableCanvaViewController.swift in Sources */,
+				0B5BC6362A847F56008C93B2 /* HorizontalCarouselTableViewCell.swift in Sources */,
 				0BCA00792A71B2FE00C86DAD /* CVPixelBuffer+Create.swift in Sources */,
 				A7B7FE502A855E9800D3FE1C /* TagService.swift in Sources */,
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
@@ -553,8 +549,6 @@
 				DCCECA5E2A82BA9500CFF363 /* Fonts.swift in Sources */,
 				A7D2E8B72A7AEC36009FF292 /* CanvaViewController.swift in Sources */,
 				0BCA00702A71B1D500C86DAD /* CIImage+Extensions.swift in Sources */,
-				A7773AFF2A783C81009096BE /* OpenedCanvaViewController.swift in Sources */,
-				A7773AF82A7833BC009096BE /* ListCanvaViewController.swift in Sources */,
 				A7D2E8BD2A7B087A009FF292 /* ClotheCard.swift in Sources */,
 				0BCA006E2A71B11500C86DAD /* UIImage+RemoveBackground.swift in Sources */,
 				0BCA00732A71B28200C86DAD /* UIImage+Extensions.swift in Sources */,
@@ -563,7 +557,6 @@
 				DC2FBBD12A7042BC009A447E /* DataController.swift in Sources */,
 				DCF91E192A744851002E8277 /* ClotheDetailsCell.swift in Sources */,
 				DCD4E1642A784D7C0017D4BC /* CollectionViewModel.swift in Sources */,
-				A7773AFB2A783400009096BE /* ListCanvaViewModel.swift in Sources */,
 				A762EF0C2A784BE0007D64E5 /* CoreDataService.swift in Sources */,
 				DC77FBE42A8582D300EF5D15 /* CreateCanvaViewController.swift in Sources */,
 				DC2FBBD72A704F7C009A447E /* TagViewModel.swift in Sources */,
@@ -572,13 +565,12 @@
 				0BCA007F2A71B39B00C86DAD /* Math.swift in Sources */,
 				A76EB91C2A6EFA8B00F8E854 /* AppDelegate.swift in Sources */,
 				DC2FBBCF2A704254009A447E /* ClotheViewModel.swift in Sources */,
-				A7E6FABD2A71A5EA00D174BB /* EditableCanvaViewModel.swift in Sources */,
+				A7323A5D2A859A2E00277CE7 /* FilterCollectionViewCell.swift in Sources */,
 				0BCA00772A71B2D100C86DAD /* MLMultiArray+Image.swift in Sources */,
 				A76EB91E2A6EFA8B00F8E854 /* SceneDelegate.swift in Sources */,
+				A7323A602A85A30300277CE7 /* ListCanvaViewModel.swift in Sources */,
 				DCF91E0F2A74428B002E8277 /* ListViewController.swift in Sources */,
-				A7773B012A783DA8009096BE /* OpenedCanvaViewModel.swift in Sources */,
 				A76EB9262A6EFA8B00F8E854 /* Cabide.xcdatamodeld in Sources */,
-				A7773AF42A782F58009096BE /* SaveCanvaViewController.swift in Sources */,
 				DC5E61F82A7C35E700C668A8 /* CreateClotheViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -726,7 +718,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
+				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
@@ -757,7 +749,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
+				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";

@@ -30,17 +30,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSo-Dv-rHd" userLabel="Canva">
-                                <rect key="frame" x="0.0" y="200" width="375" height="408"/>
+                                <rect key="frame" x="0.0" y="200.00000000000003" width="375" height="320.66666666666674"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" name="LightGray"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIF-eN-Cx1" userLabel="Modal">
-                                <rect key="frame" x="0.0" y="608" width="375" height="121"/>
+                                <rect key="frame" x="0.0" y="520.66666666666663" width="375" height="208.33333333333337"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-2f-651">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Fu-yB-CvM" userLabel="Filters Collection">
+                                        <rect key="frame" x="0.0" y="8" width="375" height="24"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="sNI-Mr-a7r">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="L9u-l0-WqZ"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="boq-ez-Tdp">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-2f-651" userLabel="Clothes Collection">
+                                        <rect key="frame" x="0.0" y="36" width="375" height="172.33333333333334"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="layoutMargins" id="sNI-Mr-a7r">
                                             <size key="itemSize" width="60" height="60"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -49,10 +63,13 @@
                                         <cells/>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6Fu-yB-CvM" secondAttribute="trailing" id="6G2-cn-j90"/>
+                                    <constraint firstItem="6Fu-yB-CvM" firstAttribute="top" secondItem="tIF-eN-Cx1" secondAttribute="top" constant="8" id="Fih-BP-Bbm"/>
                                     <constraint firstItem="Kpu-2f-651" firstAttribute="leading" secondItem="tIF-eN-Cx1" secondAttribute="leading" id="VYF-nB-iYw"/>
-                                    <constraint firstItem="Kpu-2f-651" firstAttribute="top" secondItem="tIF-eN-Cx1" secondAttribute="top" id="cfd-gf-GZG"/>
+                                    <constraint firstItem="6Fu-yB-CvM" firstAttribute="leading" secondItem="tIF-eN-Cx1" secondAttribute="leading" id="XEf-eu-9VS"/>
+                                    <constraint firstItem="Kpu-2f-651" firstAttribute="top" secondItem="6Fu-yB-CvM" secondAttribute="bottom" constant="4" id="aLr-ud-zKm"/>
                                     <constraint firstAttribute="bottom" secondItem="Kpu-2f-651" secondAttribute="bottom" id="yaZ-mJ-j9P"/>
                                     <constraint firstAttribute="trailing" secondItem="Kpu-2f-651" secondAttribute="trailing" id="zUU-Yn-XZe"/>
                                 </constraints>
@@ -61,7 +78,7 @@
                         <viewLayoutGuide key="safeArea" id="Afy-oR-VrD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CSo-Dv-rHd" firstAttribute="height" secondItem="Afy-oR-VrD" secondAttribute="height" multiplier="0.7" id="4Zp-eY-sD2"/>
+                            <constraint firstItem="CSo-Dv-rHd" firstAttribute="height" secondItem="Afy-oR-VrD" secondAttribute="height" multiplier="0.55" id="4Zp-eY-sD2"/>
                             <constraint firstItem="Afy-oR-VrD" firstAttribute="trailing" secondItem="Zeq-iN-d3V" secondAttribute="trailing" constant="16" id="53f-zc-CoB"/>
                             <constraint firstItem="tIF-eN-Cx1" firstAttribute="leading" secondItem="Afy-oR-VrD" secondAttribute="leading" id="5gq-eu-hoy"/>
                             <constraint firstItem="CSo-Dv-rHd" firstAttribute="leading" secondItem="Afy-oR-VrD" secondAttribute="leading" id="8VY-ME-tBI"/>
@@ -83,7 +100,8 @@
                     <navigationItem key="navigationItem" title="Look" largeTitleDisplayMode="always" id="ZO0-bb-fjM"/>
                     <connections>
                         <outlet property="canva" destination="CSo-Dv-rHd" id="XoE-h0-k1S"/>
-                        <outlet property="collection" destination="Kpu-2f-651" id="L2e-Tq-lIE"/>
+                        <outlet property="clothesCollection" destination="Kpu-2f-651" id="cF2-Hq-iFT"/>
+                        <outlet property="filtersCollection" destination="6Fu-yB-CvM" id="D9W-ph-J8u"/>
                         <outlet property="modal" destination="tIF-eN-Cx1" id="XN4-so-SrB"/>
                         <outlet property="nameField" destination="Zeq-iN-d3V" id="WsO-R6-h8l"/>
                         <outlet property="nameLabel" destination="q0j-Sr-ehr" id="M5A-SK-zes"/>
@@ -91,13 +109,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO1-s1-dC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2711" y="4"/>
+            <point key="canvasLocation" x="2709.5999999999999" y="3.6945812807881775"/>
         </scene>
-        <!--Item-->
+        <!--Novo Look-->
         <scene sceneID="gwT-xC-MSt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fl6-3X-n2W" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="plus.circle" catalog="system" selectedImage="plus.circle.fill" id="hKh-ae-PAc">
+                    <tabBarItem key="tabBarItem" title="Novo Look" image="plus.circle" catalog="system" selectedImage="plus.circle.fill" id="hKh-ae-PAc">
                         <color key="badgeColor" red="0.044097260159999999" green="0.043884229919999997" blue="0.044310290400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -124,9 +142,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

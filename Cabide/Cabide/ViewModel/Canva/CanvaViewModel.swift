@@ -23,10 +23,14 @@ class CanvaViewModel {
     
     var canvas: [Canva] { CanvaService.data }
     var clothes: [Clothe] { ClotheService.data }
+    var tags: [Tag] { TagService.data }
     
     var canvaService: CanvaService = .build()
     var canva: Canva?
     var canvaName: String { canva?.name ?? "Novo canva" }
+    
+    var tagService: TagService = .build()
+    var selectedTags: [Tag] = []
     
     var state: State
     

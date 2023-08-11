@@ -25,6 +25,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         window.tintColor = UIColor.red
                     }
                 }
+        
+        var tagService = TagService.build()
+        if TagService.data.count == 0 {
+            let cold = Tag(context: DataController.shared.viewContext)
+            let hot = Tag(context: DataController.shared.viewContext)
+            let rainy = Tag(context: DataController.shared.viewContext)
+            let sunny = Tag(context: DataController.shared.viewContext)
+            let events = Tag(context: DataController.shared.viewContext)
+            let formal = Tag(context: DataController.shared.viewContext)
+            let casual = Tag(context: DataController.shared.viewContext)
+            let party = Tag(context: DataController.shared.viewContext)
+            let vacation = Tag(context: DataController.shared.viewContext)
+            let sports = Tag(context: DataController.shared.viewContext)
+            let beach = Tag(context: DataController.shared.viewContext)
+            
+            cold.name = "Frio"
+            hot.name = "Quente"
+            rainy.name = "Chuva"
+            sunny.name = "Ensolarado"
+            events.name = "Eventos"
+            formal.name = "Formal"
+            casual.name = "Casual"
+            party.name = "Festa"
+            vacation.name = "Férias"
+            sports.name = "Esportivo"
+            beach.name = "Praia"
+            
+            let defaultTags = [cold, hot, rainy, sunny, events, formal, casual, party, vacation, sports, beach]
+            for tag in defaultTags {
+                tag.id = .init()
+            }
+            
+            tagService.update()
+        }
+        
         return true
     }
     

@@ -1,52 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CGy-mE-w34">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CGy-mE-w34">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="56A-tf-v9o">
-            <objects>
-                <viewController id="l9W-yT-xYY" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RJt-eM-hmM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phJ-z6-LPQ">
-                                <rect key="frame" x="159" y="409" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <segue destination="Y6W-OH-hqX" kind="presentation" id="2vi-Sj-AA3"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Rzu-M5-e5f"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="cNZ-n3-lGK"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HKM-1T-1hn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="188.54961832061068" y="-2.1126760563380285"/>
-        </scene>
         <!--Create Collection View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="CreateCollectionViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmr-ry-l0m">
-                                <rect key="frame" x="20" y="758" width="353" height="52"/>
+                                <rect key="frame" x="20" y="734" width="353" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="HEY-Lb-FEf"/>
                                     <constraint firstAttribute="height" constant="52" id="bLa-Ha-Qwq"/>
@@ -58,7 +31,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Salvar">
                                             <attributes>
-                                                <font key="NSFont" size="18" name="MontserratRoman-Regular"/>
+                                                <font key="NSFont" metaFont="system" size="18"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -68,7 +41,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GcM-Z2-zft">
-                                <rect key="frame" x="10" y="389" width="373" height="353"/>
+                                <rect key="frame" x="10" y="365" width="373" height="353"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="373" id="2vr-F1-zm7"/>
@@ -83,7 +56,7 @@
                                 <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecione os looks da coleção" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-ju-esv">
-                                <rect key="frame" x="20" y="353" width="353" height="20"/>
+                                <rect key="frame" x="20" y="329" width="353" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="gZb-fy-YCw"/>
                                 </constraints>
@@ -92,7 +65,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vz8-T9-w9v">
-                                <rect key="frame" x="20" y="297" width="353" height="40"/>
+                                <rect key="frame" x="20" y="273" width="353" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="S1n-Zg-N8h"/>
                                     <constraint firstAttribute="height" constant="40" id="ycL-LD-au1"/>
@@ -104,7 +77,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome da coleção" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIK-m0-Lpg">
-                                <rect key="frame" x="20" y="261" width="353" height="20"/>
+                                <rect key="frame" x="20" y="237" width="353" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="0eY-gw-0rM"/>
                                 </constraints>
@@ -113,7 +86,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nova coleção" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyn-oY-RLh">
-                                <rect key="frame" x="20" y="208" width="353" height="29"/>
+                                <rect key="frame" x="20" y="184" width="353" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="IWv-7t-3v7"/>
                                 </constraints>
@@ -146,6 +119,7 @@
                             <constraint firstItem="xmr-ry-l0m" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uLG-Qs-Vpb"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="heC-wT-goC"/>
                     <connections>
                         <outlet property="button" destination="xmr-ry-l0m" id="7wr-g1-xSc"/>
                         <outlet property="collectionView" destination="GcM-Z2-zft" id="qXv-dh-WZ1"/>
@@ -157,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005.3435114503816" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="108" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lbb-Tk-7jh">
@@ -170,7 +144,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="l9W-yT-xYY" kind="relationship" relationship="rootViewController" id="7WW-J5-Z5R"/>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="7QP-G7-597"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7m-co-uhA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

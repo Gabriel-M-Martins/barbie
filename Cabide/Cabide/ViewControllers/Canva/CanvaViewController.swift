@@ -10,12 +10,14 @@ import UIKit
 class CanvaViewController: UIViewController {
     
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var filtersCollection: UICollectionView!
+    @IBOutlet weak var clothesCollection: UICollectionView!
     @IBOutlet weak var modal: UIView!
     @IBOutlet weak var canva: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     
     let clotheCard = UINib(nibName: "ClotheCard", bundle: nil)
+    let filterCell = UINib(nibName: "FilterCollectionViewCell", bundle: nil)
     
     var model: CanvaViewModel = CanvaViewModel()
     
@@ -41,10 +43,22 @@ class CanvaViewController: UIViewController {
         nameField.borderStyle = UITextField.BorderStyle.none
         nameField.layer.addSublayer(nameFieldUnderline!)
         
-        collection.delegate = self
-        collection.dataSource = self
-        (collection.collectionViewLayout as! UICollectionViewFlowLayout).minimumInteritemSpacing = 1000
-        collection.register(clotheCard, forCellWithReuseIdentifier: "clotheCard")
+        clothesCollection.delegate = self
+        clothesCollection.dataSource = self
+        clothesCollection.register(clotheCard, forCellWithReuseIdentifier: "clotheCard")
+        
+        filtersCollection.delegate = self
+        filtersCollection.dataSource = self
+        filtersCollection.register(filterCell, forCellWithReuseIdentifier: "FilterCell")
+        if let filtersCollectionViewLayout = filtersCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            filtersCollectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+        
+        /*
+         if let collectionViewLayout = myCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                     collectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+                 }
+         */
         
         modal.layer.shadowColor = UIColor.lightGray.cgColor
         modal.layer.shadowOffset = CGSize(width: 0, height: -1.5)
@@ -54,9 +68,9 @@ class CanvaViewController: UIViewController {
         
         mainButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(self.mainButtonPressed))
         mainButton.tintColor = tintColor
-        
 
         setupState()
+        
         self.tabBarController?.tabBar.layer.shadowColor = UIColor.lightGray.cgColor
         self.tabBarController?.tabBar.layer.shadowOffset = CGSize(width: 0, height: -1.5)
         self.tabBarController?.tabBar.layer.shadowOpacity = 0.3
@@ -75,7 +89,7 @@ class CanvaViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         model.clotheService.fetch()
         DispatchQueue.main.async {
-            self.collection.reloadData()
+            self.clothesCollection.reloadData()
         }
     }
     
@@ -238,22 +252,33 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.clothes.count
+        collectionView == clothesCollection ? model.clothes.count : model.tags.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == clothesCollection {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard
+            
+            let clothe = model.clothes[indexPath.row]
+            let image = UIImage(data: clothe.image ?? Data())
+            
+            cell?.image.image = image
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard
+            return cell ?? UICollectionViewCell()
+        }
         
-        let clothe = model.clothes[indexPath.row]
-        let image = UIImage(data: clothe.image ?? Data())
+        if collectionView == filtersCollection {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCollectionViewCell
+            
+            cell?.name.text = model.tags[indexPath.row].name
+            return cell ?? UICollectionViewCell()
+        }
         
-        cell?.image.image = image
-
-        return cell ?? UICollectionViewCell()
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard collectionView == clothesCollection else { return }
         guard model.collectionIsUserInteractionEnabled else { return }
         
         let clothe = model.clothes[indexPath.row]
@@ -289,8 +314,19 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard collectionView == clothesCollection else { return collectionView.contentSize }
         
-        let size = collectionView.frame.height * 0.7
-        return CGSize(width: size, height: size)
+        let width = (collectionView.frame.width * 0.25) - 16
+        let height = (collectionView.frame.height * 0.5)  - 16
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        guard collectionView == clothesCollection else { return collectionView.safeAreaInsets }
+        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
     }
 }
