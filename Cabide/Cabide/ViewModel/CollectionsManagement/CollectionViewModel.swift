@@ -56,7 +56,7 @@ class CollectionViewModel {
     }
     
     func getRecentCanvas() -> [Canva]? {
-        guard canvas != nil else {
+        guard self.canvas != nil else {
             return []
         }
         return canvas

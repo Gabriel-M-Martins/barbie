@@ -109,10 +109,10 @@ extension CreateCanvaViewController: UICollectionViewDelegate, UICollectionViewD
         let collection = model.collections[indexPath.row]
         
         if selectedsCollection.contains(collection) {
-            cell?.toggle()
+            cell?.toggle(true)
             selectedsCollection.remove(at: selectedsCollection.firstIndex(of: collection) ?? 0)
         } else {
-            cell?.toggle()
+            cell?.toggle(false)
             selectedsCollection.append(collection)
         }
     }
