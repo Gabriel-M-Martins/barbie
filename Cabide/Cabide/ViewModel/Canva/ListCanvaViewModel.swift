@@ -12,3 +12,4 @@ class ListCanvaViewModel {
     var service: CanvaService = CanvaService.build()
     var canvas: [Canva] { CanvaService.data }
 }
+

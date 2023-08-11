@@ -40,11 +40,11 @@ class CreateCollectionViewController: UIViewController {
         looksLabel.font = customFonts.customFontLabel
         looksLabel.adjustsFontForContentSizeCategory = true
         
+        nameTextfield.font = customFonts.customFontLabel
+        nameTextfield.adjustsFontForContentSizeCategory = true
+        
         button.titleLabel?.font = customFonts.customFontLabel
         button.titleLabel?.adjustsFontForContentSizeCategory = true
-        
-        
-        button.imageView?.layer.borderColor = UIColor(named: "green")?.cgColor
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -67,6 +67,8 @@ class CreateCollectionViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         collectionModel.createCollection(name: nameTextfield.text ?? "", canvas: selectedsCanva)
+        self.presentingViewController?.dismiss(animated: true)
+
     }
     
     @objc func dismissKeyboard() {
