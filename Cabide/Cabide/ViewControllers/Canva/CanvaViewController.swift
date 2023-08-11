@@ -51,7 +51,7 @@ class CanvaViewController: UIViewController {
         filtersCollection.dataSource = self
         filtersCollection.register(filterCell, forCellWithReuseIdentifier: "FilterCell")
         if let filtersCollectionViewLayout = filtersCollection.collectionViewLayout as? UICollectionViewFlowLayout {
-            filtersCollectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            filtersCollectionViewLayout.estimatedItemSize = CGSize(width: 1, height: 1)// UICollectionViewFlowLayout.automaticSize
         }
         
         /*
@@ -111,7 +111,7 @@ extension CanvaViewController : CanvaDelegate {
     var thumbnail: UIImage { canva.asImage() }
     
     func segueToSaveModal() {
-        // call segue to save modal, pass viewmodel to modal
+        // TODO: - call segue to save modal, pass viewmodel to modal
         // performSegue(withIdentifier: , sender: )
     }
     
@@ -334,7 +334,7 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard collectionView == clothesCollection else { return collectionView.contentSize }
+        guard collectionView == clothesCollection else { return CGSize(width: 100, height: 100) }
         
         let width = (collectionView.frame.width * 0.25) - 16
         let height = (collectionView.frame.height * 0.5)  - 16

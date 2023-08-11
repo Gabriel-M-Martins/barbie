@@ -96,9 +96,6 @@ class CanvaViewModel {
         } else {
             selectedTags.append(tag)
         }
-        
-        print(selectedTags, "------------------ tags")
-        print(clothes, "------------------ clothes")
     }
     
     func buttonPressed() {
