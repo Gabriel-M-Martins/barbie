@@ -33,8 +33,8 @@ class FilterCollectionViewCell: UICollectionViewCell {
         changeBackgroundAppearence()
     }
     
-    func toggle() {
-        enabled.toggle()
+    func toggle(_ enabled: Bool) {
+        self.enabled = enabled
         changeBackgroundAppearence()
     }
     
