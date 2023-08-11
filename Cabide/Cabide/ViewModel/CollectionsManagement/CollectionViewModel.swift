@@ -13,6 +13,9 @@ class CollectionViewModel {
     var service: CollectionService = .build()
     var folders: [Folder] { CollectionService.data }
     
+    var serviceCanvas: CanvaService = .build()
+    var canvas: [Canva] { CanvaService.data }
+    
     func deleteCollection(id: UUID) {
         if let collection = folders.first(where: { $0.id == id }) {
             service.viewContext.delete(collection)
@@ -49,6 +52,23 @@ class CollectionViewModel {
             canva.addToFolders(collection)
             service.update()
         }
+    }
+    
+    func getRecentCanvas() -> [Canva]? {
+        guard canvas != nil else {
+            return []
+        }
+        return canvas
+    }
+    
+    func getCanvasFolder(_ folder: Folder) -> [Canva]? {
+        guard
+            let canvasSet = folder.canvas,
+            let canvas = canvasSet.allObjects as? [Canva] else {
+            return []
+        }
+        
+        return canvas
     }
     
 }
