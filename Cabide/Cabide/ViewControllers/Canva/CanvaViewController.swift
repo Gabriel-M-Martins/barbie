@@ -287,7 +287,15 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             model.toggleTag(tag)
             
             DispatchQueue.main.async { [weak self] in
-                self?.filtersCollection.reloadData()
+                
+                /*
+                 [self.collectionView performBatchUpdates:^{
+                     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+                 } completion:nil];
+                 */
+                self?.filtersCollection.performBatchUpdates({
+                    self?.filtersCollection.reloadSections(IndexSet(integer: 0))
+                })
                 self?.clothesCollection.reloadData()
             }
             
@@ -334,7 +342,7 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard collectionView == clothesCollection else { return CGSize(width: 100, height: 100) }
+        guard collectionView == clothesCollection else { return CGSize(width: 15, height: 100) }
         
         let width = (collectionView.frame.width * 0.25) - 16
         let height = (collectionView.frame.height * 0.5)  - 16

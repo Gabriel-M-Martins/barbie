@@ -34,7 +34,10 @@ class CanvaViewModel {
         }
     }
     
-    var tags: [Tag] { TagService.data }
+    var tags: [Tag] {
+        let foo = TagService.data.filter({ !selectedTags.contains($0) })
+        return selectedTags + foo
+    }
     
     var canvaService: CanvaService = .build()
     var canva: Canva?
