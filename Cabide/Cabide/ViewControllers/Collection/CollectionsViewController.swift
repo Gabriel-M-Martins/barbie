@@ -11,7 +11,6 @@ class CollectionsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    //TODO: Change viewmodel
     var viewModel: CollectionViewModel = CollectionViewModel()
     
     override func viewDidLoad() {
@@ -45,7 +44,9 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "carouselcell") as? HorizontalCarouselTableViewCell {
+                cell.typeCarousel = .large
                 cell.headerLabel.text = "Looks recentes"
+                cell.headerLabel.font = UIFont(name: cell.headerLabel.font.fontName, size: 22)
                 cell.row = viewModel.getRecentCanvas()
                 cell.updateCellWith(row: viewModel.getRecentCanvas())
                 
@@ -53,7 +54,9 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
             }
         } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "carouselcell") as? HorizontalCarouselTableViewCell {
+                cell.typeCarousel = .small
                 cell.headerLabel.text = viewModel.folders[indexPath.row].name
+                cell.headerLabel.font = UIFont(name: cell.headerLabel.font.fontName, size: 18)
                 cell.row = viewModel.getCanvasFolder(viewModel.folders[indexPath.row])
                 cell.updateCellWith(row: viewModel.getCanvasFolder(viewModel.folders[indexPath.row]))
                 
@@ -62,6 +65,13 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
         return UITableViewCell()
-        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 420
+        } else {
+            return 190
+        }
     }
 }
