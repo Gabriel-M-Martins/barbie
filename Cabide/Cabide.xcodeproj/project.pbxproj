@@ -506,7 +506,6 @@
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
 				0B5BC6372A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib in Resources */,
-				A7773AF62A7833AC009096BE /* ListCanva.storyboard in Resources */,
 				DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */,
 				0BCA00672A7041A100C86DAD /* Clothe.storyboard in Resources */,
 				0BC845412A79972B0010DB02 /* Collection.storyboard in Resources */,
@@ -718,7 +717,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
+				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";
@@ -749,7 +748,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3GNMJZ6Q8Z;
+				DEVELOPMENT_TEAM = ZD8SZ56ZFY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cabide/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos.";

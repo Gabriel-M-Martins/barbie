@@ -46,7 +46,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="jt4-Vq-XN5">
-                                <rect key="frame" x="20" y="156.66666666666669" width="353" height="653.33333333333326"/>
+                                <rect key="frame" x="20" y="157" width="353" height="653"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Novo Look" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1K-Wv-Odb">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="28.666666666666668"/>
@@ -58,7 +58,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do look" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceH-sU-eBb">
-                                        <rect key="frame" x="0.0" y="52.666666666666686" width="353" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="52.666666666666657" width="353" height="20.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="353" id="mIX-0l-1z9"/>
                                         </constraints>
@@ -74,18 +74,21 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="updateButton:" destination="Zae-PD-Drm" eventType="editingDidEnd" id="15x-yc-fIg"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecione as coleções do look" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXz-WT-Dic">
-                                        <rect key="frame" x="0.0" y="161.00000000000003" width="353" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="161" width="353" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="353" id="upq-xM-az1"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tW5-sc-gp6">
-                                        <rect key="frame" x="0.0" y="205.33333333333337" width="353" height="372"/>
+                                        <rect key="frame" x="0.0" y="205" width="353" height="372"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="372" id="ZNf-IC-kRY"/>
@@ -99,7 +102,7 @@
                                         <cells/>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8k-Yh-PPD">
-                                        <rect key="frame" x="0.0" y="601.33333333333337" width="353" height="52"/>
+                                        <rect key="frame" x="0.0" y="601" width="353" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="353" id="TNp-vL-44S"/>
                                             <constraint firstAttribute="height" constant="52" id="bdp-Lv-cfw"/>

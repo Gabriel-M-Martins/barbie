@@ -22,11 +22,14 @@ class CreateCanvaViewController: UIViewController {
     
     var selectedsCollection: [Folder] = []
     
+    let filterCell = UINib(nibName: "FilterCollectionViewCell", bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let customFonts = CustomFonts()
         
+        saveButton.isEnabled = false
         
         lookLabel.font = customFonts.customFontTitle
         lookLabel.adjustsFontForContentSizeCategory = true
@@ -43,50 +46,104 @@ class CreateCanvaViewController: UIViewController {
         saveButton.titleLabel?.font = customFonts.customFontLabel
         saveButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
-        //collectionView.delegate = self
-        collectionView.dataSource = self
+        let layout = LeftAlignedCollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10.0 
+        layout.minimumInteritemSpacing = 10.0
         
+        collectionView.collectionViewLayout = layout
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(filterCell, forCellWithReuseIdentifier: "FilterCell")
+        if let filtersCollectionViewLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            filtersCollectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func updateButtonStatus () {
+        saveButton.isEnabled = nameTextfield.hasText
+    }
+    
+    @IBAction func updateButton(_ sender: Any) {
+        updateButtonStatus()
+    }
+    
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        // model.createCanva (name: nameTextfield.text ?? "", canvas: selectedsCanva)
+        self.presentingViewController?.dismiss(animated: true)
     }
-    
-    
-    
 }
 
-extension CreateCanvaViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
+// MARK: - Collection View
+extension CreateCanvaViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        modelAux.folders.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCollectionViewCell
+        
+        let collection = modelAux.folders[indexPath.row]
+        
+        cell?.name.text = collection.name ?? ""
+        
+        return cell ?? UICollectionViewCell()
     }
     
-//    func collectionView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "collectionNameCell", for: indexPath)
-//
-//        cell.textLabel?.text = model.collections[indexPath.row].name
-//        cell.selectionStyle = .none
-//
-//        return cell
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let cell = tableView.cellForRow(at: indexPath) {
-//            let collection = model.collections[indexPath.row]
-//
-//            if selectedsCollection.contains(collection) {
-//                cell.imageView?.tintColor = UIColor.gray
-//                selectedsCollection.remove(at: selectedsCollection.firstIndex(of: collection) ?? 0)
-//            } else {
-//                cell.imageView?.tintColor = UIColor(named: "lilac") ?? UIColor.green
-//                selectedsCollection.append(collection)
-//            }
-//        }
-//
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell
+        let collection = model.collections[indexPath.row]
+        
+        if selectedsCollection.contains(collection) {
+            cell?.toggle()
+            selectedsCollection.remove(at: selectedsCollection.firstIndex(of: collection) ?? 0)
+        } else {
+            cell?.toggle()
+            selectedsCollection.append(collection)
+        }
+    }
+    
 }
+
+class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        guard let attributes = super.layoutAttributesForElements(in: rect) else {
+            return nil
+        }
+        
+        var leftMargin = sectionInset.left
+        var maxY: CGFloat = -1.0
+        
+        for layoutAttribute in attributes {
+            if layoutAttribute.frame.origin.y >= maxY {
+                leftMargin = sectionInset.left
+            }
+            
+            layoutAttribute.frame.origin.x = leftMargin
+            
+            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+            maxY = max(layoutAttribute.frame.maxY, maxY)
+        }
+        
+        return attributes
+    }
+}
+
+
+
+
+
