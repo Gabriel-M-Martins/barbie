@@ -35,6 +35,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Coleções" id="f0h-1l-3Ye">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IVU-6o-FyT">
+                            <color key="tintColor" name="Roxo"/>
                             <connections>
                                 <segue destination="Dqx-eH-cwv" kind="presentation" id="TR0-NJ-TY1"/>
                             </connections>
@@ -84,6 +85,9 @@
     <resources>
         <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
+        <namedColor name="Roxo">
+            <color red="0.70196078431372544" green="0.46666666666666667" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
