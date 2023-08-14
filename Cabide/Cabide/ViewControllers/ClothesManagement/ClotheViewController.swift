@@ -151,42 +151,25 @@ extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 extension ClotheViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 15, height: 100)
-        
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let columns: CGFloat = 3
+        let spacing: CGFloat = 8
+        let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
+
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 32 - 12) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth)
+        return itemSize
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: collectionView.safeAreaInsets.top, left: 12, bottom: collectionView.safeAreaInsets.bottom, right: collectionView.safeAreaInsets.right)
-//        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
-    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let columns: CGFloat = 3
-//        let spacing: CGFloat = 0
-//        let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
-//
-//        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-//        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
-//        return itemSize
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        collectionView.collectionViewLayout.invalidateLayout()
-//    }
 }

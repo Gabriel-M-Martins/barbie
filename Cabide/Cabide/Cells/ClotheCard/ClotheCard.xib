@@ -27,9 +27,8 @@
                         <rect key="frame" x="2" y="2" width="46" height="46"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="minus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jdA-wU-R76">
-                        <rect key="frame" x="8" y="9" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jdA-wU-R76">
+                        <rect key="frame" x="2" y="2.9999999999999982" width="20" height="20"/>
                         <color key="tintColor" systemColor="systemRedColor"/>
                     </imageView>
                 </subviews>
@@ -41,8 +40,10 @@
                 <constraint firstItem="TQd-hg-24X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="Pvm-H0-d70"/>
                 <constraint firstItem="loI-W0-Kl2" firstAttribute="centerY" secondItem="TQd-hg-24X" secondAttribute="centerY" id="Rhv-VX-lbs"/>
                 <constraint firstAttribute="bottom" secondItem="TQd-hg-24X" secondAttribute="bottom" constant="2" id="Twk-4L-8Gb"/>
+                <constraint firstItem="jdA-wU-R76" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="WEb-xa-vYB"/>
                 <constraint firstItem="loI-W0-Kl2" firstAttribute="centerX" secondItem="TQd-hg-24X" secondAttribute="centerX" id="fC0-j2-hTv"/>
                 <constraint firstItem="loI-W0-Kl2" firstAttribute="height" secondItem="TQd-hg-24X" secondAttribute="height" id="fWw-xs-Zn6"/>
+                <constraint firstItem="jdA-wU-R76" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="iXu-Kn-GAb"/>
                 <constraint firstItem="TQd-hg-24X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="uWd-Yl-dp7"/>
             </constraints>
             <connections>
