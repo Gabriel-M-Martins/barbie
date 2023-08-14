@@ -17,8 +17,7 @@ class CreateCanvaViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var model: CreateCanvaViewModel = CreateCanvaViewModel()
-    var modelAux: CollectionViewModel = CollectionViewModel()
+    var model: CanvaViewModel?
     
     var selectedsCollection: [Folder] = []
     
@@ -39,6 +38,7 @@ class CreateCanvaViewController: UIViewController {
         
         nameTextfield.font = customFonts.customFontLabel
         nameTextfield.adjustsFontForContentSizeCategory = true
+        nameTextfield.text = model?.canvaName
         
         collectionsLabel.font = customFonts.customFontLabel
         collectionsLabel.adjustsFontForContentSizeCategory = true
@@ -78,6 +78,7 @@ class CreateCanvaViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         // model.createCanva (name: nameTextfield.text ?? "", canvas: selectedsCanva)
+        model?.save()
         self.presentingViewController?.dismiss(animated: true)
     }
 }
@@ -89,31 +90,27 @@ extension CreateCanvaViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        modelAux.folders.count
+        model?.folders.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCollectionViewCell
         
-        let collection = modelAux.folders[indexPath.row]
+        guard let folder = model?.folders[indexPath.row] else { return UICollectionViewCell() }
         
-        cell?.name.text = collection.name ?? ""
+        cell?.name.text = folder.name ?? ""
+        cell?.toggle(model!.selectedFolders.contains(folder))
         
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let folder = model?.folders[indexPath.row] else { return }
         
-        let cell = collectionView.cellForItem(at: indexPath) as? FilterCollectionViewCell
-        let collection = model.collections[indexPath.row]
-        
-        if selectedsCollection.contains(collection) {
-            cell?.toggle(true)
-            selectedsCollection.remove(at: selectedsCollection.firstIndex(of: collection) ?? 0)
-        } else {
-            cell?.toggle(false)
-            selectedsCollection.append(collection)
+        model?.selectFolder(folder)
+        DispatchQueue.main.async {
+            collectionView.reloadData()
         }
     }
     

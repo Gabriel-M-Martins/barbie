@@ -50,10 +50,6 @@ class LargeCard: UICollectionViewCell {
         deleteIcon.isHidden = true
         isDeleteIconVisible = false
     }
-    
-//    func delete(indexPath: IndexPath) {
-//        delegate?.confirmDeleteForItem(at: indexPath)
-//    }
 }
 
 protocol LargeCardDelegate: AnyObject {
