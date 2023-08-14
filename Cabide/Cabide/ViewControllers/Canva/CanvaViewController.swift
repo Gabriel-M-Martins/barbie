@@ -289,12 +289,6 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             model.toggleTag(tag)
             
             DispatchQueue.main.async { [weak self] in
-                
-                /*
-                 [self.collectionView performBatchUpdates:^{
-                     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-                 } completion:nil];
-                 */
                 self?.filtersCollection.performBatchUpdates({
                     self?.filtersCollection.reloadSections(IndexSet(integer: 0))
                 })
@@ -323,6 +317,7 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
             newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
             newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
+            newObject.transform = newObject.transform.scaledBy(x: canva.frame.width/(3 * image!.size.width), y: canva.frame.width/(3 * image!.size.width))
             
             newObject.isUserInteractionEnabled = true
             newObject.isMultipleTouchEnabled = true
