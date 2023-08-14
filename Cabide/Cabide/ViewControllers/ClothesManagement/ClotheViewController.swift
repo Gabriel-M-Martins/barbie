@@ -11,7 +11,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
+    let clotheCard = UINib(nibName: "ClotheCard", bundle: nil)
     
     var model: ClotheViewModel = ClotheViewModel()
     var isExclusionModeEnabled = false
@@ -23,7 +23,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(clotheCard, forCellWithReuseIdentifier: "largeCard")
+        collectionView.register(clotheCard, forCellWithReuseIdentifier: "clotheCard")
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGesture?.delegate = self
@@ -58,7 +58,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
             } else {
                 isExclusionModeEnabled = false
                 for cell in collectionView.visibleCells {
-                    if let clothingCell = cell as? LargeCard {
+                    if let clothingCell = cell as? ClotheCard {
                         clothingCell.hideDeleteIcon()
                     }
                 }
@@ -72,7 +72,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
             self.tapGesture?.isEnabled = false
             isExclusionModeEnabled = true
             for cell in collectionView.visibleCells {
-                if let clothingCell = cell as? LargeCard {
+                if let clothingCell = cell as? ClotheCard {
                     clothingCell.showDeleteIcon()
                 }
             }
@@ -139,12 +139,12 @@ extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard
         
         let clothe = model.clothes[indexPath.row]
         let image = UIImage(data: clothe.image ?? Data())
         
-        cell?.imageView.image = image
+        cell?.image.image = image
         
         return cell ?? UICollectionViewCell()
     }
@@ -152,26 +152,24 @@ extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension ClotheViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let columns: CGFloat = 3
-        let spacing: CGFloat = 0
+        let spacing: CGFloat = 8
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
-        
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 32 - 12) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth)
         return itemSize
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }
