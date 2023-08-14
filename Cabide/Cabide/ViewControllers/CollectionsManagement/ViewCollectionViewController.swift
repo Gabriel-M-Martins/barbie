@@ -1,29 +1,43 @@
 //
-//  ClotheViewController.swift
+//  ViewCollectionViewController.swift
 //  Cabide
 //
-//  Created by Eduardo Filot Brum on 25/07/23.
+//  Created by Luana Tais Thomas on 11/08/23.
 //
 
 import UIKit
 
-class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDelegate, CreateClotheDelegate {
-    
+class ViewCollectionViewController: UIViewController, UIAdaptivePresentationControllerDelegate, CreateCollectionDelegate {
+
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var titleCollection: UINavigationItem!
     
-    let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
+    let canvaCard = UINib(nibName: "LargeCard", bundle: nil)
     
-    var model: ClotheViewModel = ClotheViewModel()
+    var folder: Folder?
+    var canvas: [Canva]?
+    
+    var model: CollectionViewModel = CollectionViewModel()
+    var modelCanvas: CanvaViewModel = CanvaViewModel()
     var isExclusionModeEnabled = false
     var tapGesture: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if folder == nil {
+            titleCollection.title = "Todos os looks"
+            canvas = modelCanvas.canvas
+        } else {
+            titleCollection.title = folder?.name ?? "Todos os looks"
+            canvas = model.getCanvasFolder(folder ?? Folder())
+        }
         
+
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(clotheCard, forCellWithReuseIdentifier: "largeCard")
+        collectionView.register(canvaCard, forCellWithReuseIdentifier: "largeCard")
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGesture?.delegate = self
@@ -36,13 +50,12 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     }
     
     func confirmDeleteForItem(at indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Excluir peça", message: "Tem certeza de que deseja excluir esta peça?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Excluir look", message: "Tem certeza de que deseja excluir este look da coleção atual?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Excluir", style: .destructive) { _ in
-            let selectedClothe = self.model.clothes[indexPath.row]
-            self.model.deleteClothe(id: selectedClothe.id ?? UUID())
+            let selectedCanva = self.canvas?[indexPath.row]
+            self.model.removeCanva(id: folder.id, canva: selectedCanva)
             self.collectionView.reloadData()
-            // Remove o item do modelo de dados e atualiza a coleção
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
@@ -63,7 +76,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
                     }
                 }
             }
-            //collectionView.reloadData()
+            collectionView.reloadData()
         }
     }
     
@@ -76,7 +89,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
                     clothingCell.showDeleteIcon()
                 }
             }
-            let feedbackGenerator = UIImpactFeedbackGenerator(style: .light) // Escolha o estilo adequado
+            let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
             feedbackGenerator.prepare()
             feedbackGenerator.impactOccurred()
             collectionView.reloadData()
@@ -92,20 +105,19 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
         }
     }
     
-    @IBAction func newClothe(_ sender: Any) {
-        performSegue(withIdentifier: "toNewClothe", sender: nil)
+    @IBAction func editCollection(_ sender: Any) {
+        //performSegue(withIdentifier: "", sender: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewClothe" {
-            
-            guard let navVC = segue.destination as? UINavigationController,
-                  let modalVC = navVC.viewControllers.first as? CreateClotheViewController else { return }
-            navVC.presentationController?.delegate = self
-            modalVC.delegate = self
-        }
-    }
-    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "" {
+//            guard let navVC = segue.destination as? UINavigationController,
+//                  let modalVC = navVC.viewControllers.first as? CreateCollectionViewController else { return }
+//            navVC.presentationController?.delegate = self
+//            modalVC.delegate = self
+//        }
+//    }
+//
     func didUpdateData() {
         self.collectionView.reloadData()
     }
@@ -118,7 +130,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     }
 }
 
-extension ClotheViewController: UIGestureRecognizerDelegate {
+extension ViewCollectionViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer is UITapGestureRecognizer && otherGestureRecognizer is UILongPressGestureRecognizer {
             return true
@@ -128,21 +140,22 @@ extension ClotheViewController: UIGestureRecognizerDelegate {
 }
 
 // MARK: - Collection View
-extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ViewCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.clothes.count
+        canvas?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
         
-        let clothe = model.clothes[indexPath.row]
-        let image = UIImage(data: clothe.image ?? Data())
+        
+        let canva = canvas?[indexPath.row]
+        let image = UIImage(data: canva?.thumbnail ?? Data())
         
         cell?.imageView.image = image
         
@@ -150,7 +163,7 @@ extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 }
 
-extension ClotheViewController: UICollectionViewDelegateFlowLayout {
+extension ViewCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let columns: CGFloat = 3
