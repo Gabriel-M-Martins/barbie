@@ -12,12 +12,17 @@ enum TypeCarousel {
     case small
 }
 
-class HorizontalCarouselTableViewCell: UITableViewCell {
+class HorizontalCarouselTableViewCell: UITableViewCell, UIAdaptivePresentationControllerDelegate, UITableViewDelegate {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var headerView: UIView!
     
     var typeCarousel: TypeCarousel?
     var row: [Canva]?
+    var folder: Folder?
+    var type: Int?
+    
+    var delegate: HorizontalCarouselDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +32,10 @@ class HorizontalCarouselTableViewCell: UITableViewCell {
         
         configTypeCarousel()
         configFlowLayout()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openCollection))
+//        tapGesture.cancelsTouchesInView = false
+        headerView.addGestureRecognizer(tapGesture)
     }
     
     func configTypeCarousel() {
@@ -47,6 +56,11 @@ class HorizontalCarouselTableViewCell: UITableViewCell {
         self.collectionView.collectionViewLayout = flowLayout
         self.collectionView.showsHorizontalScrollIndicator = false
     }
+    
+    @objc func openCollection() {
+        delegate?.goToSegue(folder: folder)
+    }
+    
 }
 
 extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -78,7 +92,6 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollect
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard {
                 
-//                let canva = self.row?[indexPath.item]
                 let imageData = self.row?[indexPath.item].thumbnail ?? Data()
                 
                 cell.image?.image = UIImage(data: imageData)
@@ -100,12 +113,16 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDelegateFlowLayout {
         return size
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-////        guard collectionView == clothesCollection else { return collectionView.safeAreaInsets }
-//        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    ////        guard collectionView == clothesCollection else { return collectionView.safeAreaInsets }
+    //        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+    //    }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 8
-//    }
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    //        return 8
+    //    }
+}
+
+protocol HorizontalCarouselDelegate: AnyObject {
+    func goToSegue(folder: Folder?)
 }

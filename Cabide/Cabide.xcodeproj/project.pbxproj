@@ -60,6 +60,8 @@
 		DCD4E15C2A782E8A0017D4BC /* ClotheDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E15B2A782E8A0017D4BC /* ClotheDetailsViewModel.swift */; };
 		DCD4E15E2A784BCB0017D4BC /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E15D2A784BCB0017D4BC /* CollectionService.swift */; };
 		DCD4E1642A784D7C0017D4BC /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD4E1632A784D7C0017D4BC /* CollectionViewModel.swift */; };
+		DCDB746B2A86CC700046AA1C /* ViewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDB746A2A86CC700046AA1C /* ViewCollectionViewController.swift */; };
+		DCDB746D2A86CC800046AA1C /* ViewCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCDB746C2A86CC800046AA1C /* ViewCollection.storyboard */; };
 		DCF91E0F2A74428B002E8277 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF91E0E2A74428B002E8277 /* ListViewController.swift */; };
 		DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF91E102A7442A2002E8277 /* ClotheDetailsViewController.swift */; };
 		DCF91E152A7443CB002E8277 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCF91E142A7443CB002E8277 /* List.storyboard */; };
@@ -123,6 +125,8 @@
 		DCD4E15B2A782E8A0017D4BC /* ClotheDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheDetailsViewModel.swift; sourceTree = "<group>"; };
 		DCD4E15D2A784BCB0017D4BC /* CollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
 		DCD4E1632A784D7C0017D4BC /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		DCDB746A2A86CC700046AA1C /* ViewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCollectionViewController.swift; sourceTree = "<group>"; };
+		DCDB746C2A86CC800046AA1C /* ViewCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewCollection.storyboard; sourceTree = "<group>"; };
 		DCF91E0E2A74428B002E8277 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		DCF91E102A7442A2002E8277 /* ClotheDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheDetailsViewController.swift; sourceTree = "<group>"; };
 		DCF91E142A7443CB002E8277 /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */,
+				DCDB746A2A86CC700046AA1C /* ViewCollectionViewController.swift */,
 			);
 			path = CollectionsManagement;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */,
+				DCDB746C2A86CC800046AA1C /* ViewCollection.storyboard */,
 			);
 			path = CollectionsManagement;
 			sourceTree = "<group>";
@@ -499,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */,
+				DCDB746D2A86CC800046AA1C /* ViewCollection.storyboard in Resources */,
 				A7323A5E2A859A2E00277CE7 /* FilterCollectionViewCell.xib in Resources */,
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
@@ -532,6 +539,7 @@
 				A76EB9202A6EFA8B00F8E854 /* ViewController.swift in Sources */,
 				0BCA00752A71B2B000C86DAD /* UIImage+CVPixelBuffer.swift in Sources */,
 				A7D2E8B92A7AF8A9009FF292 /* CanvaViewModel.swift in Sources */,
+				DCDB746B2A86CC700046AA1C /* ViewCollectionViewController.swift in Sources */,
 				0B3BF00A2A7C319C00C5E626 /* LargeCard.swift in Sources */,
 				0BCA007B2A71B36700C86DAD /* CGImage+CVPixelBuffer.swift in Sources */,
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
