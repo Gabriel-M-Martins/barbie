@@ -55,6 +55,14 @@ class CollectionViewModel {
         }
     }
     
+    func removeCanva(id: UUID, canva: Canva) {
+        if let collection = folders.first(where: { $0.id == id }) {
+
+            
+            service.update()
+        }
+    }
+    
     func getRecentCanvas() -> [Canva]? {
         guard self.canvas != nil else {
             return []
