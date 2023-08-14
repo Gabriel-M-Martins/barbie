@@ -50,6 +50,11 @@ class CanvaViewModel {
     var folders: [Folder] { CollectionService.data }
     var selectedFolders: [Folder] = []
     
+    var loadedFromCanva: Bool {
+        guard let canva = self.canva else { return false }
+        return CanvaService.data.contains(canva)
+    }
+    
     var state: State
     
     // MARK: - Hide name label or text field
@@ -78,9 +83,11 @@ class CanvaViewModel {
         case .visualization:
             return UIImage(systemName: "pencil")
         case .editing:
-            return UIImage(systemName: "checkmark.circle.fill")
+            return UIImage(systemName: "checkmark")
         }
     }
+    
+    let cancelButtonImage: UIImage? = UIImage(systemName: "xmark")
     
     init(canva: Canva, state: State) {
         self.canva = canva
@@ -113,46 +120,72 @@ class CanvaViewModel {
         }
     }
     
-    func buttonPressed() {
+    func mainButtonPressed() {
         switch state {
         case .visualization:
             self.updateState()
         case .editing:
             guard let delegate = delegate else { return }
             
-            canva = Canva(context: canvaService.viewContext)
-            canva?.name = delegate.canvaName
-            canva?.thumbnail = delegate.thumbnail.pngData()
-            
-            for (view, clothe) in delegate.objects {
-                let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
-                
-                
-                let position = ClotheAtCanvaPosition(position: view.frame, transform: view.transform)
-                let encoder = JSONEncoder()
-                
-                newClotheAtCanva.clothe = clothe
-                newClotheAtCanva.position = try? encoder.encode(position)
-                
-                canva?.addToClothes(newClotheAtCanva)
-            }
-            
             delegate.segueToSaveModal()
         }
     }
+    
+    func cancelButtonPressed() {
+        if self.loadedFromCanva, self.canva != nil {
+            self.load(self.canva!)
+        } else {
+            self.reset()
+        }
+    }
 
+    func load(_ canva: Canva) {
+        self.canva = canva
+        var clothes = [(Clothe, ClotheAtCanvaPosition)]()
+        canva.clothes?.forEach({ clotheAtCanva in
+            guard let clotheAtCanva = clotheAtCanva as? ClotheAtCanva,
+                  let data = clotheAtCanva.data() else { return }
+            
+            clothes.append(data)
+        })
+        delegate?.loadFromCanva(clothes: clothes)
+    }
+    
     func save() {
-        guard let canva = canva else { return }
+        canva = Canva(context: canvaService.viewContext)
+        canva?.name = delegate?.canvaName
+        canva?.thumbnail = delegate?.thumbnail.pngData()
+        
+        delegate?.objects.forEach({ (view: UIView, clothe: Clothe) in
+            let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
+            
+            
+            let position = ClotheAtCanvaPosition(position: view.frame, transform: view.transform)
+            let encoder = JSONEncoder()
+            
+            newClotheAtCanva.clothe = clothe
+            newClotheAtCanva.position = try? encoder.encode(position)
+            
+            canva?.addToClothes(newClotheAtCanva)
+        })
         
         for folder in selectedFolders {
-            canva.addToFolders(folder)
-            folder.addToCanvas(canva)
+            canva!.addToFolders(folder)
+            folder.addToCanvas(canva!)
         }
         
         canvaService.update()
+        updateState()
+        delegate?.setupState()
     }
     
-    func rollback() {
+    func reset() {
+        self.canva = nil
+        self.rollback()
+        delegate?.reset()
+    }
+    
+    private func rollback() {
         canvaService.viewContext.rollback()
     }
     
@@ -175,10 +208,24 @@ protocol CanvaDelegate : AnyObject {
     var thumbnail: UIImage { get }
     
     func setupState()
+    func reset()
     func segueToSaveModal()
+    func loadFromCanva(clothes: [(clothe: Clothe, position: ClotheAtCanvaPosition)])
 }
 
 struct ClotheAtCanvaPosition : Codable {
     var position: CGRect
     var transform: CGAffineTransform
+}
+
+extension ClotheAtCanva {
+    func data() -> (Clothe, ClotheAtCanvaPosition)? {
+        guard let data = self.position,
+              let clothe = self.clothe else { return nil }
+        
+        let decoder = JSONDecoder()
+        guard let position = try? decoder.decode(ClotheAtCanvaPosition.self, from: data) else { return nil }
+        
+        return (clothe, position)
+    }
 }

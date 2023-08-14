@@ -77,7 +77,6 @@ class CreateCanvaViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        // model.createCanva (name: nameTextfield.text ?? "", canvas: selectedsCanva)
         model?.save()
         self.presentingViewController?.dismiss(animated: true)
     }
