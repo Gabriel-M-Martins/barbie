@@ -51,14 +51,8 @@ class CanvaViewController: UIViewController {
         filtersCollection.dataSource = self
         filtersCollection.register(filterCell, forCellWithReuseIdentifier: "FilterCell")
         if let filtersCollectionViewLayout = filtersCollection.collectionViewLayout as? UICollectionViewFlowLayout {
-            filtersCollectionViewLayout.estimatedItemSize = CGSize(width: 1, height: 1)// UICollectionViewFlowLayout.automaticSize
+            filtersCollectionViewLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
-        
-        /*
-         if let collectionViewLayout = myCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                     collectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-                 }
-         */
         
         modal.layer.shadowColor = UIColor.lightGray.cgColor
         modal.layer.shadowOffset = CGSize(width: 0, height: -1.5)
@@ -107,12 +101,20 @@ extension CanvaViewController : UIGestureRecognizerDelegate {
 
 // MARK: - model delegate
 extension CanvaViewController : CanvaDelegate {
-    var canvaName: String? { nameField.text }
+    var canvaName: String? { nameField.hasText ? nameField.text : nil }
     var thumbnail: UIImage { canva.asImage() }
     
     func segueToSaveModal() {
         // TODO: - call segue to save modal, pass viewmodel to modal
-        // performSegue(withIdentifier: , sender: )
+         performSegue(withIdentifier: "toCreateCanva", sender: model)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCreateCanva" {
+            guard let vc = segue.destination as? CreateCanvaViewController else { return }
+            
+            vc.model = model
+        }
     }
     
     func setupState() {

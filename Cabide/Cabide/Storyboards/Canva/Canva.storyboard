@@ -105,11 +105,20 @@
                         <outlet property="modal" destination="tIF-eN-Cx1" id="XN4-so-SrB"/>
                         <outlet property="nameField" destination="Zeq-iN-d3V" id="WsO-R6-h8l"/>
                         <outlet property="nameLabel" destination="q0j-Sr-ehr" id="M5A-SK-zes"/>
+                        <segue destination="5jQ-Cz-1jj" kind="presentation" identifier="toCreateCanva" id="bSq-tL-CYw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO1-s1-dC2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2709.5999999999999" y="3.6945812807881775"/>
+        </scene>
+        <!--CreateCanva-->
+        <scene sceneID="TDF-Zw-AwK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateCanva" id="5jQ-Cz-1jj" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D2i-MN-AmT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3319" y="4"/>
         </scene>
         <!--Novo Look-->
         <scene sceneID="gwT-xC-MSt">
