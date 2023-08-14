@@ -54,7 +54,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Excluir", style: .destructive) { _ in
             let selectedCanva = self.canvas?[indexPath.row]
-            self.model.removeCanva(id: folder.id, canva: selectedCanva)
+           // self.model.removeCanva(id: folder.id, canva: selectedCanva)
             self.collectionView.reloadData()
         }
         alertController.addAction(cancelAction)
