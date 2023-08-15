@@ -92,20 +92,31 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="PWd-Zr-PE7"/>
+                                    <constraint firstItem="rVR-7p-ORh" firstAttribute="top" secondItem="0Ga-Ep-IRF" secondAttribute="bottom" constant="80" id="Tb6-O0-GMz"/>
+                                    <constraint firstItem="0Ga-Ep-IRF" firstAttribute="top" secondItem="G68-fA-7as" secondAttribute="bottom" constant="80" id="fbK-GX-QiA"/>
+                                    <constraint firstItem="0Ga-Ep-IRF" firstAttribute="top" secondItem="G68-fA-7as" secondAttribute="bottom" constant="80" id="rDf-jd-5Ee"/>
                                     <constraint firstAttribute="height" constant="700" id="tvQ-CX-mrk"/>
+                                    <constraint firstItem="G68-fA-7as" firstAttribute="top" secondItem="a7x-a6-kUj" secondAttribute="top" id="vNi-p3-SMJ"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="IuL-fO-J2h">
+                                <rect key="frame" x="178" y="350" width="37" height="60"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="a7x-a6-kUj" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="dnI-KO-nmh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="a7x-a6-kUj" secondAttribute="bottom" constant="32" id="iTs-aP-E50"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="IuL-fO-J2h" secondAttribute="bottom" constant="408" id="rd7-C9-2Mh"/>
+                            <constraint firstItem="IuL-fO-J2h" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uiX-0W-ha4"/>
+                            <constraint firstItem="IuL-fO-J2h" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="247" id="zrL-pn-HCv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U4h-lr-Zet"/>
                     <connections>
                         <outlet property="clotheImage" destination="0Ga-Ep-IRF" id="efj-RR-gE7"/>
+                        <outlet property="loading" destination="IuL-fO-J2h" id="vTP-Eq-eod"/>
                         <outlet property="saveButton" destination="XA8-D4-Ida" id="5Ff-aG-wQo"/>
                     </connections>
                 </viewController>
