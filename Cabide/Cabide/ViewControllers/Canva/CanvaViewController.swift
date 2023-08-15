@@ -67,6 +67,9 @@ class CanvaViewController: UIViewController {
         cancelButton = UIBarButtonItem(image: model.cancelButtonImage, style: .plain, target: self, action: #selector(cancelButtonPressed))
         cancelButton.tintColor = tintColor
 
+        if model.loadedFromCanva {
+            model.load()
+        }
         setupState()
         
         self.tabBarController?.tabBar.layer.shadowColor = UIColor.lightGray.cgColor
@@ -93,6 +96,9 @@ class CanvaViewController: UIViewController {
     
     @objc private func mainButtonPressed() {
         model.mainButtonPressed()
+        objects.forEach { (view: UIView, clothe: Clothe) in
+            print(view.transform, "Transform --------------------------------------------------------")
+        }
     }
     
     @objc private func cancelButtonPressed() {
@@ -130,6 +136,7 @@ extension CanvaViewController : CanvaDelegate {
             let image = UIImage(data: clothe.image ?? Data())
             
             let newObject = UIImageView(frame: .zero)
+            newObject.transform = position.transform
             
             self.canva.addSubview(newObject)
             objects.append((newObject, clothe))
@@ -139,7 +146,6 @@ extension CanvaViewController : CanvaDelegate {
             
             newObject.frame = position.position
             newObject.center = .init(x: position.position.midX, y: position.position.midY)
-            newObject.transform = position.transform
         }
         self.setupState()
     }
@@ -247,7 +253,9 @@ extension CanvaViewController {
                 object.center = convertedPos
             }
         } else {
-            objects.remove(at: objects.firstIndex(where: { $0.view == object })!)
+            let idx = objects.firstIndex(where: { $0.view == object })!
+            model.removeClotheFromCanva(objects[idx].clothe)
+            objects.remove(at: idx)
             object.removeFromSuperview()
         }
         

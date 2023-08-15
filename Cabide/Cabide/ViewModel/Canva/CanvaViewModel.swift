@@ -102,6 +102,7 @@ class CanvaViewModel {
         
         canvaService.fetch()
         clotheService.fetch()
+        delegate?.setupState()
     }
     
     func selectFolder(_ folder: Folder) {
@@ -149,13 +150,27 @@ class CanvaViewModel {
             clothes.append(data)
         })
         delegate?.loadFromCanva(clothes: clothes)
+        delegate?.setupState()
+    }
+    
+    func load() {
+        var clothes = [(Clothe, ClotheAtCanvaPosition)]()
+        canva?.clothes?.forEach({ clotheAtCanva in
+            guard let clotheAtCanva = clotheAtCanva as? ClotheAtCanva,
+                  let data = clotheAtCanva.data() else { return }
+            
+            clothes.append(data)
+        })
+        delegate?.loadFromCanva(clothes: clothes)
+        delegate?.setupState()
     }
     
     func save() {
-        canva = Canva(context: canvaService.viewContext)
-        canva?.name = delegate?.canvaName
-        canva?.thumbnail = delegate?.thumbnail.pngData()
+        let canva = self.canva ?? Canva(context: canvaService.viewContext)
+        canva.name = delegate?.canvaName
+        canva.thumbnail = delegate?.thumbnail.pngData()
         
+        canva.clothes = nil
         delegate?.objects.forEach({ (view: UIView, clothe: Clothe) in
             let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
             
@@ -166,12 +181,12 @@ class CanvaViewModel {
             newClotheAtCanva.clothe = clothe
             newClotheAtCanva.position = try? encoder.encode(position)
             
-            canva?.addToClothes(newClotheAtCanva)
+            canva.addToClothes(newClotheAtCanva)
         })
         
         for folder in selectedFolders {
-            canva!.addToFolders(folder)
-            folder.addToCanvas(canva!)
+            canva.addToFolders(folder)
+            folder.addToCanvas(canva)
         }
         
         canvaService.update()
@@ -183,6 +198,11 @@ class CanvaViewModel {
         self.canva = nil
         self.rollback()
         delegate?.reset()
+    }
+    
+    func removeClotheFromCanva(_ clothe: Clothe) {
+        guard let toRemove = canva?.clothes?.first(where: { ($0 as? ClotheAtCanva)?.clothe?.id == clothe.id }) as? ClotheAtCanva else { return }
+        canva?.removeFromClothes(toRemove)
     }
     
     private func rollback() {

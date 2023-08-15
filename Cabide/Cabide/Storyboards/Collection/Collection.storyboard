@@ -45,6 +45,7 @@
                     <connections>
                         <outlet property="tableView" destination="AJ6-25-0Tu" id="WNi-Qr-ghG"/>
                         <segue destination="uNi-dy-IY9" kind="show" identifier="goToViewCollection" id="YWM-Uc-fvg"/>
+                        <segue destination="PxT-dH-yHv" kind="show" identifier="goToCanva" id="x7c-Aw-csH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -58,6 +59,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1vj-Kl-GBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1800" y="-101"/>
+        </scene>
+        <!--Canva-->
+        <scene sceneID="gHb-Xf-vye">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Canva" storyboardName="Canva" id="PxT-dH-yHv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="77u-WA-zkD"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yzy-36-co0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1806" y="23"/>
         </scene>
         <!--ViewCollection-->
         <scene sceneID="l2c-QZ-mRC">
@@ -77,7 +88,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="7KR-Vp-eqO">
-                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="Roxo"/>
                         <navigationBarAppearance key="scrollEdgeAppearance">
