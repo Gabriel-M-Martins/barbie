@@ -58,9 +58,20 @@ class CollectionViewModel {
     func removeCanva(id: UUID, canva: Canva) {
         if let collection = folders.first(where: { $0.id == id }) {
 
-            
+            if let mutableCanvasSet = collection.mutableSetValue(forKey: "canvas") as? NSMutableSet,
+               let mutableFolderSet = canva.mutableSetValue(forKey: "folders") as? NSMutableSet {
+                mutableCanvasSet.remove(canva)
+                mutableFolderSet.remove(collection)
+            }
+
             service.update()
         }
+    }
+    
+    func removeAllCanva(canva: Canva) {
+        serviceCanvas.viewContext.delete(canva)
+        serviceCanvas.update()
+        service.update()
     }
     
     func getRecentCanvas() -> [Canva]? {
