@@ -34,7 +34,6 @@ class HorizontalCarouselTableViewCell: UITableViewCell, UIAdaptivePresentationCo
         configFlowLayout()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openCollection))
-//        tapGesture.cancelsTouchesInView = false
         headerView.addGestureRecognizer(tapGesture)
     }
     
@@ -112,15 +111,6 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDelegateFlowLayout {
         
         return size
     }
-    
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    ////        guard collectionView == clothesCollection else { return collectionView.safeAreaInsets }
-    //        return UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
-    //    }
-    
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    //        return 8
-    //    }
 }
 
 protocol HorizontalCarouselDelegate: AnyObject {
