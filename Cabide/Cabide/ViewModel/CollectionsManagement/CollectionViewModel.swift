@@ -55,11 +55,8 @@ class CollectionViewModel {
         }
     }
     
-    func getRecentCanvas() -> [Canva]? {
-        guard self.canvas != nil else {
-            return []
-        }
-        return canvas
+    func getRecentCanvas() -> [Canva] {
+        return canvas.reversed().suffix(7)
     }
     
     func getCanvasFolder(_ folder: Folder) -> [Canva]? {

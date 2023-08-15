@@ -78,7 +78,6 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollect
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard {
                 
-//                let canva = self.row?[indexPath.item]
                 let imageData = self.row?[indexPath.item].thumbnail ?? Data()
                 
                 cell.image?.image = UIImage(data: imageData)
