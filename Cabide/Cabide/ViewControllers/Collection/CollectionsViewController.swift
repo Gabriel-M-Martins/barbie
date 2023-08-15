@@ -49,6 +49,9 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
                 cell.headerLabel.font = UIFont(name: cell.headerLabel.font.fontName, size: 22)
                 cell.row = viewModel.getRecentCanvas()
                 cell.updateCellWith(row: viewModel.getRecentCanvas())
+                
+                cell.showSeparator()
+                
                 cell.delegate = self
                 cell.folder = nil
 
@@ -63,6 +66,8 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
                 cell.updateCellWith(row: viewModel.getCanvasFolder(viewModel.folders[indexPath.row]))
                 cell.delegate = self
                 cell.folder = viewModel.folders[indexPath.row]
+                
+                cell.hideSeparator()
                 
                 return cell
             }
@@ -105,4 +110,15 @@ extension CollectionsViewController: HorizontalCarouselDelegate {
     func goToCanva(canva: Canva) {
         performSegue(withIdentifier: "goToCanva", sender: canva)
     }
+}
+
+extension UITableViewCell {
+
+  func hideSeparator() {
+    self.separatorInset = UIEdgeInsets(top: 0, left: self.bounds.size.width, bottom: 0, right: 0)
+  }
+
+  func showSeparator() {
+    self.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+  }
 }

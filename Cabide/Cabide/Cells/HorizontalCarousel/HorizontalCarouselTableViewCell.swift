@@ -34,7 +34,6 @@ class HorizontalCarouselTableViewCell: UITableViewCell, UIAdaptivePresentationCo
         configFlowLayout()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openCollection))
-//        tapGesture.cancelsTouchesInView = false
         headerView.addGestureRecognizer(tapGesture)
     }
     

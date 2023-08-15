@@ -6,7 +6,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="thumbnail" optional="YES" attributeType="Binary"/>
         <relationship name="clothes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClotheAtCanva" inverseName="canva" inverseEntity="ClotheAtCanva"/>
-        <relationship name="folders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="canvas" inverseEntity="Folder"/>
+        <relationship name="folders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Folder" inverseName="canvas" inverseEntity="Folder"/>
     </entity>
     <entity name="Clothe" representedClassName="Clothe" syncable="YES" codeGenerationType="class">
         <attribute name="description_" optional="YES" attributeType="String"/>
