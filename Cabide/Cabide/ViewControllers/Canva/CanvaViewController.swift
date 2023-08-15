@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CanvaViewController: UIViewController {
+class CanvaViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var filtersCollection: UICollectionView!
@@ -35,7 +35,8 @@ class CanvaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model.delegate = self
+        model.canvaDelegate = self
+        model.canvaNameDelegate = self
         
         nameFieldUnderline = CALayer()
         nameFieldUnderline!.frame = CGRectMake(0.0, nameField.frame.height - 8, nameField.frame.width, 1.0)
@@ -96,9 +97,6 @@ class CanvaViewController: UIViewController {
     
     @objc private func mainButtonPressed() {
         model.mainButtonPressed()
-        objects.forEach { (view: UIView, clothe: Clothe) in
-            print(view.transform, "Transform --------------------------------------------------------")
-        }
     }
     
     @objc private func cancelButtonPressed() {
@@ -114,7 +112,7 @@ extension CanvaViewController : UIGestureRecognizerDelegate {
 }
 
 // MARK: - model delegate
-extension CanvaViewController : CanvaDelegate {
+extension CanvaViewController : CanvaDelegate, CanvaNameDelegate {
     var canvaName: String? { nameField.hasText ? nameField.text : nil }
     var thumbnail: UIImage {
         
@@ -159,14 +157,26 @@ extension CanvaViewController : CanvaDelegate {
             guard let vc = segue.destination as? CreateCanvaViewController else { return }
             
             vc.model = model
+            vc.presentationController?.delegate = self
+            vc.controlDelegate = self
         }
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        setupState()
+        print("coe -------------------------------------------------------------------")
+        model.canvaNameDelegate = self
     }
     
     func setupState() {
         nameField.isHidden = model.hideNameTextField
         nameLabel.isHidden = model.hideNameLabel
         
-        nameField.placeholder = model.canvaName
+        if model.loadedFromCanva {
+            nameField.text = model.canvaName
+        } else {
+            nameField.placeholder = model.canvaName
+        }
         nameLabel.text = model.canvaName
         
         mainButton.image = model.mainButtonImage
@@ -411,4 +421,15 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
+}
+
+extension CanvaViewController : ConcedeControlDelegate {
+    func take() {
+        setupState()
+        model.canvaNameDelegate = self
+    }
+}
+
+protocol ConcedeControlDelegate : AnyObject {
+    func take()
 }
