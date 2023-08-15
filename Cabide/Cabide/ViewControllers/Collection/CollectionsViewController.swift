@@ -50,6 +50,8 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
                 cell.row = viewModel.getRecentCanvas()
                 cell.updateCellWith(row: viewModel.getRecentCanvas())
                 
+                cell.showSeparator()
+                
                 return cell
             }
         } else {
@@ -59,6 +61,8 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
                 cell.headerLabel.font = UIFont(name: cell.headerLabel.font.fontName, size: 18)
                 cell.row = viewModel.getCanvasFolder(viewModel.folders[indexPath.row])
                 cell.updateCellWith(row: viewModel.getCanvasFolder(viewModel.folders[indexPath.row]))
+                
+                cell.hideSeparator()
                 
                 return cell
             }
@@ -74,4 +78,15 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
             return 190
         }
     }
+}
+
+extension UITableViewCell {
+
+  func hideSeparator() {
+    self.separatorInset = UIEdgeInsets(top: 0, left: self.bounds.size.width, bottom: 0, right: 0)
+  }
+
+  func showSeparator() {
+    self.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+  }
 }
