@@ -17,6 +17,8 @@ class CreateCollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    weak var delegate: CreateCollectionDelegate?
+
     let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
     
     var canvaModel: CanvaViewModel = CanvaViewModel()
@@ -98,6 +100,12 @@ extension CreateCollectionViewController: UICollectionViewDelegate, UICollection
         
         cell?.imageView.image = image
         
+        if selectedsCanva.contains(canva) {
+            cell?.select()
+        } else {
+            cell?.deselect()
+        }
+        
         return cell ?? UICollectionViewCell()
     }
     
@@ -140,4 +148,8 @@ extension CreateCollectionViewController: UICollectionViewDelegateFlowLayout {
         super.viewWillLayoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
     }
+}
+
+protocol CreateCollectionDelegate: AnyObject {
+    func didUpdateData()
 }

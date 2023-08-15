@@ -45,13 +45,16 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "carouselcell") as? HorizontalCarouselTableViewCell {
                 cell.typeCarousel = .large
-                cell.headerLabel.text = "Looks recentes"
+                cell.headerLabel.text = "Todos os looks"
                 cell.headerLabel.font = UIFont(name: cell.headerLabel.font.fontName, size: 22)
                 cell.row = viewModel.getRecentCanvas()
                 cell.updateCellWith(row: viewModel.getRecentCanvas())
                 
                 cell.showSeparator()
                 
+                cell.delegate = self
+                cell.folder = nil
+
                 return cell
             }
         } else {
@@ -61,6 +64,8 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
                 cell.headerLabel.font = UIFont(name: cell.headerLabel.font.fontName, size: 18)
                 cell.row = viewModel.getCanvasFolder(viewModel.folders[indexPath.row])
                 cell.updateCellWith(row: viewModel.getCanvasFolder(viewModel.folders[indexPath.row]))
+                cell.delegate = self
+                cell.folder = viewModel.folders[indexPath.row]
                 
                 cell.hideSeparator()
                 
@@ -77,6 +82,19 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             return 190
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToViewCollection" {
+            guard let destination = segue.destination as? ViewCollectionViewController else { return }
+            destination.folder = sender as? Folder
+        }
+    }
+}
+
+extension CollectionsViewController: HorizontalCarouselDelegate {
+    func goToSegue(folder: Folder?) {
+        performSegue(withIdentifier: "goToViewCollection", sender: folder)
     }
 }
 

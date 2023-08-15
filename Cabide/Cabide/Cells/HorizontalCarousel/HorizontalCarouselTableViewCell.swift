@@ -12,12 +12,17 @@ enum TypeCarousel {
     case small
 }
 
-class HorizontalCarouselTableViewCell: UITableViewCell {
+class HorizontalCarouselTableViewCell: UITableViewCell, UIAdaptivePresentationControllerDelegate, UITableViewDelegate {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var headerView: UIView!
     
     var typeCarousel: TypeCarousel?
     var row: [Canva]?
+    var folder: Folder?
+    var type: Int?
+    
+    var delegate: HorizontalCarouselDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +32,9 @@ class HorizontalCarouselTableViewCell: UITableViewCell {
         
         configTypeCarousel()
         configFlowLayout()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openCollection))
+        headerView.addGestureRecognizer(tapGesture)
     }
     
     func configTypeCarousel() {
@@ -47,6 +55,11 @@ class HorizontalCarouselTableViewCell: UITableViewCell {
         self.collectionView.collectionViewLayout = flowLayout
         self.collectionView.showsHorizontalScrollIndicator = false
     }
+    
+    @objc func openCollection() {
+        delegate?.goToSegue(folder: folder)
+    }
+    
 }
 
 extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -98,4 +111,8 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDelegateFlowLayout {
         
         return size
     }
+}
+
+protocol HorizontalCarouselDelegate: AnyObject {
+    func goToSegue(folder: Folder?)
 }
