@@ -16,7 +16,6 @@ class CreateCollectionViewController: UIViewController {
     @IBOutlet weak var nameTextfield: UITextField!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     weak var delegate: CreateCollectionDelegate?
 
     let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
@@ -69,7 +68,10 @@ class CreateCollectionViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         collectionModel.createCollection(name: nameTextfield.text ?? "", canvas: selectedsCanva)
-        self.presentingViewController?.dismiss(animated: true)
+        print(delegate)
+        print("saved")
+        delegate?.didUpdateData()
+        dismiss(animated: true, completion: nil)
 
     }
     
