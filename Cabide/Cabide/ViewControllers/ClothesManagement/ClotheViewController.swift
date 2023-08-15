@@ -19,7 +19,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -63,7 +63,6 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
                     }
                 }
             }
-            //collectionView.reloadData()
         }
     }
     
@@ -87,6 +86,12 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
     
     override func viewWillAppear(_ animated: Bool) {
         model.service.fetch()
+        self.isExclusionModeEnabled = false
+        for cell in collectionView.visibleCells {
+            if let clothingCell = cell as? ClotheCard {
+                clothingCell.hideDeleteIcon()
+            }
+        }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

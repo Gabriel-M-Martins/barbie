@@ -18,16 +18,18 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
     var canvas: [Canva]?
     
     var model: CollectionViewModel = CollectionViewModel()
-    var modelCanvas: CanvaViewModel = CanvaViewModel()
     var isExclusionModeEnabled = false
     var tapGesture: UITapGestureRecognizer?
+    
+    var type = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if folder == nil {
             titleCollection.title = "Todos os looks"
-            canvas = modelCanvas.canvas
+            canvas = model.canvas
+            type = 1
         } else {
             titleCollection.title = folder?.name ?? "Todos os looks"
             canvas = model.getCanvasFolder(folder ?? Folder())
@@ -54,8 +56,15 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Excluir", style: .destructive) { _ in
             let selectedCanva = self.canvas?[indexPath.row]
-           // self.model.removeCanva(id: folder.id, canva: selectedCanva)
-            self.collectionView.reloadData()
+            if self.type == 1 {
+                self.model.removeAllCanva(canva: selectedCanva ?? Canva())
+                self.canvas = self.model.canvas
+                self.collectionView.reloadData()
+            } else {
+                self.model.removeCanva(id: self.folder?.id ?? UUID(), canva: selectedCanva ?? Canva())
+                self.canvas = self.model.getCanvasFolder(self.folder ?? Folder())
+                self.collectionView.reloadData()
+            }
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
@@ -100,6 +109,13 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
     
     override func viewWillAppear(_ animated: Bool) {
         model.service.fetch()
+        isExclusionModeEnabled = false
+        for cell in collectionView.visibleCells {
+            if let clothingCell = cell as? LargeCard {
+                clothingCell.hideDeleteIcon()
+            }
+        }
+        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
