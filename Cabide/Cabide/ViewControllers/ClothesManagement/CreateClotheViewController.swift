@@ -15,10 +15,12 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
 
     @IBOutlet weak var clotheImage: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         saveButton.isEnabled = false
+        loading.isHidden = true
         
         let cancelButton = UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: #selector(cancelPressed) )
         cancelButton.tintColor = UIColor(named: "Roxo") ?? UIColor.black
@@ -39,6 +41,7 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
     }
     
     @IBAction func openGaleryPressed(_ sender: Any) {
+
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         let filter = PHPickerFilter.any(of: [.images])
         
@@ -59,6 +62,9 @@ class CreateClotheViewController: UIViewController, PHPickerViewControllerDelega
 
 extension CreateClotheViewController {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        loading.isHidden = false
+        clotheImage.image = nil
+        //clotheImage.isHidden = true
         picker.dismiss(animated: true, completion: .none)
         
         results.forEach { result in
@@ -70,6 +76,8 @@ extension CreateClotheViewController {
                        let croppedImage = imageWithoutBG.croppedToOpaque() {
                         DispatchQueue.main.async {
                             self.clotheImage.image = croppedImage
+                            self.loading.isHidden = true
+                            self.clotheImage.isHidden = false
                         }
                     }
                 }
@@ -82,23 +90,22 @@ extension CreateClotheViewController {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        loading.isHidden = false
+        clotheImage.image = nil
         picker.dismiss(animated: true)
         
         guard let image = info[.editedImage] as? UIImage else { return }
-        
-//        DispatchQueue.main.async {
-//            self.clotheImage.image = image.removeBackground()
-//        }
         
         DispatchQueue.global(qos: .userInitiated).async {
             if let imageWithoutBG = image.removeBackground(),
                let croppedImage = imageWithoutBG.croppedToOpaque() {
                 DispatchQueue.main.async {
                     self.clotheImage.image = croppedImage
+                    self.loading.isHidden = true
+                    self.clotheImage.isHidden = false
                 }
             }
         }
-        
         saveButton.isEnabled = true
     }
 }
