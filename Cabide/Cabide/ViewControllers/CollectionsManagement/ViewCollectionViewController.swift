@@ -12,7 +12,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleCollection: UINavigationItem!
     
-    let canvaCard = UINib(nibName: "LargeCard", bundle: nil)
+    let canvaCard = UINib(nibName: "ClotheCard", bundle: nil)
     
     var folder: Folder?
     var canvas: [Canva]?
@@ -41,7 +41,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(canvaCard, forCellWithReuseIdentifier: "largeCard")
+        collectionView.register(canvaCard, forCellWithReuseIdentifier: "clotheCard")
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGesture?.delegate = self
@@ -82,7 +82,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
             } else {
                 isExclusionModeEnabled = false
                 for cell in collectionView.visibleCells {
-                    if let clothingCell = cell as? LargeCard {
+                    if let clothingCell = cell as? ClotheCard {
                         clothingCell.hideDeleteIcon()
                     }
                 }
@@ -96,7 +96,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
             self.tapGesture?.isEnabled = false
             isExclusionModeEnabled = true
             for cell in collectionView.visibleCells {
-                if let clothingCell = cell as? LargeCard {
+                if let clothingCell = cell as? ClotheCard {
                     clothingCell.showDeleteIcon()
                 }
             }
@@ -113,7 +113,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
         model.service.fetch()
         isExclusionModeEnabled = false
         for cell in collectionView.visibleCells {
-            if let clothingCell = cell as? LargeCard {
+            if let clothingCell = cell as? ClotheCard {
                 clothingCell.hideDeleteIcon()
             }
         }
@@ -177,13 +177,12 @@ extension ViewCollectionViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard
         
         let canva = canvas?[indexPath.row]
         let image = UIImage(data: canva?.thumbnail ?? Data())
         
-        cell?.imageView.image = image
+        cell?.image.image = image
         
         return cell ?? UICollectionViewCell()
     }
@@ -191,26 +190,24 @@ extension ViewCollectionViewController: UICollectionViewDelegate, UICollectionVi
 
 extension ViewCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let columns: CGFloat = 3
-        let spacing: CGFloat = 0
+        let spacing: CGFloat = 8
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
-        
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 32 - 40) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth)
         return itemSize
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }

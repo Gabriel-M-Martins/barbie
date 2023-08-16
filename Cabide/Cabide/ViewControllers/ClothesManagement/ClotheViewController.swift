@@ -172,7 +172,7 @@ extension ClotheViewController: UICollectionViewDelegateFlowLayout {
         let spacing: CGFloat = 8
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
 
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 32 - 12) / columns
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 32 - 40) / columns
         let itemSize = CGSize(width: itemWidth, height: itemWidth)
         return itemSize
     }

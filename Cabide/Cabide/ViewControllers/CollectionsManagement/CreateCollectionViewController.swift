@@ -18,7 +18,7 @@ class CreateCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: CreateCollectionDelegate?
 
-    let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
+    let clotheCard = UINib(nibName: "ClotheCard", bundle: nil)
     
     var canvaModel: CanvaViewModel = CanvaViewModel()
     var collectionModel: CollectionViewModel = CollectionViewModel()
@@ -50,7 +50,7 @@ class CreateCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(clotheCard, forCellWithReuseIdentifier: "largeCard")
+        collectionView.register(clotheCard, forCellWithReuseIdentifier: "clotheCard")
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.cancelsTouchesInView = false
@@ -93,12 +93,12 @@ extension CreateCollectionViewController: UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard
         
         let canva = canvaModel.canvas[indexPath.row]
         let image = UIImage(data: canva.thumbnail ?? Data())
         
-        cell?.imageView.image = image
+        cell?.image.image = image
         
         if selectedsCanva.contains(canva) {
             cell?.select()
@@ -110,7 +110,7 @@ extension CreateCollectionViewController: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? LargeCard
+        let cell = collectionView.cellForItem(at: indexPath) as? ClotheCard
         let canva = canvaModel.canvas[indexPath.row]
 
         if selectedsCanva.contains(canva) {
@@ -126,27 +126,25 @@ extension CreateCollectionViewController: UICollectionViewDelegate, UICollection
 
 extension CreateCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let columns: CGFloat = 3
-        let spacing: CGFloat = 0
+        let spacing: CGFloat = 8
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
-        
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 16) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth)
         return itemSize
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
 }
 
