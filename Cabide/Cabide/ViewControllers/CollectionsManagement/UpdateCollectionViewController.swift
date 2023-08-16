@@ -1,14 +1,14 @@
 //
-//  CreateCollectionViewController.swift
+//  UpdateCollectionViewController.swift
 //  Cabide
 //
-//  Created by Luana Tais Thomas on 08/08/23.
+//  Created by Luana Tais Thomas on 15/08/23.
 //
 
 import UIKit
 
-class CreateCollectionViewController: UIViewController {
-    
+class UpdateCollectionViewController: UIViewController {
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var looksLabel: UILabel!
@@ -16,8 +16,10 @@ class CreateCollectionViewController: UIViewController {
     @IBOutlet weak var nameTextfield: UITextField!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    weak var delegate: CreateCollectionDelegate?
+    weak var delegate: UpdateCollectionDelegate?
 
+    var folder: Folder?
+    
     let clotheCard = UINib(nibName: "LargeCard", bundle: nil)
     
     var canvaModel: CanvaViewModel = CanvaViewModel()
@@ -27,8 +29,8 @@ class CreateCollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        button.isEnabled = false
+            
+        selectedsCanva = collectionModel.getCanvasFolder(folder ?? Folder()) ?? []
         
         let customFonts = CustomFonts()
         
@@ -37,12 +39,13 @@ class CreateCollectionViewController: UIViewController {
         
         nameLabel.font = customFonts.customFontLabel
         nameLabel.adjustsFontForContentSizeCategory = true
-        
+
         looksLabel.font = customFonts.customFontLabel
         looksLabel.adjustsFontForContentSizeCategory = true
         
         nameTextfield.font = customFonts.customFontLabel
         nameTextfield.adjustsFontForContentSizeCategory = true
+        nameTextfield.text = folder?.name
         
         button.titleLabel?.font = customFonts.customFontLabel
         button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -56,21 +59,11 @@ class CreateCollectionViewController: UIViewController {
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
-    
-    func updateButtonStatus () {
-        button.isEnabled = nameTextfield.hasText
-    }
-    
-    
-    @IBAction func updateButton(_ sender: Any) {
-        updateButtonStatus()
-    }
-    
+
     @IBAction func saveButtonPressed(_ sender: Any) {
-        collectionModel.createCollection(name: nameTextfield.text ?? "", canvas: selectedsCanva)
+        collectionModel.updateCollection(id: folder?.id ?? UUID(), name: nameTextfield.text ?? "", canvas: selectedsCanva)
         delegate?.didUpdateData()
         dismiss(animated: true, completion: nil)
-
     }
     
     @objc func dismissKeyboard() {
@@ -79,10 +72,8 @@ class CreateCollectionViewController: UIViewController {
     
 }
 
-
-
 // MARK: - Collection View
-extension CreateCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension UpdateCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -124,7 +115,7 @@ extension CreateCollectionViewController: UICollectionViewDelegate, UICollection
     
 }
 
-extension CreateCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension UpdateCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let columns: CGFloat = 3
@@ -150,6 +141,7 @@ extension CreateCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-protocol CreateCollectionDelegate: AnyObject {
+protocol UpdateCollectionDelegate: AnyObject {
     func didUpdateData()
 }
+

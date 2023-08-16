@@ -51,6 +51,8 @@
 		DC5E61F82A7C35E700C668A8 /* CreateClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */; };
 		DC77FBE22A8582A300EF5D15 /* CreateCanva.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */; };
 		DC77FBE42A8582D300EF5D15 /* CreateCanvaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */; };
+		DCC0ADA42A8C251300E6718B /* UpdateCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC0ADA32A8C251300E6718B /* UpdateCollection.storyboard */; };
+		DCC0ADA62A8C252100E6718B /* UpdateCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC0ADA52A8C252100E6718B /* UpdateCollectionViewController.swift */; };
 		DCCECA552A82AF7C00CFF363 /* CreateCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */; };
 		DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */; };
 		DCCECA5C2A82B9CD00CFF363 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */; };
@@ -116,6 +118,8 @@
 		DC5E61F72A7C35E700C668A8 /* CreateClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateClotheViewController.swift; sourceTree = "<group>"; };
 		DC77FBE12A8582A300EF5D15 /* CreateCanva.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCanva.storyboard; sourceTree = "<group>"; };
 		DC77FBE32A8582D300EF5D15 /* CreateCanvaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCanvaViewController.swift; sourceTree = "<group>"; };
+		DCC0ADA32A8C251300E6718B /* UpdateCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UpdateCollection.storyboard; sourceTree = "<group>"; };
+		DCC0ADA52A8C252100E6718B /* UpdateCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCollectionViewController.swift; sourceTree = "<group>"; };
 		DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCollection.storyboard; sourceTree = "<group>"; };
 		DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCollectionViewController.swift; sourceTree = "<group>"; };
 		DCCECA5B2A82B9CD00CFF363 /* Montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Montserrat.ttf; sourceTree = "<group>"; };
@@ -411,6 +415,7 @@
 			children = (
 				DCCECA562A82AFBC00CFF363 /* CreateCollectionViewController.swift */,
 				DCDB746A2A86CC700046AA1C /* ViewCollectionViewController.swift */,
+				DCC0ADA52A8C252100E6718B /* UpdateCollectionViewController.swift */,
 			);
 			path = CollectionsManagement;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 			children = (
 				DCCECA542A82AF7C00CFF363 /* CreateCollection.storyboard */,
 				DCDB746C2A86CC800046AA1C /* ViewCollection.storyboard */,
+				DCC0ADA32A8C251300E6718B /* UpdateCollection.storyboard */,
 			);
 			path = CollectionsManagement;
 			sourceTree = "<group>";
@@ -507,6 +513,7 @@
 				A76EB92B2A6EFA8C00F8E854 /* LaunchScreen.storyboard in Resources */,
 				DCDB746D2A86CC800046AA1C /* ViewCollection.storyboard in Resources */,
 				A7323A5E2A859A2E00277CE7 /* FilterCollectionViewCell.xib in Resources */,
+				DCC0ADA42A8C251300E6718B /* UpdateCollection.storyboard in Resources */,
 				A76EB9282A6EFA8C00F8E854 /* Assets.xcassets in Resources */,
 				A76EB9232A6EFA8B00F8E854 /* Main.storyboard in Resources */,
 				0B5BC6372A847F56008C93B2 /* HorizontalCarouselTableViewCell.xib in Resources */,
@@ -545,6 +552,7 @@
 				DCF91E112A7442A2002E8277 /* ClotheDetailsViewController.swift in Sources */,
 				DCCECA572A82AFBC00CFF363 /* CreateCollectionViewController.swift in Sources */,
 				DCD4E15E2A784BCB0017D4BC /* CollectionService.swift in Sources */,
+				DCC0ADA62A8C252100E6718B /* UpdateCollectionViewController.swift in Sources */,
 				A762EF0E2A78616A007D64E5 /* UIView+Extensions.swift in Sources */,
 				DCD4E1572A7826FD0017D4BC /* ClotheService.swift in Sources */,
 				A762EF092A784B7A007D64E5 /* CanvaService.swift in Sources */,

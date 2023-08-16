@@ -32,7 +32,6 @@ class CollectionsViewController: UIViewController, CreateCollectionDelegate {
     }
     
     func didUpdateData() {
-        print("didUpdate")
         viewModel.service.fetch()
         self.tableView.reloadData()
     }
