@@ -130,7 +130,7 @@ extension CreateCollectionViewController: UICollectionViewDelegateFlowLayout {
         let spacing: CGFloat = 8
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
 
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 16 - 20) / columns
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 16) / columns
         let itemSize = CGSize(width: itemWidth, height: itemWidth)
         return itemSize
     }
