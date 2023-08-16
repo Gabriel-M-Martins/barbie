@@ -42,7 +42,6 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
             let selectedClothe = self.model.clothes[indexPath.row]
             self.model.deleteClothe(id: selectedClothe.id ?? UUID())
             self.collectionView.reloadData()
-            // Remove o item do modelo de dados e atualiza a coleção
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
@@ -63,6 +62,7 @@ class ClotheViewController: UIViewController, UIAdaptivePresentationControllerDe
                     }
                 }
             }
+            collectionView.reloadData()
         }
     }
     
@@ -150,6 +150,17 @@ extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let image = UIImage(data: clothe.image ?? Data())
         
         cell?.image.image = image
+        
+        if isExclusionModeEnabled {
+            if let clothingCell = cell as? ClotheCard {
+                clothingCell.showDeleteIcon()
+            }
+        } else {
+            if let clothingCell = cell as? ClotheCard {
+                clothingCell.hideDeleteIcon()
+            }
+        }
+        
         
         return cell ?? UICollectionViewCell()
     }

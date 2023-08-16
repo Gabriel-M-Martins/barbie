@@ -23,9 +23,20 @@ class CollectionViewModel {
         }
     }
     
-    func updateCollection(id: UUID, name: String?){
+    func updateCollection(id: UUID, name: String?, canvas: [Canva]){
         if let collection = folders.first(where: { $0.id == id}) {
             collection.name = name
+            service.update()
+
+            for canva in getCanvasFolder(collection) ?? [Canva()]{
+                removeCanva(id: collection.id ?? UUID(), canva: canva)
+            }
+            
+            for canva in canvas {
+                addCanva(id: collection.id ?? UUID(), canva: canva)
+            }
+            
+            service.update()
         }
     }
     

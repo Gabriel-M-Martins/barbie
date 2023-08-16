@@ -51,20 +51,28 @@
                     <connections>
                         <outlet property="collectionView" destination="hYH-P9-Q24" id="aze-GM-QZ4"/>
                         <outlet property="titleCollection" destination="tpz-vJ-p6A" id="lVJ-Uc-a28"/>
+                        <segue destination="2qN-kX-vU8" kind="presentation" identifier="goToUpdate" id="uDT-dc-3rO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="950.38167938931292" y="-2.1126760563380285"/>
         </scene>
+        <!--UpdateCollection-->
+        <scene sceneID="MSw-P3-Vh1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UpdateCollection" id="2qN-kX-vU8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9f-WH-IZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1714" y="-85"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="oBF-Pi-lIh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e5p-24-u0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N9S-yf-IhE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fkp-5W-c12">
-                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="104.33333333333334"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
@@ -72,6 +80,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e5p-24-u0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="23.664122137404579" y="-2.1126760563380285"/>
         </scene>
