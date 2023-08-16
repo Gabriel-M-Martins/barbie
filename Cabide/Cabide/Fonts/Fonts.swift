@@ -24,7 +24,7 @@ class CustomFonts {
     var customFontTitle: UIFont = UIFont()
     
     init() {
-        guard let customFont = UIFont(name: Montserrat, size: 18) else {
+        guard let customFont = UIFont(name: MontserratRomanSemiBold, size: 17) else {
             fatalError("""
                 Failed to load the custom font.
                 Make sure the font file is included in the project and the font name is spelled correctly.
@@ -34,7 +34,7 @@ class CustomFonts {
         
         self.customFontLabel = customFont
         
-        guard let customFont = UIFont(name: Montserrat, size: 24) else {
+        guard let customFont = UIFont(name: MontserratRomanBold, size: 24) else {
             fatalError("""
                 Failed to load the custom font.
                 Make sure the font file is included in the project and the font name is spelled correctly.
