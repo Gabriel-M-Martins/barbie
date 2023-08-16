@@ -368,7 +368,12 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 self?.filtersCollection.performBatchUpdates({
                     self?.filtersCollection.reloadSections(IndexSet(integer: 0))
                 })
-                self?.clothesCollection.reloadData()
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.clothesCollection.performBatchUpdates({
+                    self?.clothesCollection.reloadSections(IndexSet(integer: 0))
+                })
             }
             
             return
