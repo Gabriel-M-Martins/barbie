@@ -18,10 +18,9 @@ class CreateCanvaViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var model: CanvaViewModel?
-    
-    var controlDelegate: ConcedeControlDelegate?
-    
     var selectedsCollection: [Folder] = []
+    
+    var controlDelegate: TakeControlDelegate?
     
     let filterCell = UINib(nibName: "FilterCollectionViewCell", bundle: nil)
     
@@ -83,7 +82,7 @@ class CreateCanvaViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         model?.save()
         self.presentingViewController?.dismiss(animated: true) { [weak self] in
-            self?.controlDelegate?.take()
+            self?.controlDelegate?.take(cancelled: false)
         }
     }
 }

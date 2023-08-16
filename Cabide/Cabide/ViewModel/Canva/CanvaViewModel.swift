@@ -39,7 +39,7 @@ class CanvaViewModel {
     
     var canvaService: CanvaService = .build()
     var canva: Canva?
-    var canvaName: String { canva?.name ?? canvaNameDelegate?.canvaName ?? "Novo canva" }
+    var canvaName: String { canvaNameDelegate?.canvaName ?? canva?.name ?? "Novo canva" }
     
     var tagService: TagService = .build()
     var selectedTags: [Tag] = []
@@ -147,8 +147,8 @@ class CanvaViewModel {
             
             clothes.append(data)
         })
+        self.state = .visualization
         canvaDelegate?.loadFromCanva(clothes: clothes)
-        canvaDelegate?.setupState()
     }
     
     func load() {

@@ -129,6 +129,9 @@ extension CanvaViewController : CanvaDelegate, CanvaNameDelegate {
     }
     
     func loadFromCanva(clothes: [(clothe: Clothe, position: ClotheAtCanvaPosition)]) {
+        self.objects.forEach { (view: UIView, _: Clothe) in
+            view.removeFromSuperview()
+        }
         self.objects = []
         for (clothe, position) in clothes {
             let image = UIImage(data: clothe.image ?? Data())
@@ -158,14 +161,11 @@ extension CanvaViewController : CanvaDelegate, CanvaNameDelegate {
             
             vc.model = model
             vc.presentationController?.delegate = self
-            vc.controlDelegate = self
         }
     }
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        setupState()
-        print("coe -------------------------------------------------------------------")
-        model.canvaNameDelegate = self
+        self.take(cancelled: true)
     }
     
     func setupState() {
@@ -423,13 +423,17 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CanvaViewController : ConcedeControlDelegate {
-    func take() {
-        setupState()
-        model.canvaNameDelegate = self
+extension CanvaViewController : TakeControlDelegate {
+    func take(cancelled: Bool) {
+        if cancelled {
+            model.canvaNameDelegate = self
+        } else {
+            setupState()
+            model.canvaNameDelegate = self
+        }
     }
 }
 
-protocol ConcedeControlDelegate : AnyObject {
-    func take()
+protocol TakeControlDelegate {
+    func take(cancelled: Bool)
 }
