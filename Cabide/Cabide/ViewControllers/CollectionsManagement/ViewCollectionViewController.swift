@@ -146,6 +146,15 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
             modalVC.delegate = self
             modalVC.folder = sender as? Folder
         }
+        
+        if segue.identifier == "goToCanva" {
+            guard let navVc = segue.destination as? UINavigationController,
+                  let vc = navVc.topViewController as? CanvaViewController,
+                  let canva = sender as? Canva else { return }
+            
+            vc.model = CanvaViewModel(canva: canva, state: .visualization)
+            return
+        }
     }
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
@@ -185,6 +194,11 @@ extension ViewCollectionViewController: UICollectionViewDelegate, UICollectionVi
         cell?.image.image = image
         
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let canva = model.canvas[indexPath.row]
+        performSegue(withIdentifier: "goToCanva", sender: canva)
     }
 }
 

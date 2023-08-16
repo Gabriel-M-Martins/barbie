@@ -126,6 +126,7 @@ extension CanvaViewController : CanvaDelegate, CanvaNameDelegate {
             object.view.removeFromSuperview()
         }
         objects = []
+        setupState()
     }
     
     func loadFromCanva(clothes: [(clothe: Clothe, position: ClotheAtCanvaPosition)]) {
@@ -396,9 +397,9 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             newObject.contentMode = .scaleAspectFit
             newObject.image = image
             
-            newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
+            newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image?.size ?? .zero)
             newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
-            newObject.transform = newObject.transform.scaledBy(x: canva.frame.width/(3 * image!.size.width), y: canva.frame.width/(3 * image!.size.width))
+            newObject.transform = newObject.transform.scaledBy(x: canva.frame.width/(3 * (image?.size.width ?? 1)), y: canva.frame.width/(3 * (image?.size.width ?? 1)))
             
             self.addGestureToView(newObject)
             

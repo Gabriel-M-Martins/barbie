@@ -22,10 +22,31 @@ class CanvaViewModel {
     var canvas: [Canva] { CanvaService.data }
     
     var clothes: [Clothe] {
-        if selectedTags.count == 0 { return ClotheService.data }
-        
-        return ClotheService.data.filter { clothe in
-            (clothe.tags?.allObjects as? [Tag])?.contains(where: { selectedTags.contains($0)} ) ?? false
+        switch self.state {
+        case .editing:
+            if selectedTags.count == 0 { return ClotheService.data }
+            
+            return ClotheService.data.filter { clothe in
+                (clothe.tags?.allObjects as? [Tag])?.contains(where: { selectedTags.contains($0)} ) ?? false
+            }
+        case .visualization:
+            guard let canva = self.canva else { return [] }
+            
+            var clothes = (canva.clothes?.allObjects as? [ClotheAtCanva])?
+                .reduce([Clothe](), { partialResult, clotheAtCanva in
+                    guard let clothe = clotheAtCanva.clothe else { return partialResult }
+                    var mutableResult = partialResult
+                    mutableResult.append(clothe)
+                    return mutableResult
+                }) ?? []
+            
+            if selectedTags.count > 0 {
+               clothes = clothes.filter({ clothe in
+                   (clothe.tags?.allObjects as? [Tag])?.contains(where: { selectedTags.contains($0)} ) ?? false
+               })
+            }
+            
+            return clothes
         }
         
 //        return ClotheService.data.filter { clothe in
@@ -192,8 +213,7 @@ class CanvaViewModel {
         }
         
         canvaService.update()
-        updateState()
-        canvaDelegate?.setupState()
+        reset()
     }
     
     func reset() {

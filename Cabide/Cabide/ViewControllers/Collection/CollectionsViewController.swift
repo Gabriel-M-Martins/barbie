@@ -115,6 +115,7 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
             guard let navVC = segue.destination as? UINavigationController,
                   let modalVC = navVC.viewControllers.first as? CreateCollectionViewController else { return }
             modalVC.delegate = self
+            return
         }
     }
 }

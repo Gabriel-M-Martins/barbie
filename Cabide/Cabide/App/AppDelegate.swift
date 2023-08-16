@@ -63,42 +63,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var clotheService = ClotheService.build()
         if ClotheService.data.count == 0 {
             var clothes = [Clothe]()
+            
+            let group = DispatchGroup()
+            
             for idx in 1...21 {
-                let clothe = Clothe(context: clotheService.viewContext)
-                clothe.id = .init()
-                clothe.image = UIImage(named: "image \(idx)")?.pngData()
-                clothes.append(clothe)
+                group.enter()
+                
+                let closure: () -> Void = {
+                    let clothe = Clothe(context: clotheService.viewContext)
+                    clothe.id = .init()
+                    clothe.image = UIImage(named: "image \(idx)")?.croppedToOpaque()?.pngData()
+                    clothes.append(clothe)
+                    
+                    group.leave()
+                }
+                
+                Task.detached {
+                    closure()
+                }
             }
             
-            clothes[0].addToTags(TagService.data[8])
-            clothes[1].addToTags(TagService.data[7])
-            clothes[2].addToTags(TagService.data[2])
-            clothes[3].addToTags(TagService.data[6])
-            clothes[4].addToTags(TagService.data[6])
-            clothes[5].addToTags(TagService.data[4])
-            clothes[6].addToTags(TagService.data[2])
-            clothes[7].addToTags(TagService.data[3])
-            clothes[8].addToTags(TagService.data[3])
-            clothes[9].addToTags(TagService.data[6])
-            clothes[10].addToTags(TagService.data[3])
-            clothes[11].addToTags(TagService.data[0])
-            clothes[12].addToTags(TagService.data[0])
-            clothes[13].addToTags(TagService.data[0])
-            clothes[14].addToTags(TagService.data[0])
-            clothes[14].addToTags(TagService.data[2])
-            clothes[15].addToTags(TagService.data[0])
-            clothes[15].addToTags(TagService.data[2])
-            clothes[15].addToTags(TagService.data[8])
-            clothes[16].addToTags(TagService.data[6])
-            clothes[16].addToTags(TagService.data[1])
-            clothes[16].addToTags(TagService.data[3])
-            clothes[17].addToTags(TagService.data[0])
-            clothes[19].addToTags(TagService.data[6])
-            clothes[19].addToTags(TagService.data[1])
-            clothes[19].addToTags(TagService.data[8])
-            clothes[20].addToTags(TagService.data[0])
+            group.notify(queue: .main) {
+                clothes[0].addToTags(TagService.data[8])
+                clothes[1].addToTags(TagService.data[7])
+                clothes[2].addToTags(TagService.data[2])
+                clothes[3].addToTags(TagService.data[6])
+                clothes[4].addToTags(TagService.data[6])
+                clothes[5].addToTags(TagService.data[4])
+                clothes[6].addToTags(TagService.data[2])
+                clothes[7].addToTags(TagService.data[3])
+                clothes[8].addToTags(TagService.data[3])
+                clothes[9].addToTags(TagService.data[6])
+                clothes[10].addToTags(TagService.data[3])
+                clothes[11].addToTags(TagService.data[0])
+                clothes[12].addToTags(TagService.data[0])
+                clothes[13].addToTags(TagService.data[0])
+                clothes[14].addToTags(TagService.data[0])
+                clothes[14].addToTags(TagService.data[2])
+                clothes[15].addToTags(TagService.data[0])
+                clothes[15].addToTags(TagService.data[2])
+                clothes[15].addToTags(TagService.data[8])
+                clothes[16].addToTags(TagService.data[6])
+                clothes[16].addToTags(TagService.data[1])
+                clothes[16].addToTags(TagService.data[3])
+                clothes[17].addToTags(TagService.data[0])
+                clothes[19].addToTags(TagService.data[6])
+                clothes[19].addToTags(TagService.data[1])
+                clothes[19].addToTags(TagService.data[8])
+                clothes[20].addToTags(TagService.data[0])
+                
+                clotheService.update()
+            }
             
-            clotheService.update()
+            Thread.sleep(forTimeInterval: 5)
         }
         
         return true
