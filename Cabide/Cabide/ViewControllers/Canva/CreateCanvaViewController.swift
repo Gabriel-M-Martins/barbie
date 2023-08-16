@@ -18,8 +18,9 @@ class CreateCanvaViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var model: CanvaViewModel?
-    
     var selectedsCollection: [Folder] = []
+    
+    var controlDelegate: TakeControlDelegate?
     
     let filterCell = UINib(nibName: "FilterCollectionViewCell", bundle: nil)
     
@@ -27,9 +28,7 @@ class CreateCanvaViewController: UIViewController {
         super.viewDidLoad()
         
         let customFonts = CustomFonts()
-        
-        saveButton.isEnabled = false
-        
+
         lookLabel.font = customFonts.customFontTitle
         lookLabel.adjustsFontForContentSizeCategory = true
         
@@ -39,6 +38,10 @@ class CreateCanvaViewController: UIViewController {
         nameTextfield.font = customFonts.customFontLabel
         nameTextfield.adjustsFontForContentSizeCategory = true
         nameTextfield.text = model?.canvaName
+        
+        model?.canvaNameDelegate = self
+        
+        saveButton.isEnabled = nameTextfield.hasText
         
         collectionsLabel.font = customFonts.customFontLabel
         collectionsLabel.adjustsFontForContentSizeCategory = true
@@ -77,9 +80,10 @@ class CreateCanvaViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        // model.createCanva (name: nameTextfield.text ?? "", canvas: selectedsCanva)
         model?.save()
-        self.presentingViewController?.dismiss(animated: true)
+        self.presentingViewController?.dismiss(animated: true) { [weak self] in
+            self?.controlDelegate?.take(cancelled: false)
+        }
     }
 }
 
@@ -141,6 +145,8 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 }
 
 
-
+extension CreateCanvaViewController : CanvaNameDelegate {
+    var canvaName: String? { nameTextfield.hasText ? nameTextfield.text : nil }
+}
 
 

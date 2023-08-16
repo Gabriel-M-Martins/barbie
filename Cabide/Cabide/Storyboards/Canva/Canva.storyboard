@@ -13,7 +13,7 @@
         <!--Look-->
         <scene sceneID="iru-Ik-0UV">
             <objects>
-                <viewController id="LaK-Ti-QwB" customClass="CanvaViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Canva" id="LaK-Ti-QwB" customClass="CanvaViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="937-0u-ls1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

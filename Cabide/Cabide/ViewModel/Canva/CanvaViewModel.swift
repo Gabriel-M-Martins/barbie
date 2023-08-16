@@ -14,12 +14,10 @@ class CanvaViewModel {
         case editing
     }
     
-    weak var delegate: CanvaDelegate?
+    weak var canvaDelegate: CanvaDelegate?
+    weak var canvaNameDelegate: CanvaNameDelegate?
     
     var clotheService: ClotheService = .build()
-    
-    var isEditingCanva: Bool = false
-    var mainButtonText: String { isEditingCanva ? "Salvar" : "Editar" }
     
     var canvas: [Canva] { CanvaService.data }
     
@@ -27,11 +25,15 @@ class CanvaViewModel {
         if selectedTags.count == 0 { return ClotheService.data }
         
         return ClotheService.data.filter { clothe in
-            guard let tags = clothe.tags,
-                  tags.count > 0 else { return false }
-            
-            return NSSet(array: selectedTags).isSubset(of: tags as! Set<AnyHashable>)
+            (clothe.tags?.allObjects as? [Tag])?.contains(where: { selectedTags.contains($0)} ) ?? false
         }
+        
+//        return ClotheService.data.filter { clothe in
+//            guard let tags = clothe.tags,
+//                  tags.count > 0 else { return false }
+//
+//            return NSSet(array: selectedTags).isSubset(of: tags as! Set<AnyHashable>)
+//        }
     }
     
     var tags: [Tag] {
@@ -41,7 +43,7 @@ class CanvaViewModel {
     
     var canvaService: CanvaService = .build()
     var canva: Canva?
-    var canvaName: String { canva?.name ?? delegate?.canvaName ?? "Novo canva" }
+    var canvaName: String { canvaNameDelegate?.canvaName ?? canva?.name ?? "Novo canva" }
     
     var tagService: TagService = .build()
     var selectedTags: [Tag] = []
@@ -49,6 +51,11 @@ class CanvaViewModel {
     var collectionService: CollectionService = .build()
     var folders: [Folder] { CollectionService.data }
     var selectedFolders: [Folder] = []
+    
+    var loadedFromCanva: Bool {
+        guard let canva = self.canva else { return false }
+        return CanvaService.data.contains(canva)
+    }
     
     var state: State
     
@@ -78,9 +85,11 @@ class CanvaViewModel {
         case .visualization:
             return UIImage(systemName: "pencil")
         case .editing:
-            return UIImage(systemName: "checkmark.circle.fill")
+            return UIImage(systemName: "checkmark")
         }
     }
+    
+    let cancelButtonImage: UIImage? = UIImage(systemName: "xmark")
     
     init(canva: Canva, state: State) {
         self.canva = canva
@@ -95,6 +104,7 @@ class CanvaViewModel {
         
         canvaService.fetch()
         clotheService.fetch()
+        canvaDelegate?.setupState()
     }
     
     func selectFolder(_ folder: Folder) {
@@ -113,36 +123,68 @@ class CanvaViewModel {
         }
     }
     
-    func buttonPressed() {
+    func mainButtonPressed() {
         switch state {
         case .visualization:
             self.updateState()
         case .editing:
-            guard let delegate = delegate else { return }
-            
-            canva = Canva(context: canvaService.viewContext)
-            canva?.name = delegate.canvaName
-            canva?.thumbnail = delegate.thumbnail.pngData()
-            
-            for (view, clothe) in delegate.objects {
-                let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
-                
-                
-                let position = ClotheAtCanvaPosition(position: view.frame, transform: view.transform)
-                let encoder = JSONEncoder()
-                
-                newClotheAtCanva.clothe = clothe
-                newClotheAtCanva.position = try? encoder.encode(position)
-                
-                canva?.addToClothes(newClotheAtCanva)
-            }
+            guard let delegate = canvaDelegate else { return }
             
             delegate.segueToSaveModal()
         }
     }
+    
+    func cancelButtonPressed() {
+        if self.loadedFromCanva, self.canva != nil {
+            self.load(self.canva!)
+        } else {
+            self.reset()
+        }
+    }
 
+    func load(_ canva: Canva) {
+        self.canva = canva
+        var clothes = [(Clothe, ClotheAtCanvaPosition)]()
+        canva.clothes?.forEach({ clotheAtCanva in
+            guard let clotheAtCanva = clotheAtCanva as? ClotheAtCanva,
+                  let data = clotheAtCanva.data() else { return }
+            
+            clothes.append(data)
+        })
+        self.state = .visualization
+        canvaDelegate?.loadFromCanva(clothes: clothes)
+    }
+    
+    func load() {
+        var clothes = [(Clothe, ClotheAtCanvaPosition)]()
+        canva?.clothes?.forEach({ clotheAtCanva in
+            guard let clotheAtCanva = clotheAtCanva as? ClotheAtCanva,
+                  let data = clotheAtCanva.data() else { return }
+            
+            clothes.append(data)
+        })
+        canvaDelegate?.loadFromCanva(clothes: clothes)
+        canvaDelegate?.setupState()
+    }
+    
     func save() {
-        guard let canva = canva else { return }
+        let canva = self.canva ?? Canva(context: canvaService.viewContext)
+        canva.name = canvaNameDelegate?.canvaName
+        canva.thumbnail = canvaDelegate?.thumbnail.pngData()
+        
+        canva.clothes = nil
+        canvaDelegate?.objects.forEach({ (view: UIView, clothe: Clothe) in
+            let newClotheAtCanva = ClotheAtCanva(context: canvaService.viewContext)
+            
+            
+            let position = ClotheAtCanvaPosition(position: view.frame, transform: view.transform)
+            let encoder = JSONEncoder()
+            
+            newClotheAtCanva.clothe = clothe
+            newClotheAtCanva.position = try? encoder.encode(position)
+            
+            canva.addToClothes(newClotheAtCanva)
+        })
         
         for folder in selectedFolders {
             canva.addToFolders(folder)
@@ -150,9 +192,22 @@ class CanvaViewModel {
         }
         
         canvaService.update()
+        updateState()
+        canvaDelegate?.setupState()
     }
     
-    func rollback() {
+    func reset() {
+        self.canva = nil
+        self.rollback()
+        canvaDelegate?.reset()
+    }
+    
+    func removeClotheFromCanva(_ clothe: Clothe) {
+        guard let toRemove = canva?.clothes?.first(where: { ($0 as? ClotheAtCanva)?.clothe?.id == clothe.id }) as? ClotheAtCanva else { return }
+        canva?.removeFromClothes(toRemove)
+    }
+    
+    private func rollback() {
         canvaService.viewContext.rollback()
     }
     
@@ -164,21 +219,38 @@ class CanvaViewModel {
             state = .visualization
         }
         
-        delegate?.setupState()
+        canvaDelegate?.setupState()
     }
 }
 
 
 protocol CanvaDelegate : AnyObject {
-    var canvaName: String? { get }
     var objects: [(view: UIView, clothe: Clothe)] { get set }
     var thumbnail: UIImage { get }
     
     func setupState()
+    func reset()
     func segueToSaveModal()
+    func loadFromCanva(clothes: [(clothe: Clothe, position: ClotheAtCanvaPosition)])
+}
+
+protocol CanvaNameDelegate : AnyObject {
+    var canvaName: String? { get }
 }
 
 struct ClotheAtCanvaPosition : Codable {
     var position: CGRect
     var transform: CGAffineTransform
+}
+
+extension ClotheAtCanva {
+    func data() -> (Clothe, ClotheAtCanvaPosition)? {
+        guard let data = self.position,
+              let clothe = self.clothe else { return nil }
+        
+        let decoder = JSONDecoder()
+        guard let position = try? decoder.decode(ClotheAtCanvaPosition.self, from: data) else { return nil }
+        
+        return (clothe, position)
+    }
 }

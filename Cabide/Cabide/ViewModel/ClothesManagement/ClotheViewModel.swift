@@ -13,12 +13,25 @@ class ClotheViewModel {
     var service: ClotheService = .build()
     var clothes: [Clothe] { ClotheService.data }
     
+    var tags: [Tag] { TagService.data }
+    var selectedTags: [Tag] = []
+    
+    func toggleTag(_ tag: Tag) {
+        if let idx = selectedTags.firstIndex(of: tag) {
+            selectedTags.remove(at: idx)
+        } else {
+            selectedTags.append(tag)
+        }
+    }
+    
     func createClothe(image: UIImage) {
         let clothe = Clothe(context: service.viewContext)
 
         clothe.id = UUID()
-        //clothe.name = name
-        //clothe.description_ = description
+        for tag in selectedTags {
+            clothe.addToTags(tag)
+        }
+        
         if let imageData = image.pngData() {
             clothe.image = imageData
         }

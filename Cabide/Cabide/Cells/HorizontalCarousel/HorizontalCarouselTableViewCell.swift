@@ -57,7 +57,7 @@ class HorizontalCarouselTableViewCell: UITableViewCell, UIAdaptivePresentationCo
     }
     
     @objc func openCollection() {
-        delegate?.goToSegue(folder: folder)
+        delegate?.goToFolder(folder: folder)
     }
     
 }
@@ -101,6 +101,11 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDataSource, UICollect
         
         return UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let canva = self.row?[indexPath.row] else { return }
+        delegate?.goToCanva(canva: canva)
+    }
 }
 
 extension HorizontalCarouselTableViewCell: UICollectionViewDelegateFlowLayout {
@@ -114,5 +119,6 @@ extension HorizontalCarouselTableViewCell: UICollectionViewDelegateFlowLayout {
 }
 
 protocol HorizontalCarouselDelegate: AnyObject {
-    func goToSegue(folder: Folder?)
+    func goToFolder(folder: Folder?)
+    func goToCanva(canva: Canva)
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CanvaViewController: UIViewController {
+class CanvaViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var filtersCollection: UICollectionView!
@@ -22,6 +22,7 @@ class CanvaViewController: UIViewController {
     var model: CanvaViewModel = CanvaViewModel()
     
     var mainButton: UIBarButtonItem = UIBarButtonItem()
+    var cancelButton: UIBarButtonItem = UIBarButtonItem()
     
     var objects: [(view: UIView, clothe: Clothe)] = []
     
@@ -34,7 +35,8 @@ class CanvaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model.delegate = self
+        model.canvaDelegate = self
+        model.canvaNameDelegate = self
         
         nameFieldUnderline = CALayer()
         nameFieldUnderline!.frame = CGRectMake(0.0, nameField.frame.height - 8, nameField.frame.width, 1.0)
@@ -60,9 +62,15 @@ class CanvaViewController: UIViewController {
         modal.layer.shadowRadius = 2.0
         modal.clipsToBounds = false
         
-        mainButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(self.mainButtonPressed))
+        mainButton = UIBarButtonItem(image: model.mainButtonImage, style: .plain, target: self, action: #selector(self.mainButtonPressed))
         mainButton.tintColor = tintColor
+        
+        cancelButton = UIBarButtonItem(image: model.cancelButtonImage, style: .plain, target: self, action: #selector(cancelButtonPressed))
+        cancelButton.tintColor = tintColor
 
+        if model.loadedFromCanva {
+            model.load()
+        }
         setupState()
         
         self.tabBarController?.tabBar.layer.shadowColor = UIColor.lightGray.cgColor
@@ -88,7 +96,11 @@ class CanvaViewController: UIViewController {
     }
     
     @objc private func mainButtonPressed() {
-        model.buttonPressed()
+        model.mainButtonPressed()
+    }
+    
+    @objc private func cancelButtonPressed() {
+        model.cancelButtonPressed()
     }
 }
 
@@ -100,12 +112,46 @@ extension CanvaViewController : UIGestureRecognizerDelegate {
 }
 
 // MARK: - model delegate
-extension CanvaViewController : CanvaDelegate {
+extension CanvaViewController : CanvaDelegate, CanvaNameDelegate {
     var canvaName: String? { nameField.hasText ? nameField.text : nil }
-    var thumbnail: UIImage { canva.asImage() }
+    var thumbnail: UIImage {
+        
+        canva.asImage()
+        
+    }
+    
+    func reset() {
+        nameField.text = nil
+        for object in objects {
+            object.view.removeFromSuperview()
+        }
+        objects = []
+    }
+    
+    func loadFromCanva(clothes: [(clothe: Clothe, position: ClotheAtCanvaPosition)]) {
+        self.objects.forEach { (view: UIView, _: Clothe) in
+            view.removeFromSuperview()
+        }
+        self.objects = []
+        for (clothe, position) in clothes {
+            let image = UIImage(data: clothe.image ?? Data())
+            
+            let newObject = UIImageView(frame: .zero)
+            newObject.transform = position.transform
+            
+            self.canva.addSubview(newObject)
+            objects.append((newObject, clothe))
+            
+            newObject.contentMode = .scaleAspectFit
+            newObject.image = image
+            
+            newObject.frame = position.position
+            newObject.center = .init(x: position.position.midX, y: position.position.midY)
+        }
+        self.setupState()
+    }
     
     func segueToSaveModal() {
-        // TODO: - call segue to save modal, pass viewmodel to modal
          performSegue(withIdentifier: "toCreateCanva", sender: model)
     }
     
@@ -114,14 +160,23 @@ extension CanvaViewController : CanvaDelegate {
             guard let vc = segue.destination as? CreateCanvaViewController else { return }
             
             vc.model = model
+            vc.presentationController?.delegate = self
         }
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        self.take(cancelled: true)
     }
     
     func setupState() {
         nameField.isHidden = model.hideNameTextField
         nameLabel.isHidden = model.hideNameLabel
         
-        nameField.placeholder = model.canvaName
+        if model.loadedFromCanva {
+            nameField.text = model.canvaName
+        } else {
+            nameField.placeholder = model.canvaName
+        }
         nameLabel.text = model.canvaName
         
         mainButton.image = model.mainButtonImage
@@ -129,7 +184,11 @@ extension CanvaViewController : CanvaDelegate {
         switch model.state {
         case .visualization:
             canva.gestureRecognizers = []
-            navigationItem.rightBarButtonItems = [mainButton]
+            for object in objects {
+                object.view.gestureRecognizers = []
+            }
+            
+            navigationItem.setRightBarButtonItems([mainButton], animated: true)
         case .editing:
             let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate))
             rotate.cancelsTouchesInView = false
@@ -140,8 +199,12 @@ extension CanvaViewController : CanvaDelegate {
             pinch.cancelsTouchesInView = false
             pinch.delegate = self
             canva.addGestureRecognizer(pinch)
-
-            navigationItem.setRightBarButtonItems([mainButton], animated: true)
+            
+            for object in objects {
+                self.addGestureToView(object.view)
+            }
+            
+            navigationItem.setRightBarButtonItems([mainButton, cancelButton], animated: true)
         }
     }
 }
@@ -150,6 +213,17 @@ extension CanvaViewController : CanvaDelegate {
 extension CanvaViewController {
     private func bringToFront(_ object: UIView) {
         canva.bringSubviewToFront(object)
+    }
+    
+    private func addGestureToView(_ view: UIView) {
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        view.addGestureRecognizer(pan)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tap)
+        
+        view.isUserInteractionEnabled = true
+        view.isMultipleTouchEnabled = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -189,7 +263,9 @@ extension CanvaViewController {
                 object.center = convertedPos
             }
         } else {
-            objects.remove(at: objects.firstIndex(where: { $0.view == object })!)
+            let idx = objects.firstIndex(where: { $0.view == object })!
+            model.removeClotheFromCanva(objects[idx].clothe)
+            objects.remove(at: idx)
             object.removeFromSuperview()
         }
         
@@ -289,12 +365,6 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             model.toggleTag(tag)
             
             DispatchQueue.main.async { [weak self] in
-                
-                /*
-                 [self.collectionView performBatchUpdates:^{
-                     [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-                 } completion:nil];
-                 */
                 self?.filtersCollection.performBatchUpdates({
                     self?.filtersCollection.reloadSections(IndexSet(integer: 0))
                 })
@@ -323,17 +393,9 @@ extension CanvaViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
             newObject.frame = .init(origin: .init(x: canva.frame.width/2, y: canva.frame.height/2), size: image!.size)
             newObject.center = .init(x: canva.frame.width/2, y: canva.frame.height/2)
+            newObject.transform = newObject.transform.scaledBy(x: canva.frame.width/(3 * image!.size.width), y: canva.frame.width/(3 * image!.size.width))
             
-            newObject.isUserInteractionEnabled = true
-            newObject.isMultipleTouchEnabled = true
-            
-            let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-            newObject.addGestureRecognizer(pan)
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-            newObject.addGestureRecognizer(tap)
-            
-            newObject.layer.setValue(clothe, forKey: "clothe")
+            self.addGestureToView(newObject)
             
             return
         }
@@ -359,4 +421,19 @@ extension CanvaViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
     }
+}
+
+extension CanvaViewController : TakeControlDelegate {
+    func take(cancelled: Bool) {
+        if cancelled {
+            model.canvaNameDelegate = self
+        } else {
+            setupState()
+            model.canvaNameDelegate = self
+        }
+    }
+}
+
+protocol TakeControlDelegate {
+    func take(cancelled: Bool)
 }

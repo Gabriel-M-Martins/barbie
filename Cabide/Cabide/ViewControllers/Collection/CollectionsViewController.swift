@@ -99,7 +99,19 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
         if segue.identifier == "goToViewCollection" {
             guard let destination = segue.destination as? ViewCollectionViewController else { return }
             destination.folder = sender as? Folder
-        } else if segue.identifier == "toNewCollection" {
+            return
+        }
+        
+        if segue.identifier == "goToCanva" {
+            guard let navVc = segue.destination as? UINavigationController,
+                  let vc = navVc.topViewController as? CanvaViewController,
+                  let canva = sender as? Canva else { return }
+            
+            vc.model = CanvaViewModel(canva: canva, state: .visualization)
+            return
+        } 
+        
+        if segue.identifier == "toNewCollection" {
             guard let navVC = segue.destination as? UINavigationController,
                   let modalVC = navVC.viewControllers.first as? CreateCollectionViewController else { return }
             modalVC.delegate = self
@@ -108,8 +120,12 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension CollectionsViewController: HorizontalCarouselDelegate {
-    func goToSegue(folder: Folder?) {
+    func goToFolder(folder: Folder?) {
         performSegue(withIdentifier: "goToViewCollection", sender: folder)
+    }
+    
+    func goToCanva(canva: Canva) {
+        performSegue(withIdentifier: "goToCanva", sender: canva)
     }
 }
 

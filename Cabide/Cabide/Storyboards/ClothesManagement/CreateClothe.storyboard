@@ -10,124 +10,120 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create Clothe View Controller-->
+        <!--Nova peça-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="CreateClotheViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Nova peça" id="Y6W-OH-hqX" customClass="CreateClotheViewController" customModule="Cabide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-a6-kUj">
-                                <rect key="frame" x="20" y="86" width="353" height="700"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nova peça" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G68-fA-7as">
-                                        <rect key="frame" x="119.33333333333334" y="0.0" width="114.66666666666666" height="82"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0Ga-Ep-IRF">
-                                        <rect key="frame" x="41.666666666666657" y="162" width="270" height="270"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="270" id="9lZ-Mo-C8i"/>
-                                            <constraint firstAttribute="height" constant="270" id="KvA-ne-8m5"/>
-                                        </constraints>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rVR-7p-ORh">
-                                        <rect key="frame" x="0.0" y="512" width="353" height="188"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKW-zX-RMr">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="52"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="52" id="plR-vR-caJ"/>
-                                                </constraints>
-                                                <color key="tintColor" name="lilac"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Abrir galeria" cornerStyle="fixed">
-                                                    <backgroundConfiguration key="background" cornerRadius="8" strokeWidth="2">
-                                                        <color key="strokeColor" name="lilac"/>
-                                                    </backgroundConfiguration>
-                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="openGaleryPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="SY2-LF-d9M"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aI-lR-dIB">
-                                                <rect key="frame" x="0.0" y="68" width="353" height="52"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="353" id="6q9-Kl-rQj"/>
-                                                    <constraint firstAttribute="height" constant="52" id="8t9-1h-7vy"/>
-                                                </constraints>
-                                                <color key="tintColor" name="lilac"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Tirar foto" cornerStyle="fixed">
-                                                    <backgroundConfiguration key="background" cornerRadius="8" strokeWidth="2">
-                                                        <color key="strokeColor" name="lilac"/>
-                                                    </backgroundConfiguration>
-                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="openCameraPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ySo-SK-1Bi"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XA8-D4-Ida">
-                                                <rect key="frame" x="0.0" y="136" width="353" height="52"/>
-                                                <color key="tintColor" name="lilac"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Salvar" cornerStyle="fixed">
-                                                    <backgroundConfiguration key="background" cornerRadius="8"/>
-                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="saveButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qq2-D3-nDY"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="188" id="P01-Vr-SC7"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="260" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="95J-sX-ojB">
+                                <rect key="frame" x="20" y="504" width="353" height="142"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="ln7-bz-UcB">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0Ga-Ep-IRF">
+                                <rect key="frame" x="20" y="119" width="353" height="353"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="353" id="PWd-Zr-PE7"/>
-                                    <constraint firstItem="rVR-7p-ORh" firstAttribute="top" secondItem="0Ga-Ep-IRF" secondAttribute="bottom" constant="80" id="Tb6-O0-GMz"/>
-                                    <constraint firstItem="0Ga-Ep-IRF" firstAttribute="top" secondItem="G68-fA-7as" secondAttribute="bottom" constant="80" id="fbK-GX-QiA"/>
-                                    <constraint firstItem="0Ga-Ep-IRF" firstAttribute="top" secondItem="G68-fA-7as" secondAttribute="bottom" constant="80" id="rDf-jd-5Ee"/>
-                                    <constraint firstAttribute="height" constant="700" id="tvQ-CX-mrk"/>
-                                    <constraint firstItem="G68-fA-7as" firstAttribute="top" secondItem="a7x-a6-kUj" secondAttribute="top" id="vNi-p3-SMJ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="125" id="cKz-LP-X5z"/>
+                                    <constraint firstAttribute="width" secondItem="0Ga-Ep-IRF" secondAttribute="height" multiplier="1:1" id="vVp-JX-HrW"/>
                                 </constraints>
-                            </stackView>
+                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="IuL-fO-J2h">
-                                <rect key="frame" x="178" y="350" width="37" height="60"/>
+                                <rect key="frame" x="178" y="277" width="37" height="37"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKW-zX-RMr">
+                                <rect key="frame" x="20" y="662" width="353" height="40"/>
+                                <color key="tintColor" name="lilac"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Abrir galeria" cornerStyle="fixed">
+                                    <backgroundConfiguration key="background" cornerRadius="8" strokeWidth="2">
+                                        <color key="strokeColor" name="lilac"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="openGaleryPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="SY2-LF-d9M"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XA8-D4-Ida">
+                                <rect key="frame" x="20" y="758" width="353" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RtC-FK-YfN"/>
+                                </constraints>
+                                <color key="tintColor" name="lilac"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Salvar" cornerStyle="fixed">
+                                    <backgroundConfiguration key="background" cornerRadius="8"/>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qq2-D3-nDY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aI-lR-dIB">
+                                <rect key="frame" x="20" y="710" width="353" height="40"/>
+                                <color key="tintColor" name="lilac"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Tirar foto" cornerStyle="fixed">
+                                    <backgroundConfiguration key="background" cornerRadius="8" strokeWidth="2">
+                                        <color key="strokeColor" name="lilac"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="openCameraPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ySo-SK-1Bi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="a7x-a6-kUj" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="dnI-KO-nmh"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="a7x-a6-kUj" secondAttribute="bottom" constant="32" id="iTs-aP-E50"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="IuL-fO-J2h" secondAttribute="bottom" constant="408" id="rd7-C9-2Mh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AKW-zX-RMr" secondAttribute="trailing" constant="20" id="34F-sQ-27F"/>
+                            <constraint firstItem="4aI-lR-dIB" firstAttribute="top" secondItem="AKW-zX-RMr" secondAttribute="bottom" constant="8" id="669-oq-5od"/>
+                            <constraint firstItem="AKW-zX-RMr" firstAttribute="height" secondItem="XA8-D4-Ida" secondAttribute="height" id="7Ho-kw-O1x"/>
+                            <constraint firstItem="XA8-D4-Ida" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Atn-64-oSE"/>
+                            <constraint firstItem="0Ga-Ep-IRF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="DD8-JW-67k"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4aI-lR-dIB" secondAttribute="trailing" constant="20" id="HPC-9Y-Psq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="95J-sX-ojB" secondAttribute="trailing" constant="20" id="HYC-AJ-ST1"/>
+                            <constraint firstItem="4aI-lR-dIB" firstAttribute="height" secondItem="XA8-D4-Ida" secondAttribute="height" id="I9g-Cd-qFc"/>
+                            <constraint firstItem="0Ga-Ep-IRF" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="J8W-s5-l79"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XA8-D4-Ida" secondAttribute="trailing" constant="20" id="M8I-b6-rjF"/>
+                            <constraint firstItem="XA8-D4-Ida" firstAttribute="top" secondItem="4aI-lR-dIB" secondAttribute="bottom" constant="8" id="NAB-yd-fJu"/>
+                            <constraint firstItem="4aI-lR-dIB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Tgu-f9-yy2"/>
+                            <constraint firstItem="95J-sX-ojB" firstAttribute="top" secondItem="0Ga-Ep-IRF" secondAttribute="bottom" constant="32" id="U30-Cr-TOf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0Ga-Ep-IRF" secondAttribute="trailing" constant="20" id="awY-qN-N85"/>
+                            <constraint firstItem="IuL-fO-J2h" firstAttribute="centerY" secondItem="0Ga-Ep-IRF" secondAttribute="centerY" id="g5V-zU-yJN"/>
+                            <constraint firstItem="AKW-zX-RMr" firstAttribute="top" secondItem="95J-sX-ojB" secondAttribute="bottom" constant="16" id="jGf-Zw-15e"/>
+                            <constraint firstItem="95J-sX-ojB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="pgU-cG-dVB"/>
                             <constraint firstItem="IuL-fO-J2h" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="uiX-0W-ha4"/>
-                            <constraint firstItem="IuL-fO-J2h" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="247" id="zrL-pn-HCv"/>
+                            <constraint firstItem="AKW-zX-RMr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="yic-UI-mY5"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="XA8-D4-Ida" secondAttribute="bottom" constant="20" id="zsL-iO-4Hm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="U4h-lr-Zet"/>
+                    <navigationItem key="navigationItem" title="Nova peça" id="U4h-lr-Zet"/>
                     <connections>
                         <outlet property="clotheImage" destination="0Ga-Ep-IRF" id="efj-RR-gE7"/>
                         <outlet property="loading" destination="IuL-fO-J2h" id="vTP-Eq-eod"/>
                         <outlet property="saveButton" destination="XA8-D4-Ida" id="5Ff-aG-wQo"/>
+                        <outlet property="tagsCollection" destination="95J-sX-ojB" id="Yvc-Pn-UKH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1066.4122137404579" y="4.9295774647887329"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nova peça-->
         <scene sceneID="RSf-zm-jBd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zu8-sV-laB" sceneMemberID="viewController">
+                <navigationController title="Nova peça" automaticallyAdjustsScrollViewInsets="NO" id="Zu8-sV-laB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LeD-xz-Yvu">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
