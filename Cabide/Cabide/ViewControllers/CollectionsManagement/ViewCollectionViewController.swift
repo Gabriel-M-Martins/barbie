@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ViewCollectionViewController: UIViewController, UIAdaptivePresentationControllerDelegate, CreateCollectionDelegate, UpdateCollectionDelegate, UINavigationControllerDelegate {
-
+class ViewCollectionViewController: UIViewController, UIAdaptivePresentationControllerDelegate, UpdateCollectionDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleCollection: UINavigationItem!
     
@@ -25,7 +25,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if folder == nil {
             titleCollection.title = "Todos os looks"
             canvas = model.canvas
@@ -125,9 +125,15 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
     
     func didUpdateData() {
         model.service.fetch()
-        print("didUpdate")
+        folder = model.folders.first(where: { $0.id == folder?.id ?? UUID() })
         canvas = model.getCanvasFolder(folder ?? Folder())
+        titleCollection.title = folder?.name ?? "Todos os looks"
         self.collectionView.reloadData()
+        
+    }
+    
+    func didDeleteData() {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func editCollection(_ sender: Any) {
@@ -136,14 +142,12 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToUpdate" {
-            guard let navVC = segue.destination as? UINavigationController,
-                  let modalVC = navVC.viewControllers.first as? UpdateCollectionViewController else { return }
+            guard let modalVC = segue.destination as? UpdateCollectionViewController else { return }
             modalVC.delegate = self
-            navVC.delegate = self
             modalVC.folder = sender as? Folder
         }
     }
-
+    
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         model.service.fetch()
         DispatchQueue.main.async {
