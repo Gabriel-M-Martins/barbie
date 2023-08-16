@@ -129,27 +129,25 @@ extension UpdateCollectionViewController: UICollectionViewDelegate, UICollection
 
 extension UpdateCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let columns: CGFloat = 3
-        let spacing: CGFloat = 0
+        let spacing: CGFloat = 8
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
-        
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 16) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth)
         return itemSize
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
 }
 
