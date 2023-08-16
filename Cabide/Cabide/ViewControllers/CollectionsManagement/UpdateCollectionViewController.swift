@@ -1,23 +1,27 @@
 //
-//  CreateCollectionViewController.swift
+//  UpdateCollectionViewController.swift
 //  Cabide
 //
-//  Created by Luana Tais Thomas on 08/08/23.
+//  Created by Luana Tais Thomas on 15/08/23.
 //
 
 import UIKit
 
-class CreateCollectionViewController: UIViewController {
+class UpdateCollectionViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var looksLabel: UILabel!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    
     @IBOutlet weak var nameTextfield: UITextField!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    weak var delegate: CreateCollectionDelegate?
-
+    weak var delegate: UpdateCollectionDelegate?
+    
+    var folder: Folder?
+    
     let clotheCard = UINib(nibName: "ClotheCard", bundle: nil)
     
     var canvaModel: CanvaViewModel = CanvaViewModel()
@@ -28,7 +32,7 @@ class CreateCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        button.isEnabled = false
+        selectedsCanva = collectionModel.getCanvasFolder(folder ?? Folder()) ?? []
         
         let customFonts = CustomFonts()
         
@@ -43,9 +47,13 @@ class CreateCollectionViewController: UIViewController {
         
         nameTextfield.font = customFonts.customFontLabel
         nameTextfield.adjustsFontForContentSizeCategory = true
+        nameTextfield.text = folder?.name
         
-        button.titleLabel?.font = customFonts.customFontLabel
-        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        saveButton.titleLabel?.font = customFonts.customFontLabel
+        saveButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        
+        deleteButton.titleLabel?.font = customFonts.customFontLabel
+        deleteButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -57,21 +65,18 @@ class CreateCollectionViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
-    func updateButtonStatus () {
-        button.isEnabled = nameTextfield.hasText
-    }
-    
-    
-    @IBAction func updateButton(_ sender: Any) {
-        updateButtonStatus()
-    }
-    
     @IBAction func saveButtonPressed(_ sender: Any) {
-        collectionModel.createCollection(name: nameTextfield.text ?? "", canvas: selectedsCanva)
+        collectionModel.updateCollection(id: folder?.id ?? UUID(), name: nameTextfield.text ?? "", canvas: selectedsCanva)
         delegate?.didUpdateData()
         dismiss(animated: true, completion: nil)
-
     }
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        collectionModel.deleteCollection(id: folder?.id ?? UUID())
+        dismiss(animated: true, completion: nil)
+        self.delegate?.didDeleteData()
+    }
+    
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
@@ -79,10 +84,8 @@ class CreateCollectionViewController: UIViewController {
     
 }
 
-
-
 // MARK: - Collection View
-extension CreateCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension UpdateCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
@@ -112,7 +115,7 @@ extension CreateCollectionViewController: UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? ClotheCard
         let canva = canvaModel.canvas[indexPath.row]
-
+        
         if selectedsCanva.contains(canva) {
             cell?.deselect()
             selectedsCanva.remove(at: selectedsCanva.firstIndex(of: canva) ?? 0)
@@ -124,7 +127,7 @@ extension CreateCollectionViewController: UICollectionViewDelegate, UICollection
     
 }
 
-extension CreateCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension UpdateCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let columns: CGFloat = 3
         let spacing: CGFloat = 8
@@ -148,6 +151,8 @@ extension CreateCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-protocol CreateCollectionDelegate: AnyObject {
+protocol UpdateCollectionDelegate: AnyObject {
     func didUpdateData()
+    func didDeleteData()
 }
+

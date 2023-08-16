@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionsViewController: UIViewController {
+class CollectionsViewController: UIViewController, CreateCollectionDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +21,7 @@ class CollectionsViewController: UIViewController {
         
         let carousel = UINib(nibName: "HorizontalCarouselTableViewCell", bundle: nil)
         self.tableView.register(carousel, forCellReuseIdentifier: "carouselcell")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +30,16 @@ class CollectionsViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    func didUpdateData() {
+        viewModel.service.fetch()
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func createCollection(_ sender: Any) {
+        performSegue(withIdentifier: "toNewCollection", sender: nil)
+    }
+
 }
 
 extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -98,6 +109,12 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
             
             vc.model = CanvaViewModel(canva: canva, state: .visualization)
             return
+        } 
+        
+        if segue.identifier == "toNewCollection" {
+            guard let navVC = segue.destination as? UINavigationController,
+                  let modalVC = navVC.viewControllers.first as? CreateCollectionViewController else { return }
+            modalVC.delegate = self
         }
     }
 }

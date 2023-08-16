@@ -20,11 +20,11 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loI-W0-Kl2" userLabel="Background">
-                        <rect key="frame" x="2" y="2" width="46" height="46"/>
+                        <rect key="frame" x="2" y="2" width="46" height="44"/>
                         <color key="backgroundColor" name="LightGray"/>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tshirt" translatesAutoresizingMaskIntoConstraints="NO" id="TQd-hg-24X">
-                        <rect key="frame" x="2" y="2" width="46" height="46"/>
+                        <rect key="frame" x="4" y="2" width="42" height="44"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jdA-wU-R76">
@@ -35,11 +35,11 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="loI-W0-Kl2" firstAttribute="width" secondItem="TQd-hg-24X" secondAttribute="width" id="KqI-ya-tAn"/>
-                <constraint firstAttribute="trailing" secondItem="TQd-hg-24X" secondAttribute="trailing" constant="2" id="MCS-oZ-2qN"/>
-                <constraint firstItem="TQd-hg-24X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="Pvm-H0-d70"/>
+                <constraint firstItem="loI-W0-Kl2" firstAttribute="width" secondItem="TQd-hg-24X" secondAttribute="width" constant="4" id="KqI-ya-tAn"/>
+                <constraint firstAttribute="trailing" secondItem="TQd-hg-24X" secondAttribute="trailing" constant="4" id="MCS-oZ-2qN"/>
+                <constraint firstItem="TQd-hg-24X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="Pvm-H0-d70"/>
                 <constraint firstItem="loI-W0-Kl2" firstAttribute="centerY" secondItem="TQd-hg-24X" secondAttribute="centerY" id="Rhv-VX-lbs"/>
-                <constraint firstAttribute="bottom" secondItem="TQd-hg-24X" secondAttribute="bottom" constant="2" id="Twk-4L-8Gb"/>
+                <constraint firstAttribute="bottom" secondItem="TQd-hg-24X" secondAttribute="bottom" constant="4" id="Twk-4L-8Gb"/>
                 <constraint firstItem="jdA-wU-R76" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="WEb-xa-vYB"/>
                 <constraint firstItem="loI-W0-Kl2" firstAttribute="centerX" secondItem="TQd-hg-24X" secondAttribute="centerX" id="fC0-j2-hTv"/>
                 <constraint firstItem="loI-W0-Kl2" firstAttribute="height" secondItem="TQd-hg-24X" secondAttribute="height" id="fWw-xs-Zn6"/>

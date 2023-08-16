@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ViewCollectionViewController: UIViewController, UIAdaptivePresentationControllerDelegate, CreateCollectionDelegate {
-
+class ViewCollectionViewController: UIViewController, UIAdaptivePresentationControllerDelegate, UpdateCollectionDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleCollection: UINavigationItem!
     
-    let canvaCard = UINib(nibName: "LargeCard", bundle: nil)
+    let canvaCard = UINib(nibName: "ClotheCard", bundle: nil)
     
     var folder: Folder?
     var canvas: [Canva]?
@@ -25,21 +25,23 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if folder == nil {
             titleCollection.title = "Todos os looks"
             canvas = model.canvas
             type = 1
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            navigationItem.rightBarButtonItem?.tintColor = .clear
+            navigationItem.rightBarButtonItem?.title = ""
         } else {
             titleCollection.title = folder?.name ?? "Todos os looks"
             canvas = model.getCanvasFolder(folder ?? Folder())
         }
         
-
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.register(canvaCard, forCellWithReuseIdentifier: "largeCard")
+        collectionView.register(canvaCard, forCellWithReuseIdentifier: "clotheCard")
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGesture?.delegate = self
@@ -80,7 +82,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
             } else {
                 isExclusionModeEnabled = false
                 for cell in collectionView.visibleCells {
-                    if let clothingCell = cell as? LargeCard {
+                    if let clothingCell = cell as? ClotheCard {
                         clothingCell.hideDeleteIcon()
                     }
                 }
@@ -94,7 +96,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
             self.tapGesture?.isEnabled = false
             isExclusionModeEnabled = true
             for cell in collectionView.visibleCells {
-                if let clothingCell = cell as? LargeCard {
+                if let clothingCell = cell as? ClotheCard {
                     clothingCell.showDeleteIcon()
                 }
             }
@@ -111,7 +113,7 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
         model.service.fetch()
         isExclusionModeEnabled = false
         for cell in collectionView.visibleCells {
-            if let clothingCell = cell as? LargeCard {
+            if let clothingCell = cell as? ClotheCard {
                 clothingCell.hideDeleteIcon()
             }
         }
@@ -121,21 +123,29 @@ class ViewCollectionViewController: UIViewController, UIAdaptivePresentationCont
         }
     }
     
-    @IBAction func editCollection(_ sender: Any) {
-        //performSegue(withIdentifier: "", sender: nil)
+    func didUpdateData() {
+        model.service.fetch()
+        folder = model.folders.first(where: { $0.id == folder?.id ?? UUID() })
+        canvas = model.getCanvasFolder(folder ?? Folder())
+        titleCollection.title = folder?.name ?? "Todos os looks"
+        self.collectionView.reloadData()
+        
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "" {
-//            guard let navVC = segue.destination as? UINavigationController,
-//                  let modalVC = navVC.viewControllers.first as? CreateCollectionViewController else { return }
-//            navVC.presentationController?.delegate = self
-//            modalVC.delegate = self
-//        }
-//    }
-//
-    func didUpdateData() {
-        self.collectionView.reloadData()
+    func didDeleteData() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func editCollection(_ sender: Any) {
+        performSegue(withIdentifier: "goToUpdate", sender: folder)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToUpdate" {
+            guard let modalVC = segue.destination as? UpdateCollectionViewController else { return }
+            modalVC.delegate = self
+            modalVC.folder = sender as? Folder
+        }
     }
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
@@ -167,13 +177,12 @@ extension ViewCollectionViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "largeCard", for: indexPath) as? LargeCard
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard
         
         let canva = canvas?[indexPath.row]
         let image = UIImage(data: canva?.thumbnail ?? Data())
         
-        cell?.imageView.image = image
+        cell?.image.image = image
         
         return cell ?? UICollectionViewCell()
     }
@@ -181,26 +190,24 @@ extension ViewCollectionViewController: UICollectionViewDelegate, UICollectionVi
 
 extension ViewCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let columns: CGFloat = 3
-        let spacing: CGFloat = 0
+        let spacing: CGFloat = 8
         let totalHorizontalSpacing: CGFloat = (columns - 1.0) * spacing
-        
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth * 1.2)
+
+        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing - 32 - 40) / columns
+        let itemSize = CGSize(width: itemWidth, height: itemWidth)
         return itemSize
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 16
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }

@@ -25,11 +25,15 @@ class CanvaViewModel {
         if selectedTags.count == 0 { return ClotheService.data }
         
         return ClotheService.data.filter { clothe in
-            guard let tags = clothe.tags,
-                  tags.count > 0 else { return false }
-            
-            return NSSet(array: selectedTags).isSubset(of: tags as! Set<AnyHashable>)
+            (clothe.tags?.allObjects as? [Tag])?.contains(where: { selectedTags.contains($0)} ) ?? false
         }
+        
+//        return ClotheService.data.filter { clothe in
+//            guard let tags = clothe.tags,
+//                  tags.count > 0 else { return false }
+//
+//            return NSSet(array: selectedTags).isSubset(of: tags as! Set<AnyHashable>)
+//        }
     }
     
     var tags: [Tag] {
