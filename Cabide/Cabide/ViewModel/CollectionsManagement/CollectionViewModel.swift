@@ -18,6 +18,11 @@ class CollectionViewModel {
     
     func deleteCollection(id: UUID) {
         if let collection = folders.first(where: { $0.id == id }) {
+            
+            for canva in getCanvasFolder(collection) ?? [Canva()]{
+                removeCanva(id: collection.id ?? UUID(), canva: canva)
+            }
+    
             service.viewContext.delete(collection)
             service.update()
         }

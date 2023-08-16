@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BX2-w8-BIo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -19,25 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaP-YM-an3">
-                                <rect key="frame" x="20" y="734" width="353" height="52"/>
+                                <rect key="frame" x="207" y="734" width="166" height="52"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="353" id="O7g-JY-N4l"/>
+                                    <constraint firstAttribute="width" constant="166" id="O7g-JY-N4l"/>
                                     <constraint firstAttribute="height" constant="52" id="wrL-uL-glB"/>
                                 </constraints>
                                 <color key="tintColor" name="lilac"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" cornerStyle="fixed">
+                                <buttonConfiguration key="configuration" style="filled" title="Salvar" cornerStyle="fixed">
                                     <backgroundConfiguration key="background" cornerRadius="8"/>
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Salvar">
-                                            <attributes>
-                                                <font key="NSFont" metaFont="system" size="18"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="saveButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zz6-Sa-eB3"/>
+                                    <action selector="saveButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="PqZ-dK-Roe"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xAT-hp-Zsl">
@@ -47,7 +41,7 @@
                                     <constraint firstAttribute="height" constant="353" id="84z-ly-WQW"/>
                                     <constraint firstAttribute="width" constant="373" id="QBf-cK-xjr"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Az2-4c-JXy">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Az2-4c-JXy">
                                     <size key="itemSize" width="120" height="140"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -91,6 +85,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jl-E1-yHS">
+                                <rect key="frame" x="20" y="734" width="166" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="Ak9-Vn-joa"/>
+                                    <constraint firstAttribute="width" constant="166" id="Bsz-05-IHv"/>
+                                </constraints>
+                                <color key="tintColor" name="lilac"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Deletar" cornerStyle="fixed">
+                                    <backgroundConfiguration key="background" cornerRadius="8" strokeWidth="2">
+                                        <color key="strokeColor" name="lilac"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Peq-XU-zoF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -99,16 +111,18 @@
                             <constraint firstItem="ctw-4U-tBA" firstAttribute="top" secondItem="7Pq-ey-yYP" secondAttribute="bottom" constant="24" id="6hN-St-YhM"/>
                             <constraint firstItem="9LT-ZE-gYF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="7Hx-3W-vPS"/>
                             <constraint firstItem="64e-GG-f8O" firstAttribute="top" secondItem="9LT-ZE-gYF" secondAttribute="bottom" constant="16" id="7l0-8t-RnJ"/>
+                            <constraint firstItem="2jl-E1-yHS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="KfS-5F-a7r"/>
                             <constraint firstItem="xAT-hp-Zsl" firstAttribute="top" secondItem="64e-GG-f8O" secondAttribute="bottom" constant="16" id="LJW-Yi-Szm"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="gaP-YM-an3" secondAttribute="bottom" constant="32" id="LaJ-y4-JIn"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7Pq-ey-yYP" secondAttribute="trailing" constant="20" id="PjO-rQ-jtp"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="2jl-E1-yHS" secondAttribute="bottom" constant="32" id="Tfa-vg-6hv"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ctw-4U-tBA" secondAttribute="trailing" constant="20" id="VqB-4k-9ss"/>
                             <constraint firstItem="9LT-ZE-gYF" firstAttribute="top" secondItem="ctw-4U-tBA" secondAttribute="bottom" constant="16" id="ZfR-fv-tSz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9LT-ZE-gYF" secondAttribute="trailing" constant="20" id="a5W-7s-ZCY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gaP-YM-an3" secondAttribute="trailing" constant="20" id="fTV-DQ-wIW"/>
                             <constraint firstItem="xAT-hp-Zsl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="hd1-Dx-jqU"/>
                             <constraint firstItem="64e-GG-f8O" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="j4i-gS-Jj3"/>
                             <constraint firstItem="ctw-4U-tBA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="kTm-sy-21v"/>
-                            <constraint firstItem="gaP-YM-an3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="m0p-zN-xzw"/>
                             <constraint firstItem="gaP-YM-an3" firstAttribute="top" secondItem="xAT-hp-Zsl" secondAttribute="bottom" constant="16" id="qFS-hf-3kc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="64e-GG-f8O" secondAttribute="trailing" constant="20" id="ucp-i5-6TZ"/>
                             <constraint firstItem="7Pq-ey-yYP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="vf6-Qm-r3U"/>
@@ -116,35 +130,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="Vbz-pP-OwD"/>
                     <connections>
-                        <outlet property="button" destination="gaP-YM-an3" id="IOP-mO-g8h"/>
                         <outlet property="collectionView" destination="xAT-hp-Zsl" id="O6A-mh-vkG"/>
+                        <outlet property="deleteButton" destination="2jl-E1-yHS" id="bV2-4S-IEz"/>
                         <outlet property="looksLabel" destination="64e-GG-f8O" id="eSa-iJ-8zi"/>
                         <outlet property="nameLabel" destination="ctw-4U-tBA" id="AOc-BP-70V"/>
                         <outlet property="nameTextfield" destination="9LT-ZE-gYF" id="t8K-Po-HUs"/>
+                        <outlet property="saveButton" destination="gaP-YM-an3" id="0uA-IQ-hh9"/>
                         <outlet property="titleLabel" destination="7Pq-ey-yYP" id="jDe-nG-kF3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="932.06106870229007" y="-2.1126760563380285"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="oX9-qc-Fl9">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BX2-w8-BIo" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VYe-gC-8yr">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="qFV-4S-6ms"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HXN-lG-Zx2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5.343511450381679" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
