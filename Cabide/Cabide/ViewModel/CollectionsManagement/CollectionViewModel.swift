@@ -23,9 +23,20 @@ class CollectionViewModel {
         }
     }
     
-    func updateCollection(id: UUID, name: String?){
+    func updateCollection(id: UUID, name: String?, canvas: [Canva]){
         if let collection = folders.first(where: { $0.id == id}) {
             collection.name = name
+            service.update()
+
+            for canva in getCanvasFolder(collection) ?? [Canva()]{
+                removeCanva(id: collection.id ?? UUID(), canva: canva)
+            }
+            
+            for canva in canvas {
+                addCanva(id: collection.id ?? UUID(), canva: canva)
+            }
+            
+            service.update()
         }
     }
     
@@ -62,9 +73,27 @@ class CollectionViewModel {
     func removeCanva(id: UUID, canva: Canva) {
         if let collection = folders.first(where: { $0.id == id }) {
 
-            
+            if let mutableCanvasSet = collection.mutableSetValue(forKey: "canvas") as? NSMutableSet,
+               let mutableFolderSet = canva.mutableSetValue(forKey: "folders") as? NSMutableSet {
+                mutableCanvasSet.remove(canva)
+                mutableFolderSet.remove(collection)
+            }
+
             service.update()
         }
+    }
+    
+    func removeAllCanva(canva: Canva) {
+        serviceCanvas.viewContext.delete(canva)
+        serviceCanvas.update()
+        service.update()
+    }
+    
+    func getRecentCanvas() -> [Canva]? {
+        guard self.canvas != nil else {
+            return []
+        }
+        return canvas
     }
     
     func getCanvasFolder(_ folder: Folder) -> [Canva]? {

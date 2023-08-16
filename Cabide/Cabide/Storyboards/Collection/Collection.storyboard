@@ -37,7 +37,8 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IVU-6o-FyT">
                             <color key="tintColor" name="Roxo"/>
                             <connections>
-                                <segue destination="Dqx-eH-cwv" kind="presentation" id="TR0-NJ-TY1"/>
+                                <action selector="createCollection:" destination="Y6W-OH-hqX" id="Er1-vT-cv8"/>
+                                <segue destination="Dqx-eH-cwv" kind="presentation" identifier="toNewCollection" id="TR0-NJ-TY1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
