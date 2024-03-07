@@ -41,7 +41,7 @@ class ClotheViewModel {
     
     func deleteClothe(id: UUID) {
         if let clothe = ClotheService.data.first(where: { $0.id == id }) {
-            service.viewContext.delete(clothe)
+            clothe.active = false
             service.update()
         }
     }

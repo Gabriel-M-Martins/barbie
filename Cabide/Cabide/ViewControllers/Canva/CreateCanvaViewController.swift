@@ -81,6 +81,7 @@ class CreateCanvaViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         model?.save()
+        dismissKeyboard()
         self.presentingViewController?.dismiss(animated: true) { [weak self] in
             self?.controlDelegate?.take(cancelled: false)
         }

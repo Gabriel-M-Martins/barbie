@@ -7,8 +7,7 @@
 
 import UIKit
 
-class CollectionsViewController: UIViewController, CreateCollectionDelegate {
-    
+class CollectionsViewController: UIViewController, CreateCollectionDelegate, CanvaDismissDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel: CollectionViewModel = CollectionViewModel()
@@ -40,6 +39,9 @@ class CollectionsViewController: UIViewController, CreateCollectionDelegate {
         performSegue(withIdentifier: "toNewCollection", sender: nil)
     }
 
+    func didDismissCanva() {
+        didUpdateData()
+    }
 }
 
 extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -99,6 +101,7 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
         if segue.identifier == "goToViewCollection" {
             guard let destination = segue.destination as? ViewCollectionViewController else { return }
             destination.folder = sender as? Folder
+            
             return
         }
         
@@ -108,6 +111,8 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
                   let canva = sender as? Canva else { return }
             
             vc.model = CanvaViewModel(canva: canva, state: .visualization)
+            vc.dismissDelegate = self
+            
             return
         } 
         
@@ -115,6 +120,7 @@ extension CollectionsViewController: UITableViewDelegate, UITableViewDataSource 
             guard let navVC = segue.destination as? UINavigationController,
                   let modalVC = navVC.viewControllers.first as? CreateCollectionViewController else { return }
             modalVC.delegate = self
+            
             return
         }
     }
@@ -139,4 +145,9 @@ extension UITableViewCell {
   func showSeparator() {
     self.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
   }
+}
+
+
+protocol CanvaDismissDelegate {
+    func didDismissCanva()
 }

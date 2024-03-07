@@ -213,7 +213,8 @@ class CanvaViewModel {
         }
         
         canvaService.update()
-        reset()
+        updateState()
+//        reset()
     }
     
     func reset() {

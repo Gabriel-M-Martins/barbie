@@ -26,6 +26,8 @@ class CanvaViewController: UIViewController, UIAdaptivePresentationControllerDel
     
     var objects: [(view: UIView, clothe: Clothe)] = []
     
+    var dismissDelegate: CanvaDismissDelegate? = nil
+    
     private var activeObject: UIView?
     private var touch: UITouch?
     private var nameFieldUnderline: CALayer?
@@ -65,7 +67,7 @@ class CanvaViewController: UIViewController, UIAdaptivePresentationControllerDel
         mainButton = UIBarButtonItem(image: model.mainButtonImage, style: .plain, target: self, action: #selector(self.mainButtonPressed))
         mainButton.tintColor = tintColor
         
-        cancelButton = UIBarButtonItem(image: model.cancelButtonImage, style: .plain, target: self, action: #selector(cancelButtonPressed))
+        cancelButton = UIBarButtonItem(image: model.cancelButtonImage, style: .plain, target: self, action: #selector(self.cancelButtonPressed))
         cancelButton.tintColor = tintColor
 
         if model.loadedFromCanva {
@@ -82,6 +84,11 @@ class CanvaViewController: UIViewController, UIAdaptivePresentationControllerDel
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dismissDelegate?.didDismissCanva()
     }
     
     @objc func dismissKeyboard() {
@@ -104,20 +111,11 @@ class CanvaViewController: UIViewController, UIAdaptivePresentationControllerDel
     }
 }
 
-// MARK: - multi-gesture input
-extension CanvaViewController : UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        true
-    }
-}
-
 // MARK: - model delegate
 extension CanvaViewController : CanvaDelegate, CanvaNameDelegate {
     var canvaName: String? { nameField.hasText ? nameField.text : nil }
     var thumbnail: UIImage {
-        
         canva.asImage()
-        
     }
     
     func reset() {
@@ -206,7 +204,19 @@ extension CanvaViewController : CanvaDelegate, CanvaNameDelegate {
             }
             
             navigationItem.setRightBarButtonItems([mainButton, cancelButton], animated: true)
+            
+            model.clotheService.fetch()
+            DispatchQueue.main.async {
+                self.clothesCollection.reloadData()
+            }
         }
+    }
+}
+
+// MARK: - multi-gesture input
+extension CanvaViewController : UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
     }
 }
 

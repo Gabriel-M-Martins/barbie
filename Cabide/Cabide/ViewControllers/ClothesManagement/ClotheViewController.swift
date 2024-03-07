@@ -139,26 +139,22 @@ extension ClotheViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.clothes.count
+        model.clothes.filter( { $0.active } ).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "clotheCard", for: indexPath) as? ClotheCard
         
-        let clothe = model.clothes[indexPath.row]
+        let clothe = model.clothes.filter( { $0.active } )[indexPath.row]
         let image = UIImage(data: clothe.image ?? Data())
         
         cell?.image.image = image
         
         if isExclusionModeEnabled {
-            if let clothingCell = cell as? ClotheCard {
-                clothingCell.showDeleteIcon()
-            }
+            cell?.showDeleteIcon()
         } else {
-            if let clothingCell = cell as? ClotheCard {
-                clothingCell.hideDeleteIcon()
-            }
+            cell?.hideDeleteIcon()
         }
         
         
