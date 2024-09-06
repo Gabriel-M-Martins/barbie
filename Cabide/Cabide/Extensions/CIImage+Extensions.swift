@@ -60,7 +60,9 @@ extension CIImage {
             }
         }
 
-        let data = Data(buffer: UnsafeBufferPointer(start: &cubeRGB, count: cubeRGB.count))
+        let data = withExtendedLifetime(cubeRGB) {
+            Data(buffer: UnsafeBufferPointer(start: &cubeRGB, count: cubeRGB.count))
+        }
 
         let colorCubeFilter = CIFilter(
             name: "CIColorCube",
