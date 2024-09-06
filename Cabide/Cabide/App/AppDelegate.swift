@@ -67,13 +67,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let group = DispatchGroup()
             
             for idx in 1...21 {
+                let img_data = UIImage(named: "image \(idx)")?.croppedToOpaque()?.pngData()
+                
                 group.enter()
                 
                 let closure: () -> Void = {
                     let clothe = Clothe(context: clotheService.viewContext)
                     clothe.id = .init()
-                    clothe.image = UIImage(named: "image \(idx)")?.croppedToOpaque()?.pngData()
-                    clothes.append(clothe)
+                    clothe.image = img_data
+                    
+                    DispatchQueue.main.sync {
+                        clothes.append(clothe)
+                    }
                     
                     group.leave()
                 }
@@ -156,8 +161,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 clotheService.update()
             }
-            
-            Thread.sleep(forTimeInterval: 5)
         }
         
         return true
