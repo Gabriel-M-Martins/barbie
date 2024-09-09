@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         DispatchQueue.global(qos: .userInitiated).async {
             _ = UIImage(named: "logo")?.removeBackground()
         }
@@ -26,19 +25,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
         
+        let context = DataController.shared.viewContext //DataController.shared.container.newBackgroundContext()
+        
         var tagService = TagService.build()
         if TagService.data.count == 0 {
-            let cold = Tag(context: DataController.shared.viewContext)
-            let hot = Tag(context: DataController.shared.viewContext)
-            let rainy = Tag(context: DataController.shared.viewContext)
-            let sunny = Tag(context: DataController.shared.viewContext)
-            let events = Tag(context: DataController.shared.viewContext)
-            let formal = Tag(context: DataController.shared.viewContext)
-            let casual = Tag(context: DataController.shared.viewContext)
-            let party = Tag(context: DataController.shared.viewContext)
-            let vacation = Tag(context: DataController.shared.viewContext)
-            let sports = Tag(context: DataController.shared.viewContext)
-            let beach = Tag(context: DataController.shared.viewContext)
+            let cold =     Tag(context: context)
+            let hot =      Tag(context: context)
+            let rainy =    Tag(context: context)
+            let sunny =    Tag(context: context)
+            let events =   Tag(context: context)
+            let formal =   Tag(context: context)
+            let casual =   Tag(context: context)
+            let party =    Tag(context: context)
+            let vacation = Tag(context: context)
+            let sports =   Tag(context: context)
+            let beach =    Tag(context: context)
             
             cold.name = "Frio"          // 0
             hot.name = "Quente"         // 1
@@ -57,110 +58,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 tag.id = .init()
             }
             
-            tagService.update()
+            tagService.update(with: context)
         }
         
         var clotheService = ClotheService.build()
         if ClotheService.data.count == 0 {
             var clothes = [Clothe]()
             
-            let group = DispatchGroup()
-            
             for idx in 1...21 {
                 let img_data = UIImage(named: "image \(idx)")?.croppedToOpaque()?.pngData()
                 
-                group.enter()
+                let clothe = Clothe(context: context)
+                clothe.id = .init()
+                clothe.image = img_data
                 
-                let closure: () -> Void = {
-                    let clothe = Clothe(context: clotheService.viewContext)
-                    clothe.id = .init()
-                    clothe.image = img_data
-                    
-                    DispatchQueue.main.sync {
-                        clothes.append(clothe)
-                    }
-                    
-                    group.leave()
-                }
-                
-                Task.detached {
-                    closure()
-                }
+                clothes.append(clothe)
             }
             
-            group.notify(queue: .main) {
-                clothes[0].addToTags(TagService.data[0])
-                clothes[0].addToTags(TagService.data[2])
-                clothes[0].addToTags(TagService.data[6])
-                clothes[1].addToTags(TagService.data[0])
-                clothes[1].addToTags(TagService.data[2])
-                clothes[1].addToTags(TagService.data[6])
-                clothes[2].addToTags(TagService.data[0])
-                clothes[2].addToTags(TagService.data[2])
-                clothes[2].addToTags(TagService.data[6])
-                clothes[3].addToTags(TagService.data[1])
-                clothes[3].addToTags(TagService.data[3])
-                clothes[3].addToTags(TagService.data[6])
-                clothes[3].addToTags(TagService.data[8])
-                clothes[3].addToTags(TagService.data[9])
-                clothes[4].addToTags(TagService.data[1])
-                clothes[4].addToTags(TagService.data[3])
-                clothes[4].addToTags(TagService.data[6])
-                clothes[4].addToTags(TagService.data[8])
-                clothes[5].addToTags(TagService.data[1])
-                clothes[5].addToTags(TagService.data[3])
-                clothes[5].addToTags(TagService.data[4])
-                clothes[5].addToTags(TagService.data[8])
-                clothes[6].addToTags(TagService.data[0])
-                clothes[6].addToTags(TagService.data[4])
-                clothes[6].addToTags(TagService.data[5])
-                clothes[7].addToTags(TagService.data[1])
-                clothes[7].addToTags(TagService.data[3])
-                clothes[7].addToTags(TagService.data[8])
-                clothes[7].addToTags(TagService.data[10])
-                clothes[8].addToTags(TagService.data[3])
-                clothes[8].addToTags(TagService.data[6])
-                clothes[8].addToTags(TagService.data[8])
-                clothes[8].addToTags(TagService.data[10])
-                clothes[9].addToTags(TagService.data[1])
-                clothes[9].addToTags(TagService.data[3])
-                clothes[9].addToTags(TagService.data[6])
-                clothes[9].addToTags(TagService.data[8])
-                clothes[9].addToTags(TagService.data[10])
-                clothes[10].addToTags(TagService.data[0])
-                clothes[10].addToTags(TagService.data[2])
-                clothes[10].addToTags(TagService.data[9])
-                clothes[11].addToTags(TagService.data[0])
-                clothes[11].addToTags(TagService.data[2])
-                clothes[12].addToTags(TagService.data[0])
-                clothes[12].addToTags(TagService.data[2])
-                clothes[13].addToTags(TagService.data[0])
-                clothes[13].addToTags(TagService.data[5])
-                clothes[14].addToTags(TagService.data[0])
-                clothes[14].addToTags(TagService.data[2])
-                clothes[15].addToTags(TagService.data[1])
-                clothes[15].addToTags(TagService.data[3])
-                clothes[15].addToTags(TagService.data[4])
-                clothes[15].addToTags(TagService.data[6])
-                clothes[15].addToTags(TagService.data[8])
-                clothes[16].addToTags(TagService.data[0])
-                clothes[16].addToTags(TagService.data[6])
-                clothes[17].addToTags(TagService.data[0])
-                clothes[17].addToTags(TagService.data[6])
-                clothes[18].addToTags(TagService.data[1])
-                clothes[18].addToTags(TagService.data[3])
-                clothes[18].addToTags(TagService.data[6])
-                clothes[18].addToTags(TagService.data[8])
-                clothes[19].addToTags(TagService.data[1])
-                clothes[19].addToTags(TagService.data[3])
-                clothes[19].addToTags(TagService.data[4])
-                clothes[19].addToTags(TagService.data[6])
-                clothes[19].addToTags(TagService.data[10])
-                clothes[20].addToTags(TagService.data[0])
-                clothes[20].addToTags(TagService.data[6])
-                
-                clotheService.update()
-            }
+            clothes[0].addToTags(TagService.data[0])
+            clothes[0].addToTags(TagService.data[2])
+            clothes[0].addToTags(TagService.data[6])
+            clothes[1].addToTags(TagService.data[0])
+            clothes[1].addToTags(TagService.data[2])
+            clothes[1].addToTags(TagService.data[6])
+            clothes[2].addToTags(TagService.data[0])
+            clothes[2].addToTags(TagService.data[2])
+            clothes[2].addToTags(TagService.data[6])
+            clothes[3].addToTags(TagService.data[1])
+            clothes[3].addToTags(TagService.data[3])
+            clothes[3].addToTags(TagService.data[6])
+            clothes[3].addToTags(TagService.data[8])
+            clothes[3].addToTags(TagService.data[9])
+            clothes[4].addToTags(TagService.data[1])
+            clothes[4].addToTags(TagService.data[3])
+            clothes[4].addToTags(TagService.data[6])
+            clothes[4].addToTags(TagService.data[8])
+            clothes[5].addToTags(TagService.data[1])
+            clothes[5].addToTags(TagService.data[3])
+            clothes[5].addToTags(TagService.data[4])
+            clothes[5].addToTags(TagService.data[8])
+            clothes[6].addToTags(TagService.data[0])
+            clothes[6].addToTags(TagService.data[4])
+            clothes[6].addToTags(TagService.data[5])
+            clothes[7].addToTags(TagService.data[1])
+            clothes[7].addToTags(TagService.data[3])
+            clothes[7].addToTags(TagService.data[8])
+            clothes[7].addToTags(TagService.data[10])
+            clothes[8].addToTags(TagService.data[3])
+            clothes[8].addToTags(TagService.data[6])
+            clothes[8].addToTags(TagService.data[8])
+            clothes[8].addToTags(TagService.data[10])
+            clothes[9].addToTags(TagService.data[1])
+            clothes[9].addToTags(TagService.data[3])
+            clothes[9].addToTags(TagService.data[6])
+            clothes[9].addToTags(TagService.data[8])
+            clothes[9].addToTags(TagService.data[10])
+            clothes[10].addToTags(TagService.data[0])
+            clothes[10].addToTags(TagService.data[2])
+            clothes[10].addToTags(TagService.data[9])
+            clothes[11].addToTags(TagService.data[0])
+            clothes[11].addToTags(TagService.data[2])
+            clothes[12].addToTags(TagService.data[0])
+            clothes[12].addToTags(TagService.data[2])
+            clothes[13].addToTags(TagService.data[0])
+            clothes[13].addToTags(TagService.data[5])
+            clothes[14].addToTags(TagService.data[0])
+            clothes[14].addToTags(TagService.data[2])
+            clothes[15].addToTags(TagService.data[1])
+            clothes[15].addToTags(TagService.data[3])
+            clothes[15].addToTags(TagService.data[4])
+            clothes[15].addToTags(TagService.data[6])
+            clothes[15].addToTags(TagService.data[8])
+            clothes[16].addToTags(TagService.data[0])
+            clothes[16].addToTags(TagService.data[6])
+            clothes[17].addToTags(TagService.data[0])
+            clothes[17].addToTags(TagService.data[6])
+            clothes[18].addToTags(TagService.data[1])
+            clothes[18].addToTags(TagService.data[3])
+            clothes[18].addToTags(TagService.data[6])
+            clothes[18].addToTags(TagService.data[8])
+            clothes[19].addToTags(TagService.data[1])
+            clothes[19].addToTags(TagService.data[3])
+            clothes[19].addToTags(TagService.data[4])
+            clothes[19].addToTags(TagService.data[6])
+            clothes[19].addToTags(TagService.data[10])
+            clothes[20].addToTags(TagService.data[0])
+            clothes[20].addToTags(TagService.data[6])
+            
+            clotheService.update(with: context)
         }
         
         return true

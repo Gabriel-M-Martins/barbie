@@ -15,9 +15,9 @@ protocol CoreDataService<T> where T : NSManagedObject {
     
     init()
     
-    func save()
+    func save(with context: NSManagedObjectContext?)
     mutating func fetch()
-    mutating func update()
+    mutating func update(with context: NSManagedObjectContext?)
     mutating func delete(_ object: T)
 }
 
@@ -30,9 +30,13 @@ extension CoreDataService {
         return object
     }
     
-    func save() {
+    func save(with context: NSManagedObjectContext? = nil) {
         do {
-            try viewContext.save()
+            if let context {
+                try context.save()
+            } else {
+                try viewContext.save()
+            }
         } catch {
             // !!
             print("Error saving ----------------------------------------")
@@ -45,8 +49,8 @@ extension CoreDataService {
         Self.data = (try? viewContext.fetch(request)) ?? Self.data
     }
     
-    mutating func update() {
-        save()
+    mutating func update(with context: NSManagedObjectContext? = nil) {
+        save(with: context)
         fetch()
     }
     
